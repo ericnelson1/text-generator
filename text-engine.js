@@ -27,7 +27,7 @@ var entries = [
 {"id":5, "title":"I'm Leaving Technology X and You Care", "body":"Let me write some link bait about why I'm not using a particular technology anymore.", "published":"6/10/2013"},
 {"id":6, "title":"Help My Kickstarter", "body":"I want a new XBox One. Please fund my Kickstarter.", "published":"6/12/2013"}];
  
-export.setEntry = function(entry) {
+exports.setEntry = function(entry) {
 	client.set("")
 };
  

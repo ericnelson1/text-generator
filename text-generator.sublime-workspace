@@ -1,0 +1,286 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "text-engine.js",
+			"settings":
+			{
+				"buffer_size": 1711,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "text-stats.js",
+			"settings":
+			{
+				"buffer_size": 622,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 306.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/eric/text-generator-two"
+	],
+	"file_history":
+	[
+		"/home/eric/text-generator-two/public/controllers.js",
+		"/home/eric/text-generator-two/public/app.js",
+		"/home/eric/text-generator-two/public/app.css",
+		"/home/eric/text-generator-two/text-engine.js",
+		"/home/eric/text-generator-two/public/index.html",
+		"/home/eric/text-generator-two/public/components/about/about.html",
+		"/home/eric/text-generator-two/public/components/stats/stats.js",
+		"/home/eric/text-generator-two/public/components/home/textgenerator.svg",
+		"/home/eric/text-generator/TextGenerator.WebUI/Assets/Css/app.less",
+		"/home/eric/text-generator/TextGenerator.WebUI/App/controllers.js",
+		"/home/eric/text-generator/TextGenerator.WebUI/index.html",
+		"/home/eric/text-generator/TextGenerator.WebUI/App/Views/about.html",
+		"/home/eric/text-generator/TextGenerator.WebUI/App/app.js",
+		"/home/eric/text-generator-two/public/components/about/about.js",
+		"/home/eric/text-generator-two/gulpfile.js",
+		"/home/eric/text-generator-two/app.js",
+		"/home/eric/text-generator-two/public/components/submit/submit.js",
+		"/home/eric/text-generator-two/public/components/home/home.html",
+		"/home/eric/text-generator-two/public/components/home/home.js",
+		"/home/eric/text-generator-two/package.json",
+		"/home/eric/text-generator-two/public/views/about.html",
+		"/home/eric/text-generator-two/public/views/collect.svg",
+		"/home/eric/text-generator-two/public/views/home.html",
+		"/home/eric/workspace/graphics/public/index.html",
+		"/home/eric/workspace/graphics/app.js",
+		"/home/eric/workspace/graphics/public/treepatterns/angular-number-picker.js",
+		"/home/eric/perl/data.orig"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"00ccff"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"337ab7"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "text-engine.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1711,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								500,
+								500
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "text-stats.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								45,
+								622
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "text-generator.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/node/node.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 238.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
