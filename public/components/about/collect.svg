@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<svg xmlns="http://www.w3.org/2000/svg"
+	 width="500" height="250">
+
+	<rect x="200" y="5" width="80" height="80" fill="yellow" stroke="black" />
+	<text x="205" y="40">processor</text>
+
+	<rect x="200" y="150" width="80" height="80" fill="yellow" stroke="black" />
+	<text x="205" y="180">links</text>
+
+	<rect x="400" y="5" width="80" height="80" fill="yellow" stroke="black" />
+	<text x="405" y="40">web</text>
+
+	<text x="200" y="30" fill="black">
+		{{quote}}
+		<animateMotion path="M 0 0 L -1800 0" dur="60s" fill="freeze" repeatCount="indefinite" />
+	</text>
+
+</svg>

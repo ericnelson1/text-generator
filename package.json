@@ -1,0 +1,26 @@
+{
+  "name": "text-generator",
+  "version": "0.0.0",
+  "description": "generate text",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericnelson1/text-generator-two.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ericnelson1/text-generator-two/issues"
+  },
+  "dependencies": {
+    "express": "3.x",
+    "angular": "~1.4.7",
+    "angular-new-router": "~0.5.3",
+    "gulp": "~3.9.0",
+    "redis": "~2.3.0"
+  }
+}

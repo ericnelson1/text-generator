@@ -1,0 +1,37 @@
+﻿<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-8">
+			<h1 class="text-center">Statistics</h1>
+			<hr />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-4">
+			<p>Select character depth:</p>
+			<div class="btn-group btn-group-justified" ng-init="settings.depth=1">
+				<label class="btn btn-sm btn-primary" ng-model="settings.depth" btn-radio="1">One Character</label>
+				<label class="btn btn-sm btn-primary" ng-model="settings.depth" btn-radio="4">Four Characters</label>
+				<label class="btn btn-sm btn-primary" ng-model="settings.depth" btn-radio="8">Eight Characters</label>
+			</div>
+			<h4>Chart Type:</h4>
+			<div class="btn-group btn-group-justified" ng-init="settings.type='bar'">
+				<label class="btn btn-sm btn-primary" ng-model="settings.type" btn-radio="'bar'">Bar Graph</label>
+				<label class="btn btn-sm btn-primary" ng-model="settings.type" btn-radio="'bubble'">Bubble Chart</label>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<h4>Sort by:</h4>
+			<div class="btn-group btn-group-justified" ng-init="settings.sort='count'">
+				<label class="btn btn-sm btn-primary" ng-model="settings.sort" btn-radio="'alpha'">Alphabetical</label>
+				<label class="btn btn-sm btn-primary" ng-model="settings.sort" btn-radio="'count'">Count</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-8">
+			<div bars-chart chart-data="myData"></div>
+			<!--<svg class="chart"></svg>-->
+		</div>
+	</div>
+</div>
