@@ -7,22 +7,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "text-engine.js",
-			"settings":
-			{
-				"buffer_size": 1711,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "text-stats.js",
-			"settings":
-			{
-				"buffer_size": 622,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -32,7 +16,7 @@
 	"command_palette":
 	{
 		"height": 306.0,
-		"last_filter": "",
+		"last_filter": ":w",
 		"selected_items":
 		[
 			[
@@ -69,10 +53,12 @@
 	],
 	"file_history":
 	[
+		"/home/eric/text-generator-two/text-engine.js",
+		"/home/eric/text-generator-two/text-stats.js",
+		"/home/eric/text-generator-two/test.js",
 		"/home/eric/text-generator-two/public/controllers.js",
 		"/home/eric/text-generator-two/public/app.js",
 		"/home/eric/text-generator-two/public/app.css",
-		"/home/eric/text-generator-two/text-engine.js",
 		"/home/eric/text-generator-two/public/index.html",
 		"/home/eric/text-generator-two/public/components/about/about.html",
 		"/home/eric/text-generator-two/public/components/stats/stats.js",
@@ -132,68 +118,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "text-engine.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1711,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								500,
-								500
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "text-stats.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 622,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								45,
-								622
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
