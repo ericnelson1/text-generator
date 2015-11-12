@@ -15,10 +15,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 306.0,
-		"last_filter": ":w",
+		"height": 96.0,
+		"last_filter": "install",
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				":w",
 				":w - Save"
@@ -49,13 +53,17 @@
 	},
 	"expanded_folders":
 	[
-		"/home/eric/text-generator-two"
+		"/home/eric/text-generator-two",
+		"/home/eric/text-generator-two/public"
 	],
 	"file_history":
 	[
+		"/home/eric/text-generator-two/test.js",
+		"/home/eric/text-generator-two/public/app.less",
+		"/home/eric/text-generator-two/app.js",
+		"/home/eric/text-generator-two/kant.txt",
 		"/home/eric/text-generator-two/text-engine.js",
 		"/home/eric/text-generator-two/text-stats.js",
-		"/home/eric/text-generator-two/test.js",
 		"/home/eric/text-generator-two/public/controllers.js",
 		"/home/eric/text-generator-two/public/app.js",
 		"/home/eric/text-generator-two/public/app.css",
@@ -70,7 +78,6 @@
 		"/home/eric/text-generator/TextGenerator.WebUI/App/app.js",
 		"/home/eric/text-generator-two/public/components/about/about.js",
 		"/home/eric/text-generator-two/gulpfile.js",
-		"/home/eric/text-generator-two/app.js",
 		"/home/eric/text-generator-two/public/components/submit/submit.js",
 		"/home/eric/text-generator-two/public/components/home/home.html",
 		"/home/eric/text-generator-two/public/components/home/home.js",
@@ -171,6 +178,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"kan",
+				"kant.txt"
+			],
+			[
+				"app",
+				"app.js"
+			]
 		],
 		"width": 0.0
 	},
