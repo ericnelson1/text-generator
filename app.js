@@ -1,3 +1,4 @@
+/*
 var express = require('express');
 var app = express();
 
@@ -17,3 +18,17 @@ app.get('/api/text/:id', function(req, res) {
 app.listen(3000);
 
 console.log("listening on port 3000");
+*/
+
+// app.js 
+var express = require('express');
+var app = module.exports.app = exports.app = express();
+ 
+//you won't need 'connect-livereload' if you have livereload plugin for your browser 
+//app.use(require('connect-livereload')());
+app.use(express.static('public'));
+
+
+app.listen(3000);
+console.log("listening on port 3000");
+
