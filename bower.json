@@ -1,0 +1,19 @@
+{
+  "name": "text-generator",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ericnelson1/text-generator",
+  "authors": [
+    "ericnelson1 <ericnelson6@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
