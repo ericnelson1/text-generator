@@ -1,48 +1,50 @@
-var gulp = require("gulp"),
-  //jade = require('gulp-jade'),
-  less = require('gulp-less'),
-  //sass = require('gulp-sass'),
-  autoprefixer = require('gulp-autoprefixer'),
-  minifycss = require('gulp-minify-css'),
-  jshint = require('gulp-jshint'),
-  concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
-  rename = require('gulp-rename'),
-  clean = require('gulp-clean'),
-  //notify = require('gulp-notify'),
-  cache = require('gulp-cache'),
-  livereload = require('gulp-livereload'),
+var gulp = require('gulp'),
+  plugins = require('gulp-load-plugins')(),
+  wiredep = require('wiredep'),
+  merge = require('merge-stream'),
   lr = require('tiny-lr'),
-  server = lr(),
-  svr = require('gulp-express'),
-  plumber = require('gulp-plumber'); // keeps gulp running
+  server = lr();
+  //svr = require('gulp-express'),
 
 gulp.task('styles', function() {
-  return gulp.src('src/styles/*.less')
-    .pipe(plumber())
-    .pipe(less())
-    .pipe(autoprefixer())
-    .pipe(concat('style.css'))
-    .pipe(gulp.dest('dist/styles'))
-    .pipe(minifycss())
-    .pipe(rename('style.min.css'))
-    .pipe(livereload(server))
-    .pipe(gulp.dest('dist/styles'));
+  return gulp.src('./app/styles/*.less')
+    .pipe(plugins.plumber()) // keep gulp running
+    .pipe(plugins.less())
+    .pipe(plugins.autoprefixer())
+    .pipe(plugins.concat('style.css'))
+    .pipe(gulp.dest('./dist/styles'))
+    .pipe(plugins.minifyCss())
+    .pipe(plugins.rename('style.min.css'))
+    .pipe(plugins.livereload(server))
+    .pipe(gulp.dest('./dist/styles'));
     //.pipe(notify({message: 'Styles task complete'}));
 });
 
 gulp.task('scripts', function() {
-  return gulp.src('src/scripts/*.js')
-    .pipe(plumber())
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(concat('script.js'))
-    .pipe(gulp.dest('dist/scripts'))
-    .pipe(uglify())
-    .pipe(rename('script.min.js'))
-    .pipe(livereload(server))
-    .pipe(gulp.dest('dist/scripts'));
+  return gulp.src('./app/scripts/*.js')
+    .pipe(plugins.plumber())
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('default'))
+    .pipe(plugins.concat('script.js'))
+    .pipe(gulp.dest('./dist/scripts'))
+    .pipe(plugins.uglify())
+    .pipe(plugins.rename('script.min.js'))
+    .pipe(plugins.livereload(server))
+    .pipe(gulp.dest('./dist/scripts'));
     //.pipe(notify({message: 'Scripts task complete'}));
+});
+
+gulp.task('views', function() {
+  return merge(
+    gulp.src('./app/views/*.html').pipe(gulp.dest('./dist/views')),
+    gulp.src('./app/404.html').pipe(gulp.dest('./dist')),
+    gulp.src('./app/robots.txt').pipe(gulp.dest('./dist')),
+    gulp.src('./app/favicon.ico').pipe(gulp.dest('./dist')),
+
+    gulp.src('./app/index.html')
+      .pipe(wiredep.stream())
+      .pipe(gulp.dest('./dist'))
+  );
 });
 
 gulp.task('clean', function() {
@@ -52,11 +54,6 @@ gulp.task('clean', function() {
 
 gulp.task('default', ['clean'], function() {
   gulp.run('styles', 'scripts');
-});
-
-gulp.task('copy', function () {
-  gulp.src('./node_modules/angular/angular.min.js').pipe(gulp.dest('./public/lib/angular'));
-  gulp.src('./node_modules/angular-new-router/dist/router.es5.min.js').pipe(gulp.dest('./public/lib/angular'));
 });
 
 // basic way to watch files

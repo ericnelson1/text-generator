@@ -20,7 +20,7 @@
     "angular": "~1.4.8",
     "angular-new-router": "~0.5.3",
     "underscore": "~1.8.3",
-    "bootstrap": "~3.3.5",
+    "bootstrap": "3.3.4",
     "jquery": "~2.1.4"
   }
 }

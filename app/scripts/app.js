@@ -1,4 +1,5 @@
-﻿'use strict';
+﻿(function() {
+'use strict';
 
 //var underscore = angular.module('underscore', []);
 //underscore.factory('_', function ()
@@ -27,3 +28,4 @@ angular.module('app', [
         ];
     }]);
 
+})();
