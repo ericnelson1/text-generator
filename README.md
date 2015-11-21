@@ -1,1 +1,1 @@
-# text generator app
+# Text Generator
