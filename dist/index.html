@@ -1,0 +1,55 @@
+<!DOCTYPE HTML">
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Text generator">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Eric Nelson">
+
+	<title>Text Generator</title>
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+	<link rel="stylesheet" href="app.css">
+</head>
+<body ng-controller="AppController as app">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="navbar-header">
+			<div style="width:100px">&nbsp;</div>
+		</div>
+		<ul class="nav nav-tabs">
+			<li ng-repeat="option in app.options" ng-cloak>
+				<a ng-link="{{option.key}}()">{{option.display}}</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="main-container">
+		<div ng-viewport></div>
+	</div>
+
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/underscore/underscore.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower --> 
+    
+    <script src="../bower_components/angular-new-router/dist/router.es5.min.js"></script>
+
+	<script src="/scripts/home.js"></script>
+	<script src="/scripts/about.js"></script>
+	<script src="/scripts/stats.js"></script>
+	<script src="/scripts/submit.js"></script>
+
+	<script src="/scripts/app.js"></script>
+
+</body>
+</html>
