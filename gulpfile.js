@@ -1,4 +1,4 @@
-﻿var gulp = require("gulp"),
+var gulp = require("gulp"),
   //jade = require('gulp-jade'),
   less = require('gulp-less'),
   //sass = require('gulp-sass'),
@@ -41,7 +41,6 @@ gulp.task('scripts', function() {
     .pipe(uglify())
     .pipe(rename('script.min.js'))
     .pipe(livereload(server))
-    .pipe(livereload())
     .pipe(gulp.dest('dist/scripts'));
     //.pipe(notify({message: 'Scripts task complete'}));
 });
