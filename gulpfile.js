@@ -76,7 +76,7 @@ gulp.task('connect', function() {
 gulp.task('watch', function() {
   gulp.watch('./app/**/*.html', ['views']);
   gulp.watch('./app/styles/**/*.less', ['styles']);
-  gulp.watch('./app/scripts/**/*.js', ['scripts']);
+  gulp.watch('./app/**/*.js', ['scripts']);
 });
 
 gulp.task('build', ['scripts', 'styles', 'views', 'images']);

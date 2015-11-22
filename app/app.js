@@ -9,8 +9,8 @@ angular.module('app', [
     'ngNewRouter',
 	'app.controllers'
 	])
-    .controller('AppController', ['$router',
-		function ($router) {
+    .controller('AppController', ['$router', '$location',
+		function ($router, $location) {
 
         $router.config([
              { path: '/', redirectTo: '/home' },
@@ -26,6 +26,10 @@ angular.module('app', [
             { key: 'submit', display: 'Submit' },
             { key: 'stats', display: 'Statistics' }
         ];
+
+        this.isActive = function(location) {
+            return ('/' + location === $location.path());
+        };
     }]);
 
 })();
