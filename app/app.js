@@ -6,6 +6,7 @@
 //{ return window._; });
 
 angular.module('app', [
+    'ui.bootstrap',
     'ngNewRouter',
 	'app.controllers'
 	])

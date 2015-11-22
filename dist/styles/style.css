@@ -15,9 +15,6 @@
   display: block;
   margin: 0 auto;
 }
-#generate-button {
-  margin: 30px 0;
-}
 .pager li a {
   width: 125px;
 }
