@@ -9,12 +9,9 @@ var config = {
     './app/styles/*.less'
   ],
   scripts: [
-    './app/scripts/home.js',
-    './app/scripts/about.js',
-    './app/scripts/stats.js',
-    './app/scripts/submit.js',
-    './app/scripts/controllers.js',
-    './app/scripts/app.js'
+    './app/controllers.js',
+    './app/components/**/*.js',
+    './app/app.js'
   ]
 }
 
@@ -48,7 +45,7 @@ gulp.task('scripts', function() {
 
 gulp.task('views', function() {
   return merge(
-    gulp.src('./app/views/*.html').pipe(gulp.dest('./dist/views')),
+    gulp.src('./app/components/**/*.html').pipe(gulp.dest('./dist/components')),
     gulp.src('./app/404.html').pipe(gulp.dest('./dist')),
     gulp.src('./app/robots.txt').pipe(gulp.dest('./dist')),
     gulp.src('./app/favicon.ico').pipe(gulp.dest('./dist')),
@@ -58,6 +55,10 @@ gulp.task('views', function() {
       .pipe(connect.reload())
       .pipe(gulp.dest('./dist'))
   );
+});
+
+gulp.task('images', function() {
+  return gulp.src('./app/images/*').pipe(gulp.dest('./dist/images')); 
 });
 
 gulp.task('clean', function() {
@@ -78,6 +79,6 @@ gulp.task('watch', function() {
   gulp.watch('./app/scripts/**/*.js', ['scripts']);
 });
 
-gulp.task('build', ['scripts', 'styles', 'views']);
+gulp.task('build', ['scripts', 'styles', 'views', 'images']);
 gulp.task('default', ['build', 'connect', 'watch']);
 
