@@ -1,6 +1,9 @@
 .div {
   background-color: blue;
 }
+p {
+  background-color: blue;
+}
 
 /* This creates a positioned div for ui-layout to live inside */
 .main-container {

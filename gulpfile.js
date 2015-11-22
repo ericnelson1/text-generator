@@ -48,44 +48,39 @@ gulp.task('views', function() {
 });
 
 gulp.task('clean', function() {
-  return gulp.src(['dist/styles', 'dist/scripts'], {read: false})
+  return gulp.src(['./dist'], {read: false})
     .pipe(clean());
 });
 
-gulp.task('default', ['clean'], function() {
-  gulp.run('styles', 'scripts');
-});
-
-// basic way to watch files
 gulp.task('watch', function() {
-  gulp.watch('src/styles/*.less', ['styles']);
-  gulp.watch('src/scripts/*.js', ['scripts']);
-});
-
-// log to console while watching files
-gulp.task('watch2', function() {
 
   //var server = livereload();
-    // Listen on port 35729
+  // Listen on port 35729
   server.listen(35729, function (err) {
     if (err) {
       return console.log(err);
     };
+ 
+    // gulp.watch('./app/**/*.html', function(event) {
+    //   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    //   gulp.run('views');
+    //   //livereload(server);
+    // });
 
-    gulp.watch('public/index.html', function(event) {
-      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-      livereload(server);
-    });
+    // gulp.watch('./app/styles/**/*.less', function(event) {
+    //   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    //   gulp.run('styles');
+    // });
 
-    gulp.watch('src/styles/**/*.less', function(event) {
-      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-      gulp.run('styles');
-    });
+    // gulp.watch('./app/scripts/**/*.js', function(event) {
+    //   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    //   gulp.run('scripts');
+    // });
 
-    gulp.watch('src/scripts/**/*.js', function(event) {
-      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-      gulp.run('scripts');
-    });
+    gulp.watch('./app/**/*.html', ['views']);
+    gulp.watch('./app/styles/**/*.less', ['styles']);
+    gulp.watch('./app/scripts/**/*.js', ['scripts']);
+
   });
 });
 
@@ -98,3 +93,7 @@ gulp.task('server', function() {
   });
   
 });
+
+gulp.task('build', ['scripts', 'styles', 'views']);
+gulp.task('default', ['build', 'watch']);
+
