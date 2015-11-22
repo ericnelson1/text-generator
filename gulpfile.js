@@ -1,10 +1,8 @@
 var gulp = require('gulp'),
   plugins = require('gulp-load-plugins')(),
   wiredep = require('wiredep'),
-  merge = require('merge-stream'),
-  lr = require('tiny-lr'),
-  server = lr();
-  //svr = require('gulp-express'),
+  connect = require('gulp-connect'),
+  merge = require('merge-stream');
 
 gulp.task('styles', function() {
   return gulp.src('./app/styles/*.less')
@@ -15,7 +13,7 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./dist/styles'))
     .pipe(plugins.minifyCss())
     .pipe(plugins.rename('style.min.css'))
-    .pipe(plugins.livereload(server))
+    .pipe(connect.reload())
     .pipe(gulp.dest('./dist/styles'));
     //.pipe(notify({message: 'Styles task complete'}));
 });
@@ -29,7 +27,7 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('./dist/scripts'))
     .pipe(plugins.uglify())
     .pipe(plugins.rename('script.min.js'))
-    .pipe(plugins.livereload(server))
+    .pipe(connect.reload())
     .pipe(gulp.dest('./dist/scripts'));
     //.pipe(notify({message: 'Scripts task complete'}));
 });
@@ -43,6 +41,7 @@ gulp.task('views', function() {
 
     gulp.src('./app/index.html')
       .pipe(wiredep.stream())
+      .pipe(connect.reload())
       .pipe(gulp.dest('./dist'))
   );
 });
@@ -52,48 +51,19 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
+gulp.task('connect', function() {
+  connect.server({
+    root: 'dist',
+    livereload: true
+  });
+});
+
 gulp.task('watch', function() {
-
-  //var server = livereload();
-  // Listen on port 35729
-  server.listen(35729, function (err) {
-    if (err) {
-      return console.log(err);
-    };
- 
-    // gulp.watch('./app/**/*.html', function(event) {
-    //   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    //   gulp.run('views');
-    //   //livereload(server);
-    // });
-
-    // gulp.watch('./app/styles/**/*.less', function(event) {
-    //   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    //   gulp.run('styles');
-    // });
-
-    // gulp.watch('./app/scripts/**/*.js', function(event) {
-    //   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    //   gulp.run('scripts');
-    // });
-
     gulp.watch('./app/**/*.html', ['views']);
     gulp.watch('./app/styles/**/*.less', ['styles']);
     gulp.watch('./app/scripts/**/*.js', ['scripts']);
-
-  });
-});
-
-gulp.task('server', function() {
-  svr.run(['app.js']);
-
-  gulp.watch(['public/index.html'], function(event) {
-    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    svr.notify();
-  });
-  
 });
 
 gulp.task('build', ['scripts', 'styles', 'views']);
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build', 'connect', 'watch']);
 
