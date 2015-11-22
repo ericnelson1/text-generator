@@ -1,6 +1,15 @@
 (function() {
 'use strict';
 
+angular.module('app.controllers', [])
+	.controller('HomeController', function() {
+		this.x = 'hello';
+	});
+
+})();
+(function() {
+'use strict';
+
 angular.module('app.controllers')
 .controller('AboutController', [
 	function () {
@@ -32,32 +41,21 @@ angular.module('app.controllers')
 (function() {
 'use strict';
 
-//var underscore = angular.module('underscore', []);
-//underscore.factory('_', function ()
-//{ return window._; });
+angular.module('app.controllers')
+.controller('StatsController', 
+  function() {
+ 
+});
 
-angular.module('app', [
-    'ngNewRouter',
-	'app.controllers'
-	])
-    .controller('AppController', ['$router',
-		function ($router) {
+})();
+(function() {
+'use strict';
 
-        $router.config([
-             { path: '/', redirectTo: '/home' },
-             { path: '/home', component: 'home' },
-             { path: '/about', component: 'about' },
-             { path: '/submit', component: 'submit' },
-             { path: '/stats', component: 'stats' }
-           ]);
-
-        this.options = [
-            { key: 'home', display: 'Home'},
-            { key: 'about', display: 'About' },
-            { key: 'submit', display: 'Submit' },
-            { key: 'stats', display: 'Statistics' }
-        ];
-    }]);
+angular.module('app.controllers')
+.controller('SubmitController', 
+  function() {
+ 
+  });
 
 })();
 (function() {
@@ -220,29 +218,31 @@ angular.module('app.controllers', [])
 (function() {
 'use strict';
 
-angular.module('app.controllers', [])
-	.controller('HomeController', function() {
-		this.x = 'hello';
-	});
+//var underscore = angular.module('underscore', []);
+//underscore.factory('_', function ()
+//{ return window._; });
 
-})();
-(function() {
-'use strict';
+angular.module('app', [
+    'ngNewRouter',
+	'app.controllers'
+	])
+    .controller('AppController', ['$router',
+		function ($router) {
 
-angular.module('app.controllers')
-.controller('StatsController', 
-  function() {
- 
-});
+        $router.config([
+             { path: '/', redirectTo: '/home' },
+             { path: '/home', component: 'home' },
+             { path: '/about', component: 'about' },
+             { path: '/submit', component: 'submit' },
+             { path: '/stats', component: 'stats' }
+           ]);
 
-})();
-(function() {
-'use strict';
-
-angular.module('app.controllers')
-.controller('SubmitController', 
-  function() {
- 
-  });
+        this.options = [
+            { key: 'home', display: 'Home'},
+            { key: 'about', display: 'About' },
+            { key: 'submit', display: 'Submit' },
+            { key: 'stats', display: 'Statistics' }
+        ];
+    }]);
 
 })();

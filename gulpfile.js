@@ -4,8 +4,22 @@ var gulp = require('gulp'),
   connect = require('gulp-connect'),
   merge = require('merge-stream');
 
+var config = {
+  styles: [
+    './app/styles/*.less'
+  ],
+  scripts: [
+    './app/scripts/home.js',
+    './app/scripts/about.js',
+    './app/scripts/stats.js',
+    './app/scripts/submit.js',
+    './app/scripts/controllers.js',
+    './app/scripts/app.js'
+  ]
+}
+
 gulp.task('styles', function() {
-  return gulp.src('./app/styles/*.less')
+  return gulp.src(config.styles)
     .pipe(plugins.plumber()) // keep gulp running
     .pipe(plugins.less())
     .pipe(plugins.autoprefixer())
@@ -19,7 +33,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src('./app/scripts/*.js')
+  return gulp.src(config.scripts)
     .pipe(plugins.plumber())
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('default'))
@@ -40,7 +54,7 @@ gulp.task('views', function() {
     gulp.src('./app/favicon.ico').pipe(gulp.dest('./dist')),
 
     gulp.src('./app/index.html')
-      .pipe(wiredep.stream())
+      .pipe(wiredep.stream({ignorePath: '../bower_components'}))
       .pipe(connect.reload())
       .pipe(gulp.dest('./dist'))
   );
@@ -53,15 +67,15 @@ gulp.task('clean', function() {
 
 gulp.task('connect', function() {
   connect.server({
-    root: 'dist',
+    root: ['dist', 'bower_components'],
     livereload: true
   });
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./app/**/*.html', ['views']);
-    gulp.watch('./app/styles/**/*.less', ['styles']);
-    gulp.watch('./app/scripts/**/*.js', ['scripts']);
+  gulp.watch('./app/**/*.html', ['views']);
+  gulp.watch('./app/styles/**/*.less', ['styles']);
+  gulp.watch('./app/scripts/**/*.js', ['scripts']);
 });
 
 gulp.task('build', ['scripts', 'styles', 'views']);
