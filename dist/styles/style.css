@@ -11,6 +11,10 @@
 .nav-pills {
   margin: 5px 0;
 }
+#app-home img {
+  display: block;
+  margin: 0 auto;
+}
 #generate-button {
   margin: 30px 0;
 }
