@@ -1,7 +1,7 @@
 (function() {
 'use strict';
 
-angular.module('app.controllers', [])
+angular.module('app.controllers')
 	.controller('HomeController', function() {
 
 		this.chardepths = [
@@ -13,7 +13,7 @@ angular.module('app.controllers', [])
 		this.selected = this.chardepths[1];
 		this.select = function(s) {
 			this.selected = s;
-		}
+		};
 	});
 
 })();
