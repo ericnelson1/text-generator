@@ -15,7 +15,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 327.0,
+		"height": 369.0,
 		"last_filter": ":w",
 		"selected_items":
 		[
@@ -56,7 +56,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 575.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -80,37 +80,37 @@
 	"expanded_folders":
 	[
 		"/home/eric/text-generator",
+		"/home/eric/text-generator/api",
 		"/home/eric/text-generator/app",
-		"/home/eric/text-generator/app/components",
-		"/home/eric/text-generator/app/components/about",
-		"/home/eric/text-generator/app/components/home",
-		"/home/eric/text-generator/app/styles",
-		"/home/eric/text-generator/dist",
+		"/home/eric/text-generator/dist/scripts",
 		"/home/eric/text-generator/dist/styles"
 	],
 	"file_history":
 	[
+		"/home/eric/text-generator/package.json",
+		"/home/eric/text-generator/app/images/process.svg",
+		"/home/eric/text-generator/app/components/submit/submit.html",
+		"/home/eric/text-generator/api/app.js",
+		"/home/eric/text-generator/app/components/about/about.js",
+		"/home/eric/text-generator/app/components/about/about.html",
+		"/home/eric/text-generator/dist/images/process.svg",
+		"/home/eric/text-generator/app/components/home/home.js",
 		"/home/eric/text-generator/app/app.js",
 		"/home/eric/text-generator/app/index.html",
-		"/home/eric/text-generator/app/components/home/home.js",
 		"/home/eric/text-generator/app/styles/app.less",
 		"/home/eric/text-generator/app/components/home/home.html",
 		"/home/eric/text-generator/dist/views/home.html",
 		"/home/eric/text-generator/gulpfile.js",
-		"/home/eric/text-generator/app/components/about/about.html",
-		"/home/eric/text-generator/app/components/submit/submit.html",
 		"/home/eric/text-generator/dist/scripts/script.js",
 		"/home/eric/text-generator/app/styles/another.less",
 		"/home/eric/text-generator/app/views/home.html",
 		"/home/eric/text-generator/dist/index.html",
-		"/home/eric/text-generator/package.json",
 		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/eric/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/eric/text-generator/dist/styles/style.css",
 		"/home/eric/text-generator/dist/styles/style.min.css",
 		"/home/eric/text-generator/bower.json",
 		"/home/eric/text-generator/app/scripts/about.js",
-		"/home/eric/text-generator/api/app.js",
 		"/home/eric/text-generator/app/scripts/controllers.js",
 		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/text-generator/app/scripts/home.js",
@@ -178,6 +178,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"yellow",
 			"key",
 			"\"",
 			"r/\"/'/g",
@@ -189,6 +190,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"#337ab7",
 			"'",
 			"337ab7"
 		],
@@ -243,7 +245,7 @@
 	},
 	"output.gulp_output":
 	{
-		"height": 145.0
+		"height": 237.0
 	},
 	"pinned_build_system": "",
 	"project": "text-generator.sublime-project",
@@ -258,6 +260,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"about",
+				"app/components/about/about.html"
+			],
+			[
+				"abou",
+				"app/components/about/about.html"
+			],
 			[
 				"hom",
 				"app/components/home/home.html"

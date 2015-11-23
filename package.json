@@ -17,6 +17,7 @@
     "url": "https://github.com/ericnelson1/text-generator-two/issues"
   },
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "q": "~1.4.1",
     "redis": "~2.3.0"
