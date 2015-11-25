@@ -6,19 +6,29 @@
 			<h4 class="text-center">Add your favorite web page to the catalog</h4>
 		</div>
 	</div>
-	<div style="margin: 30px 0;"></div>
+	<div class="space-30"></div>
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
-			<form role="form">
+			<form role="form" name="myform">
 				<div class="form-group">
 					<div class="input-group">
-						<input type="text" class="form-control" value="Paste link here">
+						<input type="text" 
+							name="inputurl"
+							class="form-control" 
+							placeholder="Paste link here"
+							autocomplete="off"
+							ng-model="submit.url"
+							ng-keyup="$event.keyCode == 13 && submit.submit()"
+							ng-change="submit.change()"
+							ng-trim="true">
 						<div class="input-group-btn">
-							<button type="button" class="btn btn-primary">Submit</button>
+							<button type="button" class="btn btn-primary" ng-click="submit.submit()">Submit</button>
 						</div>
 					</div>
 				</div>
 			</form>
+			<div class="space-30"></div>
+			<h4 class="text-center">{{submit.message}}</h4>
 		</div>
 	</div>
 </div> 

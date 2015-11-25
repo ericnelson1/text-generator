@@ -25,9 +25,8 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
   return gulp.src([
-      './app/controllers.js',
-      './app/components/**/*.js',
-      './app/app.js'])
+      './app/scripts/app.js',
+      './app/components/**/*.js'])
     .pipe(plugins.plumber())
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('default'))
@@ -46,6 +45,7 @@ gulp.task('views', function() {
       .pipe(wiredep.stream({ignorePath: '../bower_components'}))
       .pipe(connect.reload())
       .pipe(gulp.dest('./app'))
+      //.on('end', function() { plugins.util.log('done'); })
   );
 });
 
@@ -59,7 +59,7 @@ gulp.task('connect', function() {
 gulp.task('watch', function() {
   gulp.watch('./app/**/*.html', ['views']);
   gulp.watch('./app/styles/**/*.less', ['styles']);
-  gulp.watch('./app/scripts/**/*.js', ['scripts']);
+  gulp.watch('./app/**/*.js', ['scripts']);
 });
 
 gulp.task('build', ['scripts', 'styles', 'views']);
