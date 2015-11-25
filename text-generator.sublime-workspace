@@ -81,26 +81,30 @@
 	[
 		"/home/eric/text-generator",
 		"/home/eric/text-generator/api",
-		"/home/eric/text-generator/app",
-		"/home/eric/text-generator/dist/scripts",
-		"/home/eric/text-generator/dist/styles"
+		"/home/eric/text-generator/app"
 	],
 	"file_history":
 	[
+		"/home/eric/text-generator/api/text-engine.js",
+		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/text-generator/package.json",
-		"/home/eric/text-generator/app/images/process.svg",
-		"/home/eric/text-generator/app/components/submit/submit.html",
 		"/home/eric/text-generator/api/app.js",
-		"/home/eric/text-generator/app/components/about/about.js",
-		"/home/eric/text-generator/app/components/about/about.html",
-		"/home/eric/text-generator/dist/images/process.svg",
+		"/home/eric/text-generator/gulpfile.js",
+		"/home/eric/text-generator/app/scripts/scripts.js",
+		"/home/eric/text-generator/app/components/stats/stats.js",
 		"/home/eric/text-generator/app/components/home/home.js",
-		"/home/eric/text-generator/app/app.js",
+		"/home/eric/text-generator/app/components/about/about.js",
+		"/home/eric/text-generator/app/components/submit/submit.html",
+		"/home/eric/text-generator/app/components/submit/submit.js",
+		"/home/eric/text-generator/app/scripts/services.js",
 		"/home/eric/text-generator/app/index.html",
 		"/home/eric/text-generator/app/styles/app.less",
 		"/home/eric/text-generator/app/components/home/home.html",
+		"/home/eric/text-generator/app/images/process.svg",
+		"/home/eric/text-generator/app/components/about/about.html",
+		"/home/eric/text-generator/dist/images/process.svg",
+		"/home/eric/text-generator/app/app.js",
 		"/home/eric/text-generator/dist/views/home.html",
-		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/dist/scripts/script.js",
 		"/home/eric/text-generator/app/styles/another.less",
 		"/home/eric/text-generator/app/views/home.html",
@@ -112,7 +116,6 @@
 		"/home/eric/text-generator/bower.json",
 		"/home/eric/text-generator/app/scripts/about.js",
 		"/home/eric/text-generator/app/scripts/controllers.js",
-		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/text-generator/app/scripts/home.js",
 		"/home/eric/text-generator/app/scripts/stats.js",
 		"/home/eric/text-generator/app/scripts/submit.js",
@@ -178,6 +181,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"myForm",
+			"home",
 			"yellow",
 			"key",
 			"\"",
@@ -190,6 +195,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"form",
 			"#337ab7",
 			"'",
 			"337ab7"
@@ -261,6 +267,54 @@
 		"selected_items":
 		[
 			[
+				"app",
+				"api/app.js"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"app.",
+				"app/scripts/app.js"
+			],
+			[
+				"gul",
+				"gulpfile.js"
+			],
+			[
+				"index",
+				"app/index.html"
+			],
+			[
+				"app.less",
+				"app/styles/app.less"
+			],
+			[
+				"submit.js",
+				"app/components/submit/submit.js"
+			],
+			[
+				"submit",
+				"app/components/submit/submit.html"
+			],
+			[
+				"home.js",
+				"app/components/home/home.js"
+			],
+			[
+				"home",
+				"app/components/home/home.html"
+			],
+			[
+				"hom",
+				"app/components/home/home.html"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
 				"about",
 				"app/components/about/about.html"
 			],
@@ -269,40 +323,12 @@
 				"app/components/about/about.html"
 			],
 			[
-				"hom",
-				"app/components/home/home.html"
-			],
-			[
-				"index",
-				"app/index.html"
-			],
-			[
-				"app",
-				"app/app.js"
-			],
-			[
-				"home",
-				"app/components/home/home.html"
-			],
-			[
-				"gulp",
-				"gulpfile.js"
-			],
-			[
 				"distindex",
 				"dist/index.html"
 			],
 			[
 				"inde",
 				"app/index.html"
-			],
-			[
-				"gul",
-				"gulpfile.js"
-			],
-			[
-				"pack",
-				"package.json"
 			],
 			[
 				"g",

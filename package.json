@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node api/app.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,12 @@
     "url": "https://github.com/ericnelson1/text-generator-two/issues"
   },
   "dependencies": {
+    "bluebird": "^3.0.5",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "q": "~1.4.1",
-    "redis": "~2.3.0"
+    "redis": "~2.3.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "connect-livereload": "^0.5.3",
