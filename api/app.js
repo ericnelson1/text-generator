@@ -3,12 +3,20 @@ var express = require('express'),
 	url = require('url'),
 	redis = require('redis'),
     client = redis.createClient(),
-    validator = require('validator');
+    validator = require('validator'),
+    kue = require('kue'),
+    jobs = kue.createQueue();
     //bluebird = require('bluebird'),  // promisify redis
 
 // promisify redis
 //bluebird.promisifyAll(redis.RedisClient.prototype);
 //bluebird.promisifyAll(redis.Multi.prototype);
+
+jobs.process('textstats', function(job, done) {
+	job.progress()
+	console.log('job', job.id, 'is done');
+	done && done();
+});
 
 var app = module.exports.app = exports.app = express();
 app.use(bodyParser.json()); // support json encoded bodies
@@ -20,20 +28,23 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 //app.use(require('connect-livereload')());
 //app.use(express.static('public'));
 
+// api root 
 app.get('/api', function(req, res) {
 	var hostname = req.headers.host;
 	res.json({
 		links: 'http://' + hostname + '/api/links',
+		processed: 'http://' + hostname + '/api/links/processed',
+		unprocessed: 'http://' + hostname + '/api/links/unprocessed',
 		stats: 'http://' + hostname + '/api/stats'
 	});
 });
 
 app.get('/api/links', function(req, res) {
-    client.lrange('links', 0, -1,	function(error, result) {
+    client.zrange('links', 0, -1, function(error, result) {
 		res.json(result);
 	});
 });
- 
+
 app.post('/api/links', function(req, res) {
 	var url = req.body.url;
 	if (!validator.isURL(url)) {
@@ -42,7 +53,7 @@ app.post('/api/links', function(req, res) {
 			message: 'Not a valid url'
 		});
 	}
-	client.rpush('links', url, function(error, result) {
+	client.zadd('links', 0, url, function(error, result) {
 		if (error) {
 			return res.status(500).json({
 				url: url,
@@ -50,13 +61,43 @@ app.post('/api/links', function(req, res) {
 				error: error
 			});
 		}
+		if (result) {
+			return res.status(202).json({
+				url: url,
+				message: 'Url is already in the catalog'
+			});
+		}
 		res.json({ 
 			url: url,
 			linkCount: result
 		});
+
+		var job = jobs.create('textstats', {url: url});
+		job.on('complete', function (result) {
+				console.log('Job', job.id, 'with url', job.data.url, 'is done with result', result);
+			})
+			.on('failed', function (error) {
+				console.log('Job', job.id, 'with url', job.data.url, 'has failed', error);
+			})	
+			.on('progress', function (progress, data) {
+				console.log('job', job.id, 'is', progress, '% complete with data ', data);	
+			})
+			.save();
 	});
 });
  
+app.get('/api/links/processed', function(req, res) {
+    client.zrangebyscore('links', 1, 1,	function(error, result) {
+		res.json(result);
+	});
+});
+
+app.get('/api/links/unprocessed', function(req, res) {
+    client.zrangebyscore('links', 0, 0,	function(error, result) {
+		res.json(result);
+	});
+});
+
 app.get('/api/text/:id', function(req, res) {
 	var entry = textEngine.getEntry(req.params.id);
     res.send(entry);

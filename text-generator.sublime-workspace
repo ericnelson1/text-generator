@@ -86,6 +86,7 @@
 	],
 	"file_history":
 	[
+		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/api/app.js",
 		"/home/eric/text-generator/api/text-engine.js",
 		"/home/eric/text-generator/app/scripts/app.js",
@@ -269,6 +270,14 @@
 		[
 			[
 				"app",
+				"api/app.js"
+			],
+			[
+				"worker",
+				"api/worker.js"
+			],
+			[
+				"app.j",
 				"api/app.js"
 			],
 			[
