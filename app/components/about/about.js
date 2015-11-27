@@ -1,7 +1,7 @@
 (function() {
 'use strict';
 
-angular.module('app')
+angular.module('app.controllers')
 .controller('AboutController', [
 	function () {
 		this.expression1 = '27^1 = ' + (Math.pow(27, 1)).toLocaleString();

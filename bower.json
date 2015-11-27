@@ -23,6 +23,8 @@
     "bootstrap": "3.3.4",
     "jquery": "~2.1.4",
     "angular-bootstrap": "~0.14.3",
-    "validator-js": "~4.3.0"
-  }
+    "validator-js": "~4.3.0",
+    "angular-resource": "~1.4.8"
+  },
+  "devDependencies": {}
 }

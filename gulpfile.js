@@ -1,11 +1,14 @@
 var gulp = require('gulp'),
   plugins = require('gulp-load-plugins')(),
   wiredep = require('wiredep'),
-  connect = require('gulp-connect'),
   merge = require('merge-stream');
 
 var config = {
   scripts: [
+      './app/scripts/services.js', 
+      './app/scripts/controllers.js', 
+      './app/components/**/*.js',
+      './app/scripts/app.js'
   ]
 }
 
@@ -18,15 +21,12 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./app/styles'))
     .pipe(plugins.minifyCss())
     .pipe(plugins.rename('styles.min.css'))
-    .pipe(connect.reload())
-    .pipe(gulp.dest('./app/styles'));
-    //.pipe(notify({message: 'Styles task complete'}));
+    .pipe(gulp.dest('./app/styles'))
+    .pipe(plugins.livereload());
 });
 
 gulp.task('scripts', function() {
-  return gulp.src([
-      './app/scripts/app.js',
-      './app/components/**/*.js'])
+  return gulp.src(config.scripts)
     .pipe(plugins.plumber())
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('default'))
@@ -34,34 +34,34 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('./app/scripts'))
     .pipe(plugins.uglify())
     .pipe(plugins.rename('scripts.min.js'))
-    .pipe(connect.reload())
-    .pipe(gulp.dest('./app/scripts'));
-    //.pipe(notify({message: 'Scripts task complete'}));
+    .pipe(gulp.dest('./app/scripts'))
+    .pipe(plugins.livereload());
 });
 
 gulp.task('views', function() {
   return merge(
     gulp.src('./app/index.html')
       .pipe(wiredep.stream({ignorePath: '../bower_components'}))
-      .pipe(connect.reload())
       .pipe(gulp.dest('./app'))
-      //.on('end', function() { plugins.util.log('done'); })
+      .pipe(plugins.livereload())
   );
 });
 
-gulp.task('connect', function() {
-  connect.server({
-    root: ['app', 'bower_components'],
-    livereload: true
-  });
-});
-
 gulp.task('watch', function() {
+  plugins.livereload.listen();
   gulp.watch('./app/**/*.html', ['views']);
   gulp.watch('./app/styles/**/*.less', ['styles']);
   gulp.watch('./app/**/*.js', ['scripts']);
 });
 
+gulp.task('start', function () {
+  plugins.nodemon({
+    script: 'api/app.js',
+    ext: 'js html',
+    env: { 'NODE_ENV': 'development' }
+  })
+});
+
 gulp.task('build', ['scripts', 'styles', 'views']);
-gulp.task('default', ['build', 'connect', 'watch']);
+gulp.task('default', ['build', 'start', 'watch']);
 

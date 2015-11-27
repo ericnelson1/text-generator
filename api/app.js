@@ -7,6 +7,7 @@ var express = require('express'),
     worker = require('./worker');
     //bluebird = require('bluebird'),  // promisify redis
 
+
 // promisify redis
 //bluebird.promisifyAll(redis.RedisClient.prototype);
 //bluebird.promisifyAll(redis.Multi.prototype);
@@ -15,7 +16,8 @@ var app = module.exports.app = exports.app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 //app.use(express.bodyParser());
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-//app.use(express.static('dist'));
+app.use(express.static('app'));
+app.use(express.static('bower_components'));
 
 //you won't need 'connect-livereload' if you have livereload plugin for your browser 
 //app.use(require('connect-livereload')());
