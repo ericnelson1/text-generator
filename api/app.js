@@ -4,19 +4,12 @@ var express = require('express'),
 	redis = require('redis'),
     client = redis.createClient(),
     validator = require('validator'),
-    kue = require('kue'),
-    jobs = kue.createQueue();
+    worker = require('./worker');
     //bluebird = require('bluebird'),  // promisify redis
 
 // promisify redis
 //bluebird.promisifyAll(redis.RedisClient.prototype);
 //bluebird.promisifyAll(redis.Multi.prototype);
-
-jobs.process('textstats', function(job, done) {
-	job.progress()
-	console.log('job', job.id, 'is done');
-	done && done();
-});
 
 var app = module.exports.app = exports.app = express();
 app.use(bodyParser.json()); // support json encoded bodies
@@ -61,28 +54,17 @@ app.post('/api/links', function(req, res) {
 				error: error
 			});
 		}
-		if (result) {
-			return res.status(202).json({
-				url: url,
-				message: 'Url is already in the catalog'
-			});
-		}
+		// if (!result) {
+		// 	return res.status(202).json({
+		// 		url: url,
+		// 		message: 'Url is already in the catalog'
+		// 	});
+		// }
+		worker.process({url:url,depth:4});
 		res.json({ 
 			url: url,
 			linkCount: result
 		});
-
-		var job = jobs.create('textstats', {url: url});
-		job.on('complete', function (result) {
-				console.log('Job', job.id, 'with url', job.data.url, 'is done with result', result);
-			})
-			.on('failed', function (error) {
-				console.log('Job', job.id, 'with url', job.data.url, 'has failed', error);
-			})	
-			.on('progress', function (progress, data) {
-				console.log('job', job.id, 'is', progress, '% complete with data ', data);	
-			})
-			.save();
 	});
 });
  

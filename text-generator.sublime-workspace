@@ -86,8 +86,9 @@
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/api/worker.js",
+		"/home/eric/text-generator/api/text-stats.js",
 		"/home/eric/text-generator/api/app.js",
+		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/api/text-engine.js",
 		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/text-generator/package.json",
@@ -202,7 +203,7 @@
 			"'",
 			"337ab7"
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -269,12 +270,16 @@
 		"selected_items":
 		[
 			[
-				"app",
-				"api/app.js"
+				"text-stat",
+				"api/text-stats.js"
 			],
 			[
 				"worker",
 				"api/worker.js"
+			],
+			[
+				"app",
+				"api/app.js"
 			],
 			[
 				"app.j",

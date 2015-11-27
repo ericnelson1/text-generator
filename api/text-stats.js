@@ -8,6 +8,7 @@ exports.getStats = function(stream, depth) {
 	var textcount = {};
 
 	stream.on('readable', function(){
+		console.log('readable');
 		var chunk; 
 		while (null != (chunk = stream.read())) {
 			chunk = chunk.toString('utf8')
