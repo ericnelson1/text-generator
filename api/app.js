@@ -1,6 +1,6 @@
 var express = require('express'),
 	bodyParser = require('body-parser'),  // use express body parser instead?
-	url = require('url'),
+	//url = require('url'),
 	redis = require('redis'),
     client = redis.createClient(),
     validator = require('validator'),
@@ -41,7 +41,13 @@ app.get('/api/links', function(req, res) {
 });
 
 app.post('/api/links', function(req, res) {
-	var url = req.body.url;
+	console.log('received:', req.body);
+	var url = req.body.data.url;
+
+	if (!url.match(/^((?:f|ht)tps?:)?\/\//)) {
+		url = 'http://' + url;	
+	}
+
 	if (!validator.isURL(url)) {
 		return res.status(400).json({
 			url: url,
@@ -51,7 +57,7 @@ app.post('/api/links', function(req, res) {
 	client.zadd('links', 0, url, function(error, result) {
 		if (error) {
 			return res.status(500).json({
-				url: url,
+				url: urlencoded,
 				message: 'Error submitting url',
 				error: error
 			});

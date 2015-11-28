@@ -24,6 +24,7 @@ angular.module('app.controllers', [])
              { path: '/home', component: 'home' },
              { path: '/about', component: 'about' },
              { path: '/submit', component: 'submit' },
+             { path: '/links', component: 'links' },
              { path: '/stats', component: 'stats' }
            ]);
 
@@ -31,6 +32,7 @@ angular.module('app.controllers', [])
             { key: 'home', display: 'Home'},
             { key: 'about', display: 'About' },
             { key: 'submit', display: 'Submit' },
+            { key: 'links', display: 'Links' },
             { key: 'stats', display: 'Statistics' }
         ];
 
@@ -98,6 +100,18 @@ angular.module('app.controllers')
 'use strict';
 
 angular.module('app.controllers')
+.controller('LinksController', ['validator', 'Link',
+  function(validator, Link) {
+
+    this.links = Link.query();
+
+  }]);
+
+})();
+(function() {
+'use strict';
+
+angular.module('app.controllers')
 .controller('StatsController', 
   function() {
  
@@ -111,11 +125,15 @@ angular.module('app.controllers')
 .controller('SubmitController', ['validator', 'Link',
   function(validator, Link) {
 
-    this.links = Link.query();
-
   	this.submit = function() {
   		if (validator.isURL(this.url)) {
-  			this.message = 'Thank you for your submission';	
+        var entry = new Link();
+        entry.data = {url: this.url};
+        var self = this;
+        Link.save(entry, function(){
+          self.url = '';
+          self.message = 'Thank you for your submission'; 
+        });
   		}	
   		else {
   			this.message = "That ain't a valid url, man";

@@ -82,27 +82,37 @@
 		"/home/eric/text-generator",
 		"/home/eric/text-generator/api",
 		"/home/eric/text-generator/app",
+		"/home/eric/text-generator/app/components",
+		"/home/eric/text-generator/app/components/about",
+		"/home/eric/text-generator/app/components/links",
 		"/home/eric/text-generator/app/scripts"
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/api/text-stats.js",
-		"/home/eric/text-generator/api/app.js",
+		"/home/eric/text-generator/api/text-get.js",
+		"/home/eric/text-generator/api/text-catalog.js",
 		"/home/eric/text-generator/api/worker.js",
-		"/home/eric/text-generator/api/text-engine.js",
-		"/home/eric/text-generator/app/scripts/app.js",
-		"/home/eric/text-generator/package.json",
+		"/home/eric/text-generator/api/app.js",
 		"/home/eric/text-generator/gulpfile.js",
+		"/home/eric/text-generator/api/text-extract.js",
+		"/home/eric/text-generator/app/components/submit/submit.js",
+		"/home/eric/text-generator/app/components/links/links.html",
+		"/home/eric/text-generator/app/components/submit/submit.html",
+		"/home/eric/text-generator/app/components/links/links.js",
+		"/home/eric/text-generator/app/scripts/app.js",
+		"/home/eric/text-generator/app/scripts/controllers.js",
 		"/home/eric/text-generator/app/scripts/scripts.js",
+		"/home/eric/text-generator/app/index.html",
+		"/home/eric/text-generator/package.json",
+		"/home/eric/text-generator/bower.json",
+		"/home/eric/text-generator/app/scripts/services.js",
 		"/home/eric/text-generator/app/components/stats/stats.js",
 		"/home/eric/text-generator/app/components/home/home.js",
 		"/home/eric/text-generator/app/components/about/about.js",
-		"/home/eric/text-generator/app/components/submit/submit.html",
-		"/home/eric/text-generator/app/components/submit/submit.js",
-		"/home/eric/text-generator/app/scripts/services.js",
-		"/home/eric/text-generator/app/index.html",
-		"/home/eric/text-generator/app/styles/app.less",
+		"/home/eric/text-generator/api/text-stats.js",
 		"/home/eric/text-generator/app/components/home/home.html",
+		"/home/eric/text-generator/api/text-engine.js",
+		"/home/eric/text-generator/app/styles/app.less",
 		"/home/eric/text-generator/app/images/process.svg",
 		"/home/eric/text-generator/app/components/about/about.html",
 		"/home/eric/text-generator/dist/images/process.svg",
@@ -116,9 +126,7 @@
 		"/home/eric/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/eric/text-generator/dist/styles/style.css",
 		"/home/eric/text-generator/dist/styles/style.min.css",
-		"/home/eric/text-generator/bower.json",
 		"/home/eric/text-generator/app/scripts/about.js",
-		"/home/eric/text-generator/app/scripts/controllers.js",
 		"/home/eric/text-generator/app/scripts/home.js",
 		"/home/eric/text-generator/app/scripts/stats.js",
 		"/home/eric/text-generator/app/scripts/submit.js",
@@ -203,7 +211,7 @@
 			"'",
 			"337ab7"
 		],
-		"reverse": true,
+		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -274,20 +282,64 @@
 				"api/text-stats.js"
 			],
 			[
-				"worker",
-				"api/worker.js"
+				"links.h",
+				"app/components/links/links.html"
 			],
 			[
 				"app",
 				"api/app.js"
 			],
 			[
-				"app.j",
-				"api/app.js"
+				"submit.js",
+				"app/components/submit/submit.js"
+			],
+			[
+				"links.ht",
+				"app/components/links/links.html"
+			],
+			[
+				"submit",
+				"app/components/submit/submit.html"
+			],
+			[
+				"bower",
+				"bower.json"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"script",
+				"app/scripts/scripts.js"
+			],
+			[
+				"submi",
+				"app/components/submit/submit.html"
+			],
+			[
+				"home",
+				"app/components/home/home.html"
 			],
 			[
 				"gulp",
 				"gulpfile.js"
+			],
+			[
+				"text",
+				"api/text-stats.js"
+			],
+			[
+				"packa",
+				"package.json"
+			],
+			[
+				"worker",
+				"api/worker.js"
+			],
+			[
+				"app.j",
+				"api/app.js"
 			],
 			[
 				"app.",
@@ -306,28 +358,12 @@
 				"app/styles/app.less"
 			],
 			[
-				"submit.js",
-				"app/components/submit/submit.js"
-			],
-			[
-				"submit",
-				"app/components/submit/submit.html"
-			],
-			[
 				"home.js",
 				"app/components/home/home.js"
 			],
 			[
-				"home",
-				"app/components/home/home.html"
-			],
-			[
 				"hom",
 				"app/components/home/home.html"
-			],
-			[
-				"pack",
-				"package.json"
 			],
 			[
 				"about",

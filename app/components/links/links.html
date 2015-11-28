@@ -1,0 +1,13 @@
+﻿<div class="container-fluid" ng-controller="LinksController as links">
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-8">
+			<h1 class="text-center">Catalog Links</h1>
+			<hr />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<a ng-repeat="l in links.links" ng-href="l">{{l}}&nbsp;</a>
+		</div>
+	</div>
+</div> 

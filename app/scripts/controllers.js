@@ -11,6 +11,7 @@ angular.module('app.controllers', [])
              { path: '/home', component: 'home' },
              { path: '/about', component: 'about' },
              { path: '/submit', component: 'submit' },
+             { path: '/links', component: 'links' },
              { path: '/stats', component: 'stats' }
            ]);
 
@@ -18,6 +19,7 @@ angular.module('app.controllers', [])
             { key: 'home', display: 'Home'},
             { key: 'about', display: 'About' },
             { key: 'submit', display: 'Submit' },
+            { key: 'links', display: 'Links' },
             { key: 'stats', display: 'Statistics' }
         ];
 
