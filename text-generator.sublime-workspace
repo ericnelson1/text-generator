@@ -82,21 +82,21 @@
 		"/home/eric/text-generator",
 		"/home/eric/text-generator/api",
 		"/home/eric/text-generator/app",
-		"/home/eric/text-generator/app/components/about",
-		"/home/eric/text-generator/app/components/links",
 		"/home/eric/text-generator/test",
 		"/home/eric/text-generator/test-scripts"
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/api/app.js",
-		"/home/eric/text-generator/test/text-stats.js",
 		"/home/eric/text-generator/test-scripts/text-stats.js",
+		"/home/eric/text-generator/api/text-get.js",
+		"/home/eric/text-generator/api/app.js",
+		"/home/eric/text-generator/api/repo.js",
+		"/home/eric/text-generator/api/log.js",
+		"/home/eric/text-generator/test/text-stats.js",
 		"/home/eric/text-generator/api/text-catalog.js",
 		"/home/eric/text-generator/package.json",
 		"/home/eric/text-generator/test/converter.js",
 		"/home/eric/text-generator/app/converter.js",
-		"/home/eric/text-generator/api/text-get.js",
 		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/api/text-extract.js",
@@ -282,6 +282,14 @@
 		"selected_items":
 		[
 			[
+				"app.",
+				"api/app.js"
+			],
+			[
+				"text-cat",
+				"api/text-catalog.js"
+			],
+			[
 				"pack",
 				"package.json"
 			],
@@ -344,10 +352,6 @@
 			[
 				"app.j",
 				"api/app.js"
-			],
-			[
-				"app.",
-				"app/scripts/app.js"
 			],
 			[
 				"gul",

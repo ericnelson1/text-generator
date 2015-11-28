@@ -21,8 +21,7 @@ exports.getLinks = function() {
 };
 
 exports.addLink = function(url) {
-	return client.zadd('links', 0, url)
-    	.fail(function(err) { logger.error('error adding link', url, err); });
+	return client.zadd('links', 0, url);
 };
 
 exports.updateCatalog = function(stats, catalog) {
