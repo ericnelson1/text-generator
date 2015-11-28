@@ -7,7 +7,6 @@ var express = require('express'),
     worker = require('./worker');
     //bluebird = require('bluebird'),  // promisify redis
 
-
 // promisify redis
 //bluebird.promisifyAll(redis.RedisClient.prototype);
 //bluebird.promisifyAll(redis.Multi.prototype);
