@@ -82,17 +82,22 @@
 		"/home/eric/text-generator",
 		"/home/eric/text-generator/api",
 		"/home/eric/text-generator/app",
-		"/home/eric/text-generator/app/components",
 		"/home/eric/text-generator/app/components/about",
 		"/home/eric/text-generator/app/components/links",
-		"/home/eric/text-generator/app/scripts"
+		"/home/eric/text-generator/test",
+		"/home/eric/text-generator/test-scripts"
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/api/text-get.js",
-		"/home/eric/text-generator/api/text-catalog.js",
-		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/api/app.js",
+		"/home/eric/text-generator/test/text-stats.js",
+		"/home/eric/text-generator/test-scripts/text-stats.js",
+		"/home/eric/text-generator/api/text-catalog.js",
+		"/home/eric/text-generator/package.json",
+		"/home/eric/text-generator/test/converter.js",
+		"/home/eric/text-generator/app/converter.js",
+		"/home/eric/text-generator/api/text-get.js",
+		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/api/text-extract.js",
 		"/home/eric/text-generator/app/components/submit/submit.js",
@@ -103,7 +108,6 @@
 		"/home/eric/text-generator/app/scripts/controllers.js",
 		"/home/eric/text-generator/app/scripts/scripts.js",
 		"/home/eric/text-generator/app/index.html",
-		"/home/eric/text-generator/package.json",
 		"/home/eric/text-generator/bower.json",
 		"/home/eric/text-generator/app/scripts/services.js",
 		"/home/eric/text-generator/app/components/stats/stats.js",
@@ -278,6 +282,10 @@
 		"selected_items":
 		[
 			[
+				"pack",
+				"package.json"
+			],
+			[
 				"text-stat",
 				"api/text-stats.js"
 			],
@@ -304,10 +312,6 @@
 			[
 				"bower",
 				"bower.json"
-			],
-			[
-				"pack",
-				"package.json"
 			],
 			[
 				"script",

@@ -2,6 +2,7 @@ var fs = require('fs');
 var _ = require('underscore');
 var textstats = require("../api/text-stats");
 var catalog = require("../api/text-catalog");
+var textget = require("../api/text-get");
 
 exports.test = function() {
 	var stream = fs.createReadStream('./data/kant.txt');
@@ -28,5 +29,11 @@ exports.test2 = function() {
 	catalog.update(o, 'happycat');
 };
 
-exports.test2();
+exports.test3 = function () {
+	textget.get('blah')
+		.then(function() {console.log('test done'); })
+		.fail(function() {console.log('test fail'); });
+};
+
+exports.test3();
 

@@ -1,15 +1,10 @@
-var express = require('express'),
-	bodyParser = require('body-parser'),  // use express body parser instead?
-	//url = require('url'),
-	redis = require('redis'),
-    client = redis.createClient(),
-    validator = require('validator'),
-    worker = require('./worker');
-    //bluebird = require('bluebird'),  // promisify redis
+var express = require('express');
+var	bodyParser = require('body-parser');  // use express body parser instead?
+var validator = require('validator'),
 
-// promisify redis
-//bluebird.promisifyAll(redis.RedisClient.prototype);
-//bluebird.promisifyAll(redis.Multi.prototype);
+var worker = require('./worker');
+var repo = require('./repo');
+var logger = require('./log'); // configures winston logging
 
 var app = module.exports.app = exports.app = express();
 app.use(bodyParser.json()); // support json encoded bodies
@@ -22,7 +17,6 @@ app.use(express.static('bower_components'));
 //app.use(require('connect-livereload')());
 //app.use(express.static('public'));
 
-// api root 
 app.get('/api', function(req, res) {
 	var hostname = req.headers.host;
 	res.json({
@@ -34,13 +28,18 @@ app.get('/api', function(req, res) {
 });
 
 app.get('/api/links', function(req, res) {
-    client.zrange('links', 0, -1, function(error, result) {
-		res.json(result);
-	});
+	repo.getLinks().then(function(links) {
+		res.json(links);
+	})
+    .fail(function(err) { 
+    	logger.error('error getting links', err); 
+    	res.status(500).json({
+    		message: 'error getting links', err);	
+    	})
+    });
 });
 
 app.post('/api/links', function(req, res) {
-	console.log('received:', req.body);
 	var url = req.body.data.url;
 
 	if (!url.match(/^((?:f|ht)tps?:)?\/\//)) {
@@ -48,29 +47,38 @@ app.post('/api/links', function(req, res) {
 	}
 
 	if (!validator.isURL(url)) {
-		return res.status(400).json({
+		logger.info('invalid url', url);
+		res.status(400).json({
 			url: url,
-			message: 'Not a valid url'
+			message: 'invalid url'
 		});
+		return;
 	}
-	client.zadd('links', 0, url, function(error, result) {
-		if (error) {
-			return res.status(500).json({
-				url: urlencoded,
-				message: 'Error submitting url',
-				error: error
+	repo.addLink(url).then(function(result) {
+
+		// addlink returns 0 if link already exists
+		if (!result) {
+			res.status(202).json({
+				url: url,
+				message: 'Url is already in the catalog'
 			});
+			return;
 		}
-		// if (!result) {
-		// 	return res.status(202).json({
-		// 		url: url,
-		// 		message: 'Url is already in the catalog'
-		// 	});
-		// }
+		// queue the work for processing
 		worker.process({url:url,depth:4});
+
+		// send our response
 		res.json({ 
 			url: url,
 			linkCount: result
+		});
+	})
+	.fail(function(err) {
+    	logger.error('error adding link', url, err); 
+		res.status(500).json({
+			url: url,
+			message: 'error adding link',
+			error: err
 		});
 	});
 });
