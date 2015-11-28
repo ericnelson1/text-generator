@@ -82,26 +82,29 @@
 		"/home/eric/text-generator",
 		"/home/eric/text-generator/api",
 		"/home/eric/text-generator/app",
+		"/home/eric/text-generator/app/components",
+		"/home/eric/text-generator/app/components/links",
 		"/home/eric/text-generator/test",
 		"/home/eric/text-generator/test-scripts"
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/test-scripts/text-stats.js",
 		"/home/eric/text-generator/api/text-get.js",
-		"/home/eric/text-generator/api/app.js",
 		"/home/eric/text-generator/api/repo.js",
+		"/home/eric/text-generator/api/stats.js",
+		"/home/eric/text-generator/api/app.js",
 		"/home/eric/text-generator/api/log.js",
+		"/home/eric/text-generator/app/components/links/links.html",
+		"/home/eric/text-generator/api/worker.js",
+		"/home/eric/text-generator/test-scripts/text-stats.js",
 		"/home/eric/text-generator/test/text-stats.js",
 		"/home/eric/text-generator/api/text-catalog.js",
 		"/home/eric/text-generator/package.json",
 		"/home/eric/text-generator/test/converter.js",
 		"/home/eric/text-generator/app/converter.js",
-		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/api/text-extract.js",
 		"/home/eric/text-generator/app/components/submit/submit.js",
-		"/home/eric/text-generator/app/components/links/links.html",
 		"/home/eric/text-generator/app/components/submit/submit.html",
 		"/home/eric/text-generator/app/components/links/links.js",
 		"/home/eric/text-generator/app/scripts/app.js",
@@ -196,6 +199,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"chunk",
+			"textcount",
 			"myForm",
 			"home",
 			"yellow",
@@ -210,6 +215,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"txt",
+			"stats",
 			"form",
 			"#337ab7",
 			"'",
@@ -282,6 +289,14 @@
 		"selected_items":
 		[
 			[
+				"app",
+				"api/app.js"
+			],
+			[
+				"worker",
+				"api/worker.js"
+			],
+			[
 				"app.",
 				"api/app.js"
 			],
@@ -300,10 +315,6 @@
 			[
 				"links.h",
 				"app/components/links/links.html"
-			],
-			[
-				"app",
-				"api/app.js"
 			],
 			[
 				"submit.js",
@@ -344,10 +355,6 @@
 			[
 				"packa",
 				"package.json"
-			],
-			[
-				"worker",
-				"api/worker.js"
 			],
 			[
 				"app.j",

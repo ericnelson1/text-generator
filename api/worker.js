@@ -1,36 +1,45 @@
 var kue = require('kue'),
     queue = kue.createQueue();
 
-var	redis = require('redis'),
-    client = redis.createClient();
+var _ = require('underscore');
+var logger = require('winston');
+var Promise = require('bluebird');
 
 var	textget = require('./text-get'),
-	textstats = require('./text-stats'),
-	catalog = require('./text-catalog');
+	stats = require('./stats'),
+	repo = require('./repo');
 
-var stream = require('stream');
+var config = {
+	depths: [1,4,8],
+	catalog: 'maincat'
+};
 
 queue.process('textstats', function(job, done) {
 	var url = job.data.url;
-	var depth = job.data.depth;
+
+	logger.info('processing url');
 
 	textget.get(url).then(function(text) {
 
-		var s = new stream.Readable();
-		s._read = function noop() {}; 
-		s.push(text);
-		s.push(null);
+		return Promise.map(config.depths, function(depth) {
 
-		return textstats.getStatsKey(s, depth);
-	})
-	.then(function(textcounts) {
-		console.log(textcounts);
-		catalog.update(textcounts, 1);
-		client.zadd('links', 1, url);
-		done && done();
-	})
-	.fail(function(error) {
-		console.log('process error:', error);
+			var textstats = stats.get(text, depth);
+			var catname = config.catalog + ':' + depth;
+
+			return repo.updateCatalog(textstats, catname)
+				.error(function(err) {
+					logger.error('error updating catalog', catname, err);	
+				});
+
+		}).then(function() {
+			return repo.processedLink(url)
+				.fail(function(err) {
+					logger.error('error updating catalog', catname, err);	
+				});
+			done && done();
+		});	
+	}).error(function(err) {
+		done && done(err);
 	});
 });
 

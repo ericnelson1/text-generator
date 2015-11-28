@@ -1,6 +1,6 @@
 var express = require('express');
 var	bodyParser = require('body-parser');  // use express body parser instead?
-var validator = require('validator'),
+var validator = require('validator');
 
 var worker = require('./worker');
 var repo = require('./repo');
@@ -17,6 +17,10 @@ app.use(express.static('bower_components'));
 //app.use(require('connect-livereload')());
 //app.use(express.static('public'));
 
+var config = {
+	processDups: true
+};
+
 app.get('/api', function(req, res) {
 	var hostname = req.headers.host;
 	res.json({
@@ -30,11 +34,11 @@ app.get('/api', function(req, res) {
 app.get('/api/links', function(req, res) {
 	repo.getLinks().then(function(links) {
 		res.json(links);
-	})
-    .fail(function(err) { 
+	}).error(function(err) { 
     	logger.error('error getting links', err); 
     	res.status(500).json({
-    		message: 'error getting links', err);	
+    		message: 'error getting links',
+    		error: err	
     	})
     });
 });
@@ -55,9 +59,8 @@ app.post('/api/links', function(req, res) {
 		return;
 	}
 	repo.addLink(url).then(function(result) {
-
 		// addlink returns 0 if link already exists
-		if (!result) {
+		if (!config.processDups && !result) {
 			res.status(202).json({
 				url: url,
 				message: 'Url is already in the catalog'
@@ -65,16 +68,14 @@ app.post('/api/links', function(req, res) {
 			return;
 		}
 		// queue the work for processing
-		worker.process({url:url,depth:4});
-
+		worker.process({url:url});
 		// send our response
 		res.json({ 
 			url: url,
 			linkCount: result
 		});
-	})
-	.fail(function(err) {
-    	logger.error('error adding link', url, err); 
+	}).error(function(err) {
+    	logger.error('error adding link', err); 
 		res.status(500).json({
 			url: url,
 			message: 'error adding link',
@@ -84,45 +85,32 @@ app.post('/api/links', function(req, res) {
 });
  
 app.get('/api/links/processed', function(req, res) {
-    client.zrangebyscore('links', 1, 1,	function(error, result) {
-		res.json(result);
+	repo.getProcessedLinks().then(function(links) {
+		res.json(links);
+	}).error(function(err) {
+    	logger.error('error getting processed links', err); 
+		res.status(500).json({
+			url: url,
+			message: 'error getting processed links',
+			error: err
+		});
 	});
 });
 
 app.get('/api/links/unprocessed', function(req, res) {
-    client.zrangebyscore('links', 0, 0,	function(error, result) {
-		res.json(result);
+	repo.getUnprocessedLinks().then(function(links) {
+		res.json(links);
+	}).error(function(err) {
+    	logger.error('error getting unprocessed links', err); 
+		res.status(500).json({
+			url: url,
+			message: 'error getting unprocessed links',
+			error: err
+		});
 	});
-});
-
-app.get('/api/text/:id', function(req, res) {
-	var entry = textEngine.getEntry(req.params.id);
-    res.send(entry);
 });
 
 app.listen(3000);
 
 console.log("listening on port 3000");
 
-function init() {
-	// if you'd like to select database 3, instead of 0 (default), call
-	// client.select(3, function() { /* ... */ });
-
-	client.on('error', function (err) {
-	    console.log("Error " + err);
-	});
-
-	client.set("string key", "string val", redis.print);
-	client.hset("hash key", "hashtest 1", "some value", redis.print);
-	client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
-	client.hkeys("hash key", function (err, replies) {
-	    console.log(replies.length + " replies:");
-	    replies.forEach(function (reply, i) {
-	        console.log("    " + i + ": " + reply);
-	    });
-	    //client.quit();
-	});
-
-	client.rpush('mylinks', 'hello');
-	client.rpush('mylinks', 'world');
-}
