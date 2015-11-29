@@ -1,11 +1,10 @@
 var express = require('express');
-var	bodyParser = require('body-parser');  // use express body parser instead?
-var validator = require('validator');
+var bodyParser = require('body-parser');  // use express body parser instead?
 
+var logger = require('./log'); // configures winston logging
 var worker = require('./worker');
 var repo = require('./repo');
-var mongorepo = require('./mongo-repo');
-var logger = require('./log'); // configures winston logging
+var linkrepo = require('./link-repo');
 
 var app = module.exports.app = exports.app = express();
 app.use(bodyParser.json()); // support json encoded bodies
@@ -18,108 +17,70 @@ app.use(express.static('bower_components'));
 //app.use(require('connect-livereload')());
 //app.use(express.static('public'));
 
-var config = {
-	processDups: true
-};
-
 app.get('/api', function(req, res) {
-	var hostname = req.headers.host;
-	res.json({
-		links: 'http://' + hostname + '/api/links',
-		processed: 'http://' + hostname + '/api/links/processed',
-		unprocessed: 'http://' + hostname + '/api/links/unprocessed',
-		stats: 'http://' + hostname + '/api/stats'
-	});
+  var host = 'http://' + req.headers.host;
+  res.json({
+    links: host + '/api/links',
+    processed: host + '/api/links/processed',
+    unprocessed: host + '/api/links/unprocessed',
+    stats: host + '/api/stats'
+  });
 });
+
 app.get('/api/links', function(req, res) {
-	repo.getLinks().then(function(links) {
-		res.json(links);
-	}).error(function(err) { 
-    	res.status(500).json({
-    		message: 'error getting links',
-    		error: err	
-    	})
-    });
-});
-
-
-app.get('/api/newlinks', function(req, res) {
-	mongorepo.getLinks().then(function(links, something) {
-		logger.info('im here', links, something );
-		res.json(links);
-	}).error(function(err) { 
-		logger.error('failman');
-    	res.status(500).json({
-    		message: 'error getting links',
-    		error: err	
-    	})
-    });
+  linkrepo.get().then(function(links) {
+    res.json(links);
+  }).catch(function(err) { 
+    res.status(500).json({
+      message: 'error getting links',
+      error: err  
+    })
+  });
 });
 
 app.post('/api/links', function(req, res) {
-	var url = req.body.data.url;
-
-	if (!url.match(/^((?:f|ht)tps?:)?\/\//)) {
-		url = 'http://' + url;	
-	}
-
-	if (!validator.isURL(url)) {
-		logger.info('invalid url', url);
-		res.status(400).json({
-			url: url,
-			message: 'invalid url'
-		});
-		return;
-	}
-	repo.addLink(url).then(function(result) {
-		// addlink returns 0 if link already exists
-		if (!config.processDups && !result) {
-			res.status(202).json({
-				url: url,
-				message: 'Url is already in the catalog'
-			});
-			return;
-		}
-		// queue the work for processing
-		worker.process({url:url});
-		// send our response
-		res.json({ 
-			url: url,
-			linkCount: result
-		});
-	}).error(function(err) {
-		res.status(500).json({
-			url: url,
-			message: 'error adding link',
-			error: err
-		});
-	});
+  var url = req.body.data.url;
+  linkrepo.validate(url).then(function(url) {
+    return linkrepo.add(url);
+  }).then(function(link) {
+    // queue the work for processing
+    worker.process(link);
+    res.json(link); 
+  }).catch(linkrepo.ValidationError, function(err) {
+    res.status(400).json({
+      url: url,
+      message: 'invalid url',
+      error: err
+    });
+  }).catch(function(err) {
+    res.status(500).json({
+      url: url,
+      message: 'error adding link',
+      error: err
+    });
+  });
 });
  
 app.get('/api/links/processed', function(req, res) {
-	repo.getProcessedLinks().then(function(links) {
-		res.json(links);
-	}).error(function(err) {
-    	logger.error('error getting processed links', err); 
-		res.status(500).json({
-			url: url,
-			message: 'error getting processed links',
-			error: err
-		});
-	});
+  linkrepo.get({ processed: true }).then(function(links) {
+    res.json(links);
+  }).catch(function(err) {
+    res.status(500).json({
+      message: 'error getting processed links',
+      error: err
+    });
+  });
 });
 
 app.get('/api/links/unprocessed', function(req, res) {
-	repo.getUnprocessedLinks().then(function(links) {
-		res.json(links);
-	}).error(function(err) {
-    	logger.error('error getting unprocessed links', err); 
-		res.status(500).json({
-			url: url,
-			message: 'error getting unprocessed links',
-			error: err
-		});
-	});
+  linkrepo.get({ processed: false }).then(function(links) {
+    res.json(links);
+  }).catch(function(err) {
+    res.status(500).json({
+      message: 'error getting unprocessed links',
+      error: err
+    });
+  });
 });
 
 app.listen(3000);

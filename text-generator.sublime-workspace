@@ -7,6 +7,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "api/app.js",
+			"settings":
+			{
+				"buffer_size": 2878,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/directives.js",
+			"settings":
+			{
+				"buffer_size": 1830,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/mongo-repo.js",
+			"settings":
+			{
+				"buffer_size": 1671,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -15,7 +39,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 369.0,
+		"height": 327.0,
 		"last_filter": ":w",
 		"selected_items":
 		[
@@ -56,7 +80,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 467.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -81,18 +105,18 @@
 	[
 		"/home/eric/text-generator",
 		"/home/eric/text-generator/api",
-		"/home/eric/text-generator/app/components",
+		"/home/eric/text-generator/app",
 		"/home/eric/text-generator/app/scripts",
 		"/home/eric/text-generator/test",
 		"/home/eric/text-generator/test-scripts"
 	],
 	"file_history":
 	[
+		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/eric/text-generator/app/components/stats/stats.html",
 		"/home/eric/text-generator/api/mongo-repo.js",
 		"/home/eric/text-generator/app/components/stats/stats.js",
 		"/home/eric/text-generator/app/scripts/directives.js",
-		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/text-generator/app/components/links/links.js",
@@ -233,8 +257,120 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "api/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2878,
+						"regions":
+						{
+							"bookmark_i":
+							{
+								"flags": 144,
+								"regions":
+								[
+									[
+										1185,
+										1185
+									]
+								]
+							},
+							"bookmark_o":
+							{
+								"flags": 144,
+								"regions":
+								[
+									[
+										1185,
+										1185
+									]
+								]
+							}
+						},
+						"selection":
+						[
+							[
+								1718,
+								1718
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 609.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/scripts/directives.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1587,
+								1587
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 133.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "api/mongo-repo.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1671,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1086,
+								1086
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 218.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -291,6 +427,10 @@
 		"selected_items":
 		[
 			[
+				"app",
+				"api/app.js"
+			],
+			[
 				"stat",
 				"app/components/stats/stats.html"
 			],
@@ -317,10 +457,6 @@
 			[
 				"stats.js",
 				"app/components/stats/stats.js"
-			],
-			[
-				"app",
-				"api/app.js"
 			],
 			[
 				"worker",
