@@ -15,7 +15,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 369.0,
+		"height": 327.0,
 		"last_filter": ":w",
 		"selected_items":
 		[
@@ -56,7 +56,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 467.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -80,46 +80,48 @@
 	"expanded_folders":
 	[
 		"/home/eric/text-generator",
-		"/home/eric/text-generator/api",
 		"/home/eric/text-generator/app",
 		"/home/eric/text-generator/app/components",
-		"/home/eric/text-generator/app/components/links",
+		"/home/eric/text-generator/app/scripts",
 		"/home/eric/text-generator/test",
 		"/home/eric/text-generator/test-scripts"
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/api/text-get.js",
-		"/home/eric/text-generator/api/repo.js",
+		"/home/eric/text-generator/app/components/stats/stats.js",
+		"/home/eric/text-generator/app/scripts/directives.js",
+		"/home/eric/text-generator/app/components/stats/stats.html",
+		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/eric/text-generator/gulpfile.js",
+		"/home/eric/text-generator/app/scripts/app.js",
+		"/home/eric/text-generator/app/components/links/links.js",
+		"/home/eric/text-generator/app/components/home/home.html",
+		"/home/eric/text-generator/app/components/home/home.js",
+		"/home/eric/text-generator/app/styles/app.less",
 		"/home/eric/text-generator/api/stats.js",
+		"/home/eric/text-generator/api/repo.js",
+		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/api/app.js",
 		"/home/eric/text-generator/api/log.js",
+		"/home/eric/text-generator/api/text-get.js",
 		"/home/eric/text-generator/app/components/links/links.html",
-		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/test-scripts/text-stats.js",
 		"/home/eric/text-generator/test/text-stats.js",
 		"/home/eric/text-generator/api/text-catalog.js",
 		"/home/eric/text-generator/package.json",
 		"/home/eric/text-generator/test/converter.js",
 		"/home/eric/text-generator/app/converter.js",
-		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/api/text-extract.js",
 		"/home/eric/text-generator/app/components/submit/submit.js",
 		"/home/eric/text-generator/app/components/submit/submit.html",
-		"/home/eric/text-generator/app/components/links/links.js",
-		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/text-generator/app/scripts/controllers.js",
 		"/home/eric/text-generator/app/scripts/scripts.js",
 		"/home/eric/text-generator/app/index.html",
 		"/home/eric/text-generator/bower.json",
 		"/home/eric/text-generator/app/scripts/services.js",
-		"/home/eric/text-generator/app/components/stats/stats.js",
-		"/home/eric/text-generator/app/components/home/home.js",
 		"/home/eric/text-generator/app/components/about/about.js",
 		"/home/eric/text-generator/api/text-stats.js",
-		"/home/eric/text-generator/app/components/home/home.html",
 		"/home/eric/text-generator/api/text-engine.js",
-		"/home/eric/text-generator/app/styles/app.less",
 		"/home/eric/text-generator/app/images/process.svg",
 		"/home/eric/text-generator/app/components/about/about.html",
 		"/home/eric/text-generator/dist/images/process.svg",
@@ -129,7 +131,6 @@
 		"/home/eric/text-generator/app/styles/another.less",
 		"/home/eric/text-generator/app/views/home.html",
 		"/home/eric/text-generator/dist/index.html",
-		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/eric/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/eric/text-generator/dist/styles/style.css",
 		"/home/eric/text-generator/dist/styles/style.min.css",
@@ -289,6 +290,34 @@
 		"selected_items":
 		[
 			[
+				"stats",
+				"app/components/stats/stats.html"
+			],
+			[
+				"gulpfil",
+				"gulpfile.js"
+			],
+			[
+				"links.js",
+				"app/components/links/links.js"
+			],
+			[
+				"home",
+				"app/components/home/home.html"
+			],
+			[
+				"home.js",
+				"app/components/home/home.js"
+			],
+			[
+				"stats.js",
+				"app/components/stats/stats.js"
+			],
+			[
+				"stat",
+				"app/components/stats/stats.html"
+			],
+			[
 				"app",
 				"api/app.js"
 			],
@@ -341,10 +370,6 @@
 				"app/components/submit/submit.html"
 			],
 			[
-				"home",
-				"app/components/home/home.html"
-			],
-			[
 				"gulp",
 				"gulpfile.js"
 			],
@@ -371,10 +396,6 @@
 			[
 				"app.less",
 				"app/styles/app.less"
-			],
-			[
-				"home.js",
-				"app/components/home/home.js"
 			],
 			[
 				"hom",
@@ -407,10 +428,6 @@
 			[
 				"subm",
 				"app/scripts/submit.js"
-			],
-			[
-				"stat",
-				"app/scripts/stats.js"
 			],
 			[
 				"cont",

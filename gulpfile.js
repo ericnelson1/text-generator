@@ -5,12 +5,13 @@ var gulp = require('gulp'),
 
 var config = {
   scripts: [
+      './app/scripts/directives.js', 
       './app/scripts/services.js', 
       './app/scripts/controllers.js', 
       './app/components/**/*.js',
       './app/scripts/app.js'
   ]
-}
+};
 
 gulp.task('styles', function() {
   return gulp.src('./app/styles/*.less')

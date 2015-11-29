@@ -104,6 +104,15 @@ angular.module('app.controllers')
   function(validator, Link) {
 
     this.links = Link.query();
+    
+    // // split data into 4 columns
+    // var linksPerCol = data.length / 4;
+    // $scope.lists = [
+    //     data.splice(0, linksPerCol),
+    //     data.splice(0, linksPerCol),
+    //     data.splice(0, linksPerCol),
+    //     data
+    // ];
 
   }]);
 
@@ -151,64 +160,10 @@ angular.module('app.controllers')
 });
 
 })();
-(function() {
-'use strict';
-
-angular.module('app.controllers')
-.controller('SubmitController', ['validator', 'Link',
-  function(validator, Link) {
-
-  	this.submit = function() {
-  		if (validator.isURL(this.url)) {
-        var entry = new Link();
-        entry.data = {url: this.url};
-        var self = this;
-        Link.save(entry, function(){
-          self.url = '';
-          self.message = 'Thank you for your submission'; 
-        });
-  		}	
-  		else {
-  			this.message = "That ain't a valid url, man";
-  		}
-  	};
-
-  	this.change = function () {
-  		this.message = '';
-  	};
-
-  }]);
-
-})();
-(function() {
-'use strict';
-
-angular.module('app', [
-    'ui.bootstrap',
-    'ngNewRouter',
-    'ngResource',
-    'app.services',
-    'app.controllers'
-	])
-
-.constant('validator', window.validator);
-
-})();
 
 /*
-.controller('LinksController', ['$scope', '$location', '$window', 'linkService',
-    function ($scope, $location, $window, linkService) {
-        linkService.load(app.linksUrl).then(function (data) {
-            // split data into 4 columns
-            var linksPerCol = data.length / 4;
-            $scope.lists = [
-                data.splice(0, linksPerCol),
-                data.splice(0, linksPerCol),
-                data.splice(0, linksPerCol),
-                data
-            ];
-        });
-    }])
+
+
 .controller('StatsController', ['$scope', '$location', '$window', 'sequenceService',
     function ($scope, $location, $window, sequenceService) {
         var drawit = function (sort) {
@@ -273,56 +228,48 @@ angular.module('app', [
     
     }])
 
-.directive('barsChart', function ($parse) {
-    return {
-        restrict: 'EA',
-        replace: false,
-        link: function (scope, element, attrs) {
+*/
+(function() {
+'use strict';
 
-            scope.$watch(attrs.chartData, function (data) {
-                if (!data) return;
-                var dataArray = _.map(data, function (d) { return d.count; });
-                var themax = Math.max.apply(Math, dataArray);
+angular.module('app.controllers')
+.controller('SubmitController', ['validator', 'Link',
+  function(validator, Link) {
 
-                var chart = d3.select(element[0])
-                    .append('div').attr('class', 'chart')
-                    .selectAll('div')
-                    .data(data).enter().append('div');
+  	this.submit = function() {
+  		if (validator.isURL(this.url)) {
+        var entry = new Link();
+        entry.data = {url: this.url};
+        var self = this;
+        Link.save(entry, function(){
+          self.url = '';
+          self.message = 'Thank you for your submission'; 
+        });
+  		}	
+  		else {
+  			this.message = "That ain't a valid url, man";
+  		}
+  	};
 
-                chart.append('div')
-                    .attr('class', 'label')
-                    .text(function (d) { return d.count; });
+  	this.change = function () {
+  		this.message = '';
+  	};
 
-                chart.append('div').attr('class', 'bar').transition().ease('elastic')
-                    .style('width', function (d) {
-                        return ((d.count / themax) * 100) + '%';
-                    })
-                    .text(function (d) {
-                        return d.character;
-                    });
+  }]);
 
-            });
-        }
-    };
-})
+})();
+(function() {
+'use strict';
 
-.directive('mathjaxBind', function () {
-    return {
-        restrict: 'A',
-        controller: ['$scope', '$element', '$attrs',
-                function ($scope, $element, $attrs) {
-                    $scope.$watch($attrs.mathjaxBind, function (texExpression) {
-                        var texScript = angular.element('<script type='math/tex'>')
-                            .html(texExpression ? texExpression : '');
-                        $element.html('');
-                        $element.append(texScript);
-                        MathJax.Hub.Queue(['Reprocess', MathJax.Hub, $element[0]]);
-                    });
-                }]
-    };
-});
+angular.module('app', [
+    'ui.bootstrap',
+    'ngNewRouter',
+    'ngResource',
+    'app.directives',
+    'app.services',
+    'app.controllers'])
 
+.constant('validator', window.validator);
 
-        */
-
+})();
 
