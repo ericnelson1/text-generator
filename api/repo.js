@@ -1,4 +1,5 @@
 var logger = require('winston');
+var _ = require('underscore');
 
 var	redis = require('redis'),
     client = redis.createClient();
@@ -36,10 +37,14 @@ exports.getUnprocessedLinks = function() {
 };
 
 exports.updateCatalog = function(stats, catalog) {
-	return Promise.map(stats, function(element, index) {
-		return client.saddAsync(catalog, index).then(function(result) {
-			return Promise.map(element, function (count, letter) {
-				return client.hincrby(catalog + ':' + index, letter, count);
+	return Promise.map(
+		_.map(stats, function(val, key) { return { sequence: key, distribution: val }; }), 
+		function(item) {
+		return client.saddAsync(catalog, item.sequence).then(function() {
+			return Promise.map(
+				_.map(item.distribution, function (val, key) { return { count: val, letter: key }; }), 
+				function (i) {
+				return client.hincrby(catalog + ':' + item.sequence, i.letter, i.count);
 			})
 		});
 	}); 

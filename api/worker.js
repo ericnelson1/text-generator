@@ -1,7 +1,6 @@
 var kue = require('kue'),
     queue = kue.createQueue();
 
-var _ = require('underscore');
 var logger = require('winston');
 var Promise = require('bluebird');
 
@@ -10,7 +9,7 @@ var	textget = require('./text-get'),
 	repo = require('./repo');
 
 var config = {
-	depths: [1,4,8],
+	depths: [2, 5, 9],
 	catalog: 'maincat'
 };
 
@@ -23,6 +22,8 @@ queue.process('textstats', function(job, done) {
 
 		return Promise.map(config.depths, function(depth) {
 
+			logger.info('getting stats for depth', depth);
+
 			var textstats = stats.get(text, depth);
 			var catname = config.catalog + ':' + depth;
 
@@ -33,7 +34,7 @@ queue.process('textstats', function(job, done) {
 
 		}).then(function() {
 			return repo.processedLink(url)
-				.fail(function(err) {
+				.error(function(err) {
 					logger.error('error updating catalog', catname, err);	
 				});
 			done && done();
