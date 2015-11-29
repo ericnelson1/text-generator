@@ -4,6 +4,7 @@ var validator = require('validator');
 
 var worker = require('./worker');
 var repo = require('./repo');
+var mongorepo = require('./mongo-repo');
 var logger = require('./log'); // configures winston logging
 
 var app = module.exports.app = exports.app = express();
@@ -30,12 +31,24 @@ app.get('/api', function(req, res) {
 		stats: 'http://' + hostname + '/api/stats'
 	});
 });
-
 app.get('/api/links', function(req, res) {
 	repo.getLinks().then(function(links) {
 		res.json(links);
 	}).error(function(err) { 
-    	logger.error('error getting links', err); 
+    	res.status(500).json({
+    		message: 'error getting links',
+    		error: err	
+    	})
+    });
+});
+
+
+app.get('/api/newlinks', function(req, res) {
+	mongorepo.getLinks().then(function(links, something) {
+		logger.info('im here', links, something );
+		res.json(links);
+	}).error(function(err) { 
+		logger.error('failman');
     	res.status(500).json({
     		message: 'error getting links',
     		error: err	
@@ -75,7 +88,6 @@ app.post('/api/links', function(req, res) {
 			linkCount: result
 		});
 	}).error(function(err) {
-    	logger.error('error adding link', err); 
 		res.status(500).json({
 			url: url,
 			message: 'error adding link',

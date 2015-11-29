@@ -42,7 +42,7 @@ angular.module('app.directive')
         controller: ['$scope', '$element', '$attrs',
                 function ($scope, $element, $attrs) {
                     $scope.$watch($attrs.mathjaxBind, function (texExpression) {
-                        var texScript = angular.element('<script type='math/tex'>')
+                        var texScript = angular.element("<script type='math/tex'>")
                             .html(texExpression ? texExpression : '');
                         $element.html('');
                         $element.append(texScript);
