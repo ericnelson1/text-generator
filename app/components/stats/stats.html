@@ -1,4 +1,4 @@
-﻿<div class="container-fluid">
+﻿<div id="app-stats" class="container-fluid" ng-controller="StatsController as stats">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-8">
 			<h1 class="text-center">Statistics</h1>
@@ -6,25 +6,40 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-offset-2 col-sm-4">
-			<p>Select character depth:</p>
-			<div class="btn-group btn-group-justified" ng-init="settings.depth=1">
-				<label class="btn btn-sm btn-primary" ng-model="settings.depth" btn-radio="1">One Character</label>
-				<label class="btn btn-sm btn-primary" ng-model="settings.depth" btn-radio="4">Four Characters</label>
-				<label class="btn btn-sm btn-primary" ng-model="settings.depth" btn-radio="8">Eight Characters</label>
-			</div>
-			<h4>Chart Type:</h4>
-			<div class="btn-group btn-group-justified" ng-init="settings.type='bar'">
-				<label class="btn btn-sm btn-primary" ng-model="settings.type" btn-radio="'bar'">Bar Graph</label>
-				<label class="btn btn-sm btn-primary" ng-model="settings.type" btn-radio="'bubble'">Bubble Chart</label>
-			</div>
-		</div>
-		<div class="col-sm-4">
-			<h4>Sort by:</h4>
-			<div class="btn-group btn-group-justified" ng-init="settings.sort='count'">
-				<label class="btn btn-sm btn-primary" ng-model="settings.sort" btn-radio="'alpha'">Alphabetical</label>
-				<label class="btn btn-sm btn-primary" ng-model="settings.sort" btn-radio="'count'">Count</label>
-			</div>
+		<div class="col-sm-offset-2 col-sm-8">
+			<span class="h4">Character depth:&nbsp;</span>
+			<div class="btn-group" uib-dropdown uib-keyboard-nav>
+		        <button id="selected-depth-btn" type="button" class="btn btn-primary" uib-dropdown-toggle>
+		            {{stats.selectedDepth.display}}&nbsp;<span class="caret"></span>
+		        </button>
+		        <ul class="uib-dropdown-menu" role="menu" aria-labelledby="selected-depth-btn">
+		            <li role="menuitem" ng-repeat="d in stats.depths" ng-click="stats.selectDepth(d)">
+		        		<a href="#/stats">{{d.display}}</a>
+		        	</li>
+		        </ul>
+		    </div>
+			<span class="h4">Chart Type:&nbsp;</span>
+			<div class="btn-group" uib-dropdown uib-keyboard-nav>
+		        <button id="selected-chart-btn" type="button" class="btn btn-primary" uib-dropdown-toggle>
+		            {{stats.selectedChart.display}}&nbsp;<span class="caret"></span>
+		        </button>
+		        <ul class="uib-dropdown-menu" role="menu" aria-labelledby="selected-chart-btn">
+		            <li role="menuitem" ng-repeat="c in stats.charts" ng-click="stats.selectChart(c)">
+		        		<a href="#/stats">{{c.display}}</a>
+		        	</li>
+		        </ul>
+		    </div>
+			<span class="h4">Sort by:&nbsp;</span>
+			<div class="btn-group" uib-dropdown uib-keyboard-nav>
+		        <button id="selected-sort-btn" type="button" class="btn btn-primary" uib-dropdown-toggle>
+		            {{stats.selectedSort.display}}&nbsp;<span class="caret"></span>
+		        </button>
+		        <ul class="uib-dropdown-menu" role="menu" aria-labelledby="selected-sort-btn">
+		            <li role="menuitem" ng-repeat="s in stats.sorts" ng-click="stats.selectSort(s)">
+		        		<a href="#/stats">{{s.display}}</a>
+		        	</li>
+		        </ul>
+		    </div>
 		</div>
 	</div>
 
