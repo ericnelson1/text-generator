@@ -50,6 +50,17 @@ exports.get = function(query, select) {
   });
 };
 
+exports.getById = function(id, select) {
+  select = select||'url submitted processed textsize';
+  return Link.findById(id).select(select).exec().then(function(link) {
+    logger.info('got link by id', id);
+    return link;
+  }).catch(function(err) {
+    logger.error('error getting link by id', err);
+    throw err;
+  });
+};
+
 exports.add = function(url) {
   var link = new Link({url: url});
   return link.save().then(function(link) {
@@ -89,5 +100,4 @@ exports.validate = function(url) {
   logger.info('validated url', url);
   return Promise.resolve(url);
 };
-
 

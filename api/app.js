@@ -85,8 +85,14 @@ app.get('/api/links/unprocessed', function(req, res) {
 });
 
 app.get('/api/text/:id', function(req, res) {
-  // req.params.id
-  res.send('hello world');
+  linkrepo.getById(req.params.id, 'text').then(function(link) {
+    res.send(link.text);
+  }).catch(function(err) { 
+    res.status(500).json({
+      message: 'error getting text',
+      error: err  
+    })
+  });
 });
 
 app.listen(3000);
