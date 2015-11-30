@@ -173,6 +173,17 @@ angular.module('app.controllers')
 .controller('StatsController', 
   function() {
 
+    this.domains = [
+        {display: 'Full Catalog' },
+        {display: 'Single Link' }
+    ];
+
+    this.selectedDomain = this.domains[0];
+
+    this.selectDomain = function(d) {
+        this.selectedDomain = d;
+    };
+
 	this.depths = [
 		{display: 'One Character', depth: 1},
 		{display: 'Four Characters', depth: 4},

@@ -18,12 +18,12 @@
 .pager li a {
   width: 125px;
 }
+.space-10 {
+  margin: 10px 0;
+}
 .space-30 {
   margin: 30px 0;
 }
-/*
-#app-home .btn,
 #app-stats .btn {
-	width:150px;
+  width: 150px;
 }
-*/
