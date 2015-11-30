@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');  // use express body parser instead?
+var _ = require('underscore');
 
 var logger = require('./log'); // configures winston logging
 var worker = require('./worker');
@@ -81,6 +82,11 @@ app.get('/api/links/unprocessed', function(req, res) {
       error: err
     });
   });
+});
+
+app.get('/api/text/:id', function(req, res) {
+  // req.params.id
+  res.send('hello world');
 });
 
 app.listen(3000);

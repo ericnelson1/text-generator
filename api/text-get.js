@@ -41,6 +41,7 @@ exports.get = function(link) {
         .replace(/[^a-z]+/g, ' ');
 
       link.text = text;
+      link.textsize = text.length;
       resolve(link);
     });
   });

@@ -5,6 +5,7 @@ angular.module('app', [
     'ui.bootstrap',
     'ngNewRouter',
     'ngResource',
+    'smart-table',
     'app.directives',
     'app.services',
     'app.controllers'])

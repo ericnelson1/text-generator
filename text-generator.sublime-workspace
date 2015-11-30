@@ -8,26 +8,34 @@
 	"buffers":
 	[
 		{
-			"file": "api/app.js",
+			"file": "app/components/links/links.html",
 			"settings":
 			{
-				"buffer_size": 2878,
+				"buffer_size": 1243,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/scripts/directives.js",
+			"file": "api/link-repo.js",
 			"settings":
 			{
-				"buffer_size": 1830,
+				"buffer_size": 2111,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "api/mongo-repo.js",
+			"file": "api/worker.js",
 			"settings":
 			{
-				"buffer_size": 1671,
+				"buffer_size": 1931,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "api/text-get.js",
+			"settings":
+			{
+				"buffer_size": 1214,
 				"line_ending": "Unix"
 			}
 		}
@@ -80,7 +88,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -106,29 +114,33 @@
 		"/home/eric/text-generator",
 		"/home/eric/text-generator/api",
 		"/home/eric/text-generator/app",
+		"/home/eric/text-generator/app/components",
+		"/home/eric/text-generator/app/components/links",
 		"/home/eric/text-generator/app/scripts",
 		"/home/eric/text-generator/test",
 		"/home/eric/text-generator/test-scripts"
 	],
 	"file_history":
 	[
+		"/home/eric/text-generator/app/components/links/links.js",
+		"/home/eric/text-generator/app/scripts/app.js",
+		"/home/eric/text-generator/api/link-repo.js",
+		"/home/eric/text-generator/api/text-get.js",
+		"/home/eric/text-generator/api/worker.js",
+		"/home/eric/text-generator/api/app.js",
+		"/home/eric/text-generator/api/mongo.js",
+		"/home/eric/text-generator/app/scripts/directives.js",
+		"/home/eric/text-generator/api/mongo-repo.js",
+		"/home/eric/text-generator/api/repo.js",
+		"/home/eric/text-generator/api/stats.js",
 		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/eric/text-generator/app/components/stats/stats.html",
-		"/home/eric/text-generator/api/mongo-repo.js",
 		"/home/eric/text-generator/app/components/stats/stats.js",
-		"/home/eric/text-generator/app/scripts/directives.js",
 		"/home/eric/text-generator/gulpfile.js",
-		"/home/eric/text-generator/app/scripts/app.js",
-		"/home/eric/text-generator/app/components/links/links.js",
 		"/home/eric/text-generator/app/components/home/home.html",
 		"/home/eric/text-generator/app/components/home/home.js",
 		"/home/eric/text-generator/app/styles/app.less",
-		"/home/eric/text-generator/api/stats.js",
-		"/home/eric/text-generator/api/repo.js",
-		"/home/eric/text-generator/api/worker.js",
-		"/home/eric/text-generator/api/app.js",
 		"/home/eric/text-generator/api/log.js",
-		"/home/eric/text-generator/api/text-get.js",
 		"/home/eric/text-generator/app/components/links/links.html",
 		"/home/eric/text-generator/test-scripts/text-stats.js",
 		"/home/eric/text-generator/test/text-stats.js",
@@ -225,6 +237,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"console.log",
 			"chunk",
 			"textcount",
 			"myForm",
@@ -241,6 +254,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"logger.info",
 			"txt",
 			"stats",
 			"form",
@@ -257,105 +271,53 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "api/app.js",
+					"file": "app/components/links/links.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2878,
+						"buffer_size": 1243,
 						"regions":
 						{
-							"bookmark_i":
-							{
-								"flags": 144,
-								"regions":
-								[
-									[
-										1185,
-										1185
-									]
-								]
-							},
-							"bookmark_o":
-							{
-								"flags": 144,
-								"regions":
-								[
-									[
-										1185,
-										1185
-									]
-								]
-							}
 						},
 						"selection":
 						[
 							[
-								1718,
-								1718
+								521,
+								521
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 609.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/scripts/directives.js",
+					"file": "api/link-repo.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1830,
+						"buffer_size": 2111,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1587,
-								1587
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 133.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "api/mongo-repo.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1671,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1086,
-								1086
+								815,
+								815
 							]
 						],
 						"settings":
@@ -365,10 +327,70 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 218.0,
+						"translation.y": 286.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "api/worker.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1931,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "api/text-get.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1214,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1171,
+								1171
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

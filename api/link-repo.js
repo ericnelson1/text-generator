@@ -2,14 +2,30 @@ var mongoose = require('./mongo');
 var logger = require('winston');
 var validator = require('validator');
 
+var config = {
+  host: 'http://localhost:3000'
+}
+
 // define schema
-var Link = mongoose.model('Link', {
-  url: String, 
-  submitted: { type: Date, default: Date.now }, 
-  processed: { type: Boolean, default: false },
-  text: String, 
-  stats: {} 
+var LinkSchema = new mongoose.Schema({
+    url: String, 
+    submitted: { type: Date, default: Date.now }, 
+    processed: { type: Boolean, default: false },
+    textsize: { type: Number, default: 0 },
+    text: String, 
+    stats: {} 
+  }, {
+    toObject: {
+    virtuals: true
+    }, 
+    toJSON: {
+    virtuals: true 
+  }
 });
+LinkSchema.virtual('texturl').get(function() { 
+  return config.host + '/api/text/' + this.id; 
+});
+var Link = mongoose.model('Link', LinkSchema);
 
 // custom errors
 function ValidationError(message) {
@@ -24,8 +40,8 @@ exports.ValidationError = ValidationError;
 // api
 exports.get = function(query, select) {
   // Promise.promisify(Link.find)()
-  select = select||'url submitted processed';
-  return Link.find(query).select(select).exec().then(function(links) {
+  select = select||'url submitted processed textsize';
+  return Link.find(query).select(select).sort({submitted:-1}).exec().then(function(links) {
     logger.info('got links');
     return links;
   }).catch(function(err) {
@@ -48,6 +64,8 @@ exports.add = function(url) {
 exports.update = function(newlink) {
   return Link.findById(newlink._id).exec().then(function(link) {
     logger.info('found link', link.url);
+    link.processed = newlink.processed;
+    link.textsize = newlink.textsize;
     link.text = newlink.text;
     link.stats = newlink.stats;
     return link.save();
