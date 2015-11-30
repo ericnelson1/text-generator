@@ -3,13 +3,13 @@ var _ = require('underscore');
 var logger = require('winston');
 var Promise = require('bluebird');
 
-exports.get = function(url) {
+exports.get = function(link) {
 
-  logger.info('getting text from url', url);
+  logger.info('getting text from url', link.url);
 
   return new Promise(function(resolve, reject) {
 
-    ineed.collect.texts.from({url: url}, function(err, response, result) {
+    ineed.collect.texts.from({url: link.url}, function(err, response, result) {
 
       if (err) {
         logger.error('ineed error', err); 
@@ -22,7 +22,7 @@ exports.get = function(url) {
         return;
       }
       
-      logger.info('got text from url', url);
+      logger.info('got text from url', link.url);
 
       // result = { texts: ['string1', 'string2']}
 
@@ -40,7 +40,8 @@ exports.get = function(url) {
         .toLowerCase()
         .replace(/[^a-z]+/g, ' ');
 
-      resolve(text);
+      link.text = text;
+      resolve(link);
     });
   });
 };

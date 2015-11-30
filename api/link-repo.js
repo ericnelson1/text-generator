@@ -45,11 +45,11 @@ exports.add = function(url) {
   });
 };
 
-exports.update = function(id, text, stats) {
-  return Link.findById(id).exec().then(function(link) {
+exports.update = function(newlink) {
+  return Link.findById(newlink._id).exec().then(function(link) {
     logger.info('found link', link.url);
-    link.text = text;
-    link.stats = stats;
+    link.text = newlink.text;
+    link.stats = newlink.stats;
     return link.save();
   }).then(function(link) {
     logger.info('updated link', link.url);

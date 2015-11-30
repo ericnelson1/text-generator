@@ -3,10 +3,12 @@ var kue = require('kue'),
 
 var logger = require('winston');
 var Promise = require('bluebird');
+var _ = require('underscore');
 
-var textget = require('./text-get'),
-  stats = require('./stats'),
-  repo = require('./repo');
+var textget = require('./text-get');
+var stats = require('./stats');
+var repo = require('./repo');
+var linkrepo = require('./link-repo');
 
 var config = {
   depths: [2, 5, 9],
@@ -14,53 +16,53 @@ var config = {
 };
 
 queue.process('textstats', function(job, done) {
-  var url = job.data.url;
+  var link = job.data;
+  logger.info('processing url', link.url);
 
-  logger.info('processing url');
-
-  textget.get(url).then(function(text) {
-
-    return Promise.map(config.depths, function(depth) {
-
-      logger.info('getting stats for depth', depth);
-
-      var textstats = stats.get(text, depth);
-      var catname = config.catalog + ':' + depth;
-
-      return repo.updateCatalog(textstats, catname)
-        .error(function(err) {
-          logger.error('error updating catalog', catname, err); 
-        });
-
-    }).then(function() {
-      return repo.processedLink(url)
-        .error(function(err) {
-          logger.error('error updating catalog', catname, err); 
-        });
+  textget.get(link).then(function(link) {
+    link.stats = [];
+    _.each(config.depths, function(depth) {
+      logger.info('getting stats for', link.url, 'depth', depth);
+      var textstats = stats.get(link.text, depth);
+      link.stats.push({ depth: depth, stats: textstats });
+    });
+    return link;
+  }).then(function(link) {
+    link.processed = true;
+    return linkrepo.update(link);
+  }).then(function(link) {
       done && done();
-    }); 
-  }).error(function(err) {
+      return link;
+  }).catch(function(err) {
     done && done(err);
   });
+
+  // redis code
+  // return Promise.reduce
+  // var catname = config.catalog + ':' + depth;
+  //   return repo.updateCatalog(textstats, catname)
+  // }).then(function() {
+  //   return repo.processedLink(url)
+  // }); 
 });
 
-exports.process = function (input) {
-  var job = queue.create('textstats', input);
+exports.process = function (link) {
+  var job = queue.create('textstats', link);
   job
     .on('enqueue', function () {
-      console.log('Job', job.id, 'with url', job.data.url, 'is queued');
+      logger.info('Job', job.id, 'with url', job.data.url, 'is queued for processing');
     })
     .on('complete', function (result) {
-      console.log('Job', job.id, 'with url', job.data.url, 'is done with result', result);
+      logger.info('Job', job.id, 'with url', job.data.url, 'is done with result', result);
     })
-    .on('failed', function (error) {
-      console.log('Job', job.id, 'with url', job.data.url, 'has failed', error);
+    .on('failed', function (err) {
+      logger.error('Job', job.id, 'with url', job.data.url, 'has failed', err);
     })  
     .on('progress', function (progress, data) {
-      console.log('Job', job.id, 'is', progress, '% complete with data ', data);  
+      logger.info('Job', job.id, 'is', progress, '% complete');  
     })
     .save(function (err) {
-      if (err) { console.log('Error saving job', job.id, 'error', err); }
+      if (err) { logger.error('Error saving job', job.id, 'error', err); }
     });
 };
 
