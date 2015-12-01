@@ -15,7 +15,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 327.0,
+		"height": 369.0,
 		"last_filter": ":w",
 		"selected_items":
 		[
@@ -56,7 +56,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 575.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -83,7 +83,6 @@
 		"/home/eric/text-generator/api",
 		"/home/eric/text-generator/app",
 		"/home/eric/text-generator/app/components",
-		"/home/eric/text-generator/app/components/about",
 		"/home/eric/text-generator/app/components/links",
 		"/home/eric/text-generator/app/scripts",
 		"/home/eric/text-generator/app/styles",
@@ -92,25 +91,27 @@
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/app/styles/app.less",
 		"/home/eric/text-generator/app/components/stats/stats.js",
+		"/home/eric/text-generator/app/components/stats/stats.html",
+		"/home/eric/text-generator/app/scripts/directives.js",
+		"/home/eric/text-generator/bower_components/bootstrap/dist/css/bootstrap.css",
+		"/home/eric/text-generator/app/scripts/app.js",
+		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/eric/text-generator/api/app.js",
+		"/home/eric/text-generator/api/link-repo.js",
+		"/home/eric/text-generator/app/components/links/links.js",
+		"/home/eric/text-generator/app/scripts/services.js",
+		"/home/eric/text-generator/app/styles/app.less",
 		"/home/eric/text-generator/package.json",
 		"/home/eric/text-generator/bower.json",
-		"/home/eric/text-generator/app/components/stats/stats.html",
 		"/home/eric/text-generator/app/components/about/about.html",
-		"/home/eric/text-generator/api/link-repo.js",
-		"/home/eric/text-generator/api/app.js",
 		"/home/eric/text-generator/api/text-get.js",
 		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/app/components/links/links.html",
-		"/home/eric/text-generator/app/components/links/links.js",
-		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/text-generator/api/mongo.js",
-		"/home/eric/text-generator/app/scripts/directives.js",
 		"/home/eric/text-generator/api/mongo-repo.js",
 		"/home/eric/text-generator/api/repo.js",
 		"/home/eric/text-generator/api/stats.js",
-		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/app/components/home/home.html",
 		"/home/eric/text-generator/app/components/home/home.js",
@@ -126,7 +127,6 @@
 		"/home/eric/text-generator/app/scripts/controllers.js",
 		"/home/eric/text-generator/app/scripts/scripts.js",
 		"/home/eric/text-generator/app/index.html",
-		"/home/eric/text-generator/app/scripts/services.js",
 		"/home/eric/text-generator/app/components/about/about.js",
 		"/home/eric/text-generator/api/text-stats.js",
 		"/home/eric/text-generator/api/text-engine.js",
@@ -301,20 +301,40 @@
 		"selected_items":
 		[
 			[
-				"bower",
-				"bower.json"
+				"app.js",
+				"app/scripts/app.js"
 			],
 			[
-				"pack",
-				"package.json"
+				"bootstra",
+				"bower_components/bootstrap/dist/css/bootstrap.css"
+			],
+			[
+				"stats.html",
+				"app/components/stats/stats.html"
+			],
+			[
+				"link-re",
+				"api/link-repo.js"
+			],
+			[
+				"service",
+				"app/scripts/services.js"
+			],
+			[
+				"links.js",
+				"app/components/links/links.js"
 			],
 			[
 				"stats.js",
 				"app/components/stats/stats.js"
 			],
 			[
-				"stats.html",
-				"app/components/stats/stats.html"
+				"bower",
+				"bower.json"
+			],
+			[
+				"pack",
+				"package.json"
 			],
 			[
 				"app",
@@ -331,10 +351,6 @@
 			[
 				"gulpfil",
 				"gulpfile.js"
-			],
-			[
-				"links.js",
-				"app/components/links/links.js"
 			],
 			[
 				"home",

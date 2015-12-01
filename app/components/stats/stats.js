@@ -2,8 +2,15 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('StatsController', 
-  function() {
+.controller('StatsController', ['Stats', 
+  function(Stats) {
+    this.stats = Stats.query({id: '565bce05ed6b1ba20d0c41f6' });
+    //this.mydata = [{x:10, y:10}, {x:50, y: 50}];
+    this.mydata = [
+        {s:'asdf', c:10}, 
+        {s:'qwer', c:20}, 
+        {s:'zxcv', c:60}, 
+        {s:'hjkl', c:30}]; 
 
     this.domains = [
         {display: 'Full Catalog' },
@@ -16,40 +23,40 @@ angular.module('app.controllers')
         this.selectedDomain = d;
     };
 
-	this.depths = [
-		{display: 'One Character', depth: 1},
-		{display: 'Four Characters', depth: 4},
-		{display: 'Eight Characters', depth: 8}
-	];
+    this.depths = [
+        {display: 'One Character', depth: 1},
+        {display: 'Four Characters', depth: 4},
+        {display: 'Eight Characters', depth: 8}
+    ];
 
-	this.selectedDepth = this.depths[1];
+    this.selectedDepth = this.depths[1];
 
-	this.selectDepth = function(d) {
-		this.selectedDepth = d;
-	};
+    this.selectDepth = function(d) {
+        this.selectedDepth = d;
+    };
 
-	this.charts = [
-		{display: 'Bar Graph' },
-		{display: 'Bubble Chart' }
-	];
+    this.charts = [
+        {display: 'Bar Graph' },
+        {display: 'Bubble Chart' }
+    ];
 
-	this.selectedChart = this.charts[0];
+    this.selectedChart = this.charts[0];
 
-	this.selectChart = function(c) {
-		this.selectedChart = c;
-	};
+    this.selectChart = function(c) {
+        this.selectedChart = c;
+    };
  
-	this.sorts = [
-		{display: 'Alphabetical' },
-		{display: 'Count' }
-	];
+    this.sorts = [
+        {display: 'Alphabetical' },
+        {display: 'Count' }
+    ];
 
-	this.selectedSort = this.sorts[1];
+    this.selectedSort = this.sorts[1];
 
-	this.selectSort = function(s) {
-		this.selectedSort = s;
-	};
-});
+    this.selectSort = function(s) {
+        this.selectedSort = s;
+    };
+}]);
 
 })();
 

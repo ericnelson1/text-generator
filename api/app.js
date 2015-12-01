@@ -95,6 +95,17 @@ app.get('/api/text/:id', function(req, res) {
   });
 });
 
+app.get('/api/stats/:id', function(req, res) {
+  linkrepo.getById(req.params.id, 'stats').then(function(link) {
+    res.send(link.stats);
+  }).catch(function(err) { 
+    res.status(500).json({
+      message: 'error getting stats',
+      error: err  
+    })
+  });
+});
+
 app.listen(3000);
 
 console.log("listening on port 3000");

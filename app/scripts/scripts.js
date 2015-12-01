@@ -3,35 +3,43 @@
 
 angular.module('app.directives', [])
 
-.directive('barsChart', function ($parse) {
+.directive('barChart', function () {
     return {
         restrict: 'EA',
-        replace: false,
+        scope: { 
+          chartData: '='
+        },
         link: function (scope, element, attrs) {
 
-            scope.$watch(attrs.chartData, function (data) {
-                if (!data) return;
-                var dataArray = _.map(data, function (d) { return d.count; });
-                var themax = Math.max.apply(Math, dataArray);
+          var chartWidth = 800;
+          var chartHeight = 400;
+          var barHeight = 10;
 
-                var chart = d3.select(element[0])
-                    .append('div').attr('class', 'chart')
-                    .selectAll('div')
-                    .data(data).enter().append('div');
+          var svg = d3.select(element[0])
+            .append('svg')
+            .attr('width', chartWidth)
+            .attr('height', chartHeight);
 
-                chart.append('div')
-                    .attr('class', 'label')
-                    .text(function (d) { return d.count; });
+          var group = svg.selectAll('g') 
+            .data(scope.chartData)
+            .enter()
+            .append('g');
 
-                chart.append('div').attr('class', 'bar').transition().ease('elastic')
-                    .style('width', function (d) {
-                        return ((d.count / themax) * 100) + '%';
-                    })
-                    .text(function (d) {
-                        return d.character;
-                    });
-
+          group.append('rect')
+            .attr("x", 40)
+            .attr("y", function (d, i, j) { return (barHeight*i) + (i*5); })
+            .attr("width", function (d, i, j) { return d.c * 10; })
+            .attr("height", barHeight)
+            .attr("fill", function (d, i, j) {
+              return '#337ab7';
             });
+
+          group.append('text')
+            .attr("x", 0)
+            .attr("y", function (d, i, j) { return (barHeight*i) + (i*5); })
+            .attr('dy', 10)
+            .text(function(d) { return d.s; });
+
         }
     };
 })
@@ -63,6 +71,11 @@ angular.module('app.services', [])
 .factory('Link', ['$resource',
     function ($resource) {
         return $resource('/api/links');
+    }])
+
+.factory('Stats', ['$resource',
+    function ($resource) {
+        return $resource('/api/stats/:id');
     }]);
 
 })();
@@ -170,8 +183,15 @@ angular.module('app.controllers')
 'use strict';
 
 angular.module('app.controllers')
-.controller('StatsController', 
-  function() {
+.controller('StatsController', ['Stats', 
+  function(Stats) {
+    this.stats = Stats.query({id: '565bce05ed6b1ba20d0c41f6' });
+    //this.mydata = [{x:10, y:10}, {x:50, y: 50}];
+    this.mydata = [
+        {s:'asdf', c:10}, 
+        {s:'qwer', c:20}, 
+        {s:'zxcv', c:60}, 
+        {s:'hjkl', c:30}]; 
 
     this.domains = [
         {display: 'Full Catalog' },
@@ -184,40 +204,40 @@ angular.module('app.controllers')
         this.selectedDomain = d;
     };
 
-	this.depths = [
-		{display: 'One Character', depth: 1},
-		{display: 'Four Characters', depth: 4},
-		{display: 'Eight Characters', depth: 8}
-	];
+    this.depths = [
+        {display: 'One Character', depth: 1},
+        {display: 'Four Characters', depth: 4},
+        {display: 'Eight Characters', depth: 8}
+    ];
 
-	this.selectedDepth = this.depths[1];
+    this.selectedDepth = this.depths[1];
 
-	this.selectDepth = function(d) {
-		this.selectedDepth = d;
-	};
+    this.selectDepth = function(d) {
+        this.selectedDepth = d;
+    };
 
-	this.charts = [
-		{display: 'Bar Graph' },
-		{display: 'Bubble Chart' }
-	];
+    this.charts = [
+        {display: 'Bar Graph' },
+        {display: 'Bubble Chart' }
+    ];
 
-	this.selectedChart = this.charts[0];
+    this.selectedChart = this.charts[0];
 
-	this.selectChart = function(c) {
-		this.selectedChart = c;
-	};
+    this.selectChart = function(c) {
+        this.selectedChart = c;
+    };
  
-	this.sorts = [
-		{display: 'Alphabetical' },
-		{display: 'Count' }
-	];
+    this.sorts = [
+        {display: 'Alphabetical' },
+        {display: 'Count' }
+    ];
 
-	this.selectedSort = this.sorts[1];
+    this.selectedSort = this.sorts[1];
 
-	this.selectSort = function(s) {
-		this.selectedSort = s;
-	};
-});
+    this.selectSort = function(s) {
+        this.selectedSort = s;
+    };
+}]);
 
 })();
 

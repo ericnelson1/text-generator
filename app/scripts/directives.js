@@ -3,35 +3,43 @@
 
 angular.module('app.directives', [])
 
-.directive('barsChart', function ($parse) {
+.directive('barChart', function () {
     return {
         restrict: 'EA',
-        replace: false,
+        scope: { 
+          chartData: '='
+        },
         link: function (scope, element, attrs) {
 
-            scope.$watch(attrs.chartData, function (data) {
-                if (!data) return;
-                var dataArray = _.map(data, function (d) { return d.count; });
-                var themax = Math.max.apply(Math, dataArray);
+          var chartWidth = 800;
+          var chartHeight = 400;
+          var barHeight = 10;
 
-                var chart = d3.select(element[0])
-                    .append('div').attr('class', 'chart')
-                    .selectAll('div')
-                    .data(data).enter().append('div');
+          var svg = d3.select(element[0])
+            .append('svg')
+            .attr('width', chartWidth)
+            .attr('height', chartHeight);
 
-                chart.append('div')
-                    .attr('class', 'label')
-                    .text(function (d) { return d.count; });
+          var group = svg.selectAll('g') 
+            .data(scope.chartData)
+            .enter()
+            .append('g');
 
-                chart.append('div').attr('class', 'bar').transition().ease('elastic')
-                    .style('width', function (d) {
-                        return ((d.count / themax) * 100) + '%';
-                    })
-                    .text(function (d) {
-                        return d.character;
-                    });
-
+          group.append('rect')
+            .attr("x", 40)
+            .attr("y", function (d, i, j) { return (barHeight*i) + (i*5); })
+            .attr("width", function (d, i, j) { return d.c * 10; })
+            .attr("height", barHeight)
+            .attr("fill", function (d, i, j) {
+              return '#337ab7';
             });
+
+          group.append('text')
+            .attr("x", 0)
+            .attr("y", function (d, i, j) { return (barHeight*i) + (i*5); })
+            .attr('dy', 10)
+            .text(function(d) { return d.s; });
+
         }
     };
 })

@@ -22,9 +22,14 @@ var LinkSchema = new mongoose.Schema({
     virtuals: true 
   }
 });
+// define virtual properties for urls that do not get persisted
 LinkSchema.virtual('texturl').get(function() { 
   return config.host + '/api/text/' + this.id; 
 });
+LinkSchema.virtual('statsurl').get(function() { 
+  return config.host + '/api/stats/' + this.id; 
+});
+// attach the schema to the model
 var Link = mongoose.model('Link', LinkSchema);
 
 // custom errors
