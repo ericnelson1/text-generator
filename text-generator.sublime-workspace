@@ -91,8 +91,8 @@
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/app/components/stats/stats.js",
 		"/home/eric/text-generator/app/components/stats/stats.html",
+		"/home/eric/text-generator/app/components/stats/stats.js",
 		"/home/eric/text-generator/app/scripts/directives.js",
 		"/home/eric/text-generator/bower_components/bootstrap/dist/css/bootstrap.css",
 		"/home/eric/text-generator/app/scripts/app.js",
@@ -207,6 +207,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"onClick",
+			"label",
 			"h4",
 			"console.log",
 			"chunk",
@@ -301,6 +303,18 @@
 		"selected_items":
 		[
 			[
+				"direct",
+				"app/scripts/directives.js"
+			],
+			[
+				"stats.",
+				"app/components/stats/stats.html"
+			],
+			[
+				"stats.js",
+				"app/components/stats/stats.js"
+			],
+			[
 				"app.js",
 				"app/scripts/app.js"
 			],
@@ -323,10 +337,6 @@
 			[
 				"links.js",
 				"app/components/links/links.js"
-			],
-			[
-				"stats.js",
-				"app/components/stats/stats.js"
 			],
 			[
 				"bower",

@@ -5,12 +5,22 @@ angular.module('app.controllers')
 .controller('StatsController', ['Stats', 
   function(Stats) {
     this.stats = Stats.query({id: '565bce05ed6b1ba20d0c41f6' });
+
     //this.mydata = [{x:10, y:10}, {x:50, y: 50}];
     this.mydata = [
         {s:'asdf', c:10}, 
         {s:'qwer', c:20}, 
         {s:'zxcv', c:60}, 
         {s:'hjkl', c:30}]; 
+
+    this.greeting = "Resize the page to see the re-rendering";
+    
+    this.d3Data = [
+      {name: "Greg", score: 98},
+      {name: "Ari", score: 96},
+      {name: 'Q', score: 75},
+      {name: "Loser", score: 48}
+    ];
 
     this.domains = [
         {display: 'Full Catalog' },
@@ -21,6 +31,7 @@ angular.module('app.controllers')
 
     this.selectDomain = function(d) {
         this.selectedDomain = d;
+        this.mydata.push({s: 'blah', c: 25});
     };
 
     this.depths = [
@@ -71,13 +82,18 @@ angular.module('app.controllers')
             barHeight = 24;
             var x = d3.scale.linear()
                 .range([0, width]);
+
             var chart = d3.select('.chart')
                 .attr('width', width);
+
             d3.tsv('../data/state_population.tsv', type, function (error, data) {
+
                 data.sort(sort);
+
                 x.domain([0, d3.max(data, function (d) { return d.Population; })]);
                 var themax = d3.max(data, function (d) { return d.Population; });
                 chart.attr('height', barHeight * data.length);
+
                 var bar = chart.selectAll('g')
                     .data(data)
                     .enter().append('g')
