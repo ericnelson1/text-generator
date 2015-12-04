@@ -4,23 +4,14 @@
 angular.module('app.controllers')
 .controller('StatsController', ['Stats', 
   function(Stats) {
+
+    var self = this;
     this.stats = Stats.query({id: '565bce05ed6b1ba20d0c41f6' });
+    this.statsd2 = {};
 
-    //this.mydata = [{x:10, y:10}, {x:50, y: 50}];
-    this.mydata = [
-        {s:'asdf', c:10}, 
-        {s:'qwer', c:20}, 
-        {s:'zxcv', c:60}, 
-        {s:'hjkl', c:30}]; 
-
-    this.greeting = "Resize the page to see the re-rendering";
-    
-    this.d3Data = [
-      {name: "Greg", score: 98},
-      {name: "Ari", score: 96},
-      {name: 'Q', score: 75},
-      {name: "Loser", score: 48}
-    ];
+    this.stats.$promise.then(function(d) {
+        self.statsd2 = d[0].stats;
+    });
 
     this.domains = [
         {display: 'Full Catalog' },

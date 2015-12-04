@@ -207,6 +207,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"oncli",
 			"onClick",
 			"label",
 			"h4",
@@ -303,6 +304,18 @@
 		"selected_items":
 		[
 			[
+				"stats.html",
+				"app/components/stats/stats.html"
+			],
+			[
+				"stats.js",
+				"app/components/stats/stats.js"
+			],
+			[
+				"dire",
+				"app/scripts/directives.js"
+			],
+			[
 				"direct",
 				"app/scripts/directives.js"
 			],
@@ -311,20 +324,12 @@
 				"app/components/stats/stats.html"
 			],
 			[
-				"stats.js",
-				"app/components/stats/stats.js"
-			],
-			[
 				"app.js",
 				"app/scripts/app.js"
 			],
 			[
 				"bootstra",
 				"bower_components/bootstrap/dist/css/bootstrap.css"
-			],
-			[
-				"stats.html",
-				"app/components/stats/stats.html"
 			],
 			[
 				"link-re",
