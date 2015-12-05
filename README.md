@@ -6,7 +6,7 @@
 * Written on the MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS) 
 * Redis cache for text stats
 * Mongo database for text and stats
-* Development on Linux/Ubuntu, Sublime
+* Development on Linux/Ubuntu, sublime
 
 #### Npm and Bower packages
 * bootstrap
