@@ -10,7 +10,7 @@ angular.module('app.controllers')
     this.statsd2 = {};
 
     this.stats.$promise.then(function(d) {
-        self.statsd2 = d[0].stats;
+        self.statsd2 = d[1].stats;
     });
 
     this.domains = [

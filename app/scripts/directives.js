@@ -61,7 +61,10 @@ angular.module('app.directives', [])
         var margin = parseInt(attrs.margin) || 15,
             barHeight = parseInt(attrs.barHeight) || 15,
             barPadding = parseInt(attrs.barPadding) || 1,
-            textMargin = parseInt(attrs.textMargin) || 50;
+            textMargin = parseInt(attrs.textMargin) || 50,
+            numberMargin = parseInt(attrs.numberMargin) || 70,
+            totalMargin = numberMargin + textMargin,
+            space = 5;
 
         var svg = d3.select(element[0])
           .append('svg')
@@ -91,48 +94,60 @@ angular.module('app.directives', [])
             var dat = d3.entries(data).sort(function(a,b) { 
                 return b.value.sum - a.value.sum; 
               });
-            var width = d3.select(element[0])[0][0].offsetWidth - margin,
+            var width = d3.select(element[0])[0][0].offsetWidth - (2*margin),
                 height = dat.length * (barHeight + barPadding),
                 color = d3.scale.category20c(),
                 xScale = d3.scale.linear()
                   .domain([0, d3.max(dat, function(d) {
-                    return d.value.sum; //score
+                    return d.value.sum; 
                   })])
-                  .range([textMargin, width - textMargin]);
+                  .range([0, width-totalMargin-space]);
 
             svg.attr('height', height);
 
-            svg.selectAll('rect')
+            var group = svg.selectAll('g')
               .data(dat)
               .enter()
-              .append('rect')
+              .append('g');
+
+            group.append('rect')
               .attr('height', barHeight)
               .attr('width', 140)
-              .attr('x', Math.round(margin/2) + textMargin)
+              .attr('x', margin + totalMargin + space)
               .attr('y', function(d,i) {
                 return i * (barHeight + barPadding);
               })
               .attr('fill', function(d) {
-                return color(d.value.sum); //score
+                return color(d.value.sum); 
               })
               .transition()
               .duration(1000)
               .attr('width', function(d) {
-                return xScale(d.value.sum); //score
+                return xScale(d.value.sum); 
               });
 
-            svg.selectAll('text')
-              .data(dat)
-              .enter()
-              .append('text')
+            group.append('text')
               .attr('fill', 'black')
+              .attr('text-anchor', 'end')
               .attr('y', function(d,i) {
-                return i * (barHeight + barPadding) + margin;
+                return (i+1) * (barHeight + barPadding) - 5;
               })
-              .attr('x', margin)
+              .attr('x', margin + numberMargin)
               .text(function(d) {
-                return d.key + ' ' + d.value.sum;  //name
+                return d3.format(',')(d.value.sum);  
               });
+
+            group.append('text')
+              .attr('fill', 'black')
+              .attr('text-anchor', 'end')
+              .attr('y', function(d,i) {
+                return (i+1) * (barHeight + barPadding) - 5;
+              })
+              .attr('x', margin + totalMargin)
+              .text(function(d) {
+                return d.key;  
+              });
+
           }, 200);
         };
       }
