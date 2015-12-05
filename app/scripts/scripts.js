@@ -53,7 +53,8 @@ angular.module('app.directives', [])
     return {
       restrict: 'A',
       scope: {
-        data: '='
+        data: '=',
+        depth: '='
       },
       link: function(scope, element, attrs) {
 
@@ -61,7 +62,7 @@ angular.module('app.directives', [])
         var margin = parseInt(attrs.margin) || 15,
             barHeight = parseInt(attrs.barHeight) || 15,
             barPadding = parseInt(attrs.barPadding) || 1,
-            textMargin = parseInt(attrs.textMargin) || 50,
+            textMargin = parseInt(attrs.textMargin) || 70,
             numberMargin = parseInt(attrs.numberMargin) || 70,
             totalMargin = numberMargin + textMargin,
             space = 5;
@@ -77,36 +78,40 @@ angular.module('app.directives', [])
         scope.$watch(function() {
           return angular.element($window)[0].innerWidth;
         }, function() {
-          scope.render(scope.data);
+          scope.render();
         });
 
-        scope.$watch('data', function(newData) {
-          scope.render(newData);
+        scope.$watch('[data, depth]', function() {
+          scope.render();
         }, true);
 
-        scope.render = function(data) {
-          svg.selectAll('*').remove();  // can i use svg.empty() ?
+        scope.render = function() {
+          svg.selectAll('*').remove();   
 
-          if (!data) return;
+          if (!scope.data || !scope.data.length) return;
           if (renderTimeout) clearTimeout(renderTimeout);
 
           renderTimeout = $timeout(function() {
-            var dat = d3.entries(data).sort(function(a,b) { 
+            var stats = scope.data.find(function(x) { return x.depth === scope.depth + 1; });
+            if (!stats) return;
+            
+            var data = d3.entries(stats.stats).sort(function(a,b) { 
                 return b.value.sum - a.value.sum; 
-              });
+            });
+
             var width = d3.select(element[0])[0][0].offsetWidth - (2*margin),
-                height = dat.length * (barHeight + barPadding),
-                color = d3.scale.category20c(),
-                xScale = d3.scale.linear()
-                  .domain([0, d3.max(dat, function(d) {
-                    return d.value.sum; 
-                  })])
-                  .range([0, width-totalMargin-space]);
+              height = data.length * (barHeight + barPadding),
+              color = d3.scale.category20c(),
+              xScale = d3.scale.linear()
+                .domain([0, d3.max(data, function(d) {
+                  return d.value.sum; 
+                })])
+                .range([0, width-totalMargin-space]);
 
             svg.attr('height', height);
 
             var group = svg.selectAll('g')
-              .data(dat)
+              .data(data)
               .enter()
               .append('g');
 
@@ -296,13 +301,7 @@ angular.module('app.controllers')
 .controller('StatsController', ['Stats', 
   function(Stats) {
 
-    var self = this;
     this.stats = Stats.query({id: '565bce05ed6b1ba20d0c41f6' });
-    this.statsd2 = {};
-
-    this.stats.$promise.then(function(d) {
-        self.statsd2 = d[1].stats;
-    });
 
     this.domains = [
         {display: 'Full Catalog' },
@@ -313,7 +312,6 @@ angular.module('app.controllers')
 
     this.selectDomain = function(d) {
         this.selectedDomain = d;
-        this.mydata.push({s: 'blah', c: 25});
     };
 
     this.depths = [
@@ -353,79 +351,7 @@ angular.module('app.controllers')
 
 })();
 
-/*
 
-
-.controller('StatsController', ['$scope', '$location', '$window', 'sequenceService',
-    function ($scope, $location, $window, sequenceService) {
-        var drawit = function (sort) {
-            $('.chart').empty();
-            var width = 1000,
-            barHeight = 24;
-            var x = d3.scale.linear()
-                .range([0, width]);
-
-            var chart = d3.select('.chart')
-                .attr('width', width);
-
-            d3.tsv('../data/state_population.tsv', type, function (error, data) {
-
-                data.sort(sort);
-
-                x.domain([0, d3.max(data, function (d) { return d.Population; })]);
-                var themax = d3.max(data, function (d) { return d.Population; });
-                chart.attr('height', barHeight * data.length);
-
-                var bar = chart.selectAll('g')
-                    .data(data)
-                    .enter().append('g')
-                    .attr('transform', function (d, i) { return 'translate(220,' + i * barHeight + ')'; });
-                bar.append('rect')
-                    .attr('width', function (d) { return x(d.Population); })
-                    .attr('height', barHeight - 1);
-                bar.append('text')
-                    .attr('x', -125)
-                    .attr('y', barHeight / 2)
-                    .attr('dy', '.35em')
-                    .text(function (d) { return d.State; });
-                bar.append('text')
-                    .attr('x', -135)
-                    .attr('y', barHeight / 2)
-                    .attr('dy', '.35em')
-                    .attr('text-anchor', 'end')
-                    .text(function (d) { return Number(d.Population).toLocaleString('en'); });
-            });
-        };
-        var type = function (d) {
-            d.Population = +d.Population; // coerce to number
-            return d;
-        };
-
-        var popsort = function (a, b) {
-            return b.Population - a.Population;
-        };
-
-        var alphasort = function (a, b) {
-            if (a.State < b.State) return -1;
-            if (a.State > b.State) return 1;
-            return 0;
-        };
-
-        sequenceService.load(app.sequencesUrl).then(function (data) {
-            $scope.myData = data;
-        });
-
-
-        //$('input').change(function () {
-        //  if ($('input[@name='sort']:checked').val() == 'pop')
-        //      drawit(popsort);
-        //  else
-        //      drawit(alphasort);
-        //});
-    
-    }])
-
-*/
 (function() {
 'use strict';
 

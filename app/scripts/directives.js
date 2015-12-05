@@ -53,7 +53,8 @@ angular.module('app.directives', [])
     return {
       restrict: 'A',
       scope: {
-        data: '='
+        data: '=',
+        depth: '='
       },
       link: function(scope, element, attrs) {
 
@@ -61,7 +62,7 @@ angular.module('app.directives', [])
         var margin = parseInt(attrs.margin) || 15,
             barHeight = parseInt(attrs.barHeight) || 15,
             barPadding = parseInt(attrs.barPadding) || 1,
-            textMargin = parseInt(attrs.textMargin) || 50,
+            textMargin = parseInt(attrs.textMargin) || 70,
             numberMargin = parseInt(attrs.numberMargin) || 70,
             totalMargin = numberMargin + textMargin,
             space = 5;
@@ -77,36 +78,40 @@ angular.module('app.directives', [])
         scope.$watch(function() {
           return angular.element($window)[0].innerWidth;
         }, function() {
-          scope.render(scope.data);
+          scope.render();
         });
 
-        scope.$watch('data', function(newData) {
-          scope.render(newData);
+        scope.$watch('[data, depth]', function() {
+          scope.render();
         }, true);
 
-        scope.render = function(data) {
-          svg.selectAll('*').remove();  // can i use svg.empty() ?
+        scope.render = function() {
+          svg.selectAll('*').remove();   
 
-          if (!data) return;
+          if (!scope.data || !scope.data.length) return;
           if (renderTimeout) clearTimeout(renderTimeout);
 
           renderTimeout = $timeout(function() {
-            var dat = d3.entries(data).sort(function(a,b) { 
+            var stats = scope.data.find(function(x) { return x.depth === scope.depth + 1; });
+            if (!stats) return;
+            
+            var data = d3.entries(stats.stats).sort(function(a,b) { 
                 return b.value.sum - a.value.sum; 
-              });
+            });
+
             var width = d3.select(element[0])[0][0].offsetWidth - (2*margin),
-                height = dat.length * (barHeight + barPadding),
-                color = d3.scale.category20c(),
-                xScale = d3.scale.linear()
-                  .domain([0, d3.max(dat, function(d) {
-                    return d.value.sum; 
-                  })])
-                  .range([0, width-totalMargin-space]);
+              height = data.length * (barHeight + barPadding),
+              color = d3.scale.category20c(),
+              xScale = d3.scale.linear()
+                .domain([0, d3.max(data, function(d) {
+                  return d.value.sum; 
+                })])
+                .range([0, width-totalMargin-space]);
 
             svg.attr('height', height);
 
             var group = svg.selectAll('g')
-              .data(dat)
+              .data(data)
               .enter()
               .append('g');
 
