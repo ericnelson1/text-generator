@@ -91,9 +91,13 @@
 	],
 	"file_history":
 	[
+		"/home/eric/text-generator/app/components/about/about.html",
+		"/home/eric/text-generator/package.json",
+		"/home/eric/text-generator/README.md",
 		"/home/eric/text-generator/app/components/stats/stats.html",
 		"/home/eric/text-generator/app/components/stats/stats.js",
 		"/home/eric/text-generator/app/scripts/directives.js",
+		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/bower_components/bootstrap/dist/css/bootstrap.css",
 		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
@@ -102,9 +106,7 @@
 		"/home/eric/text-generator/app/components/links/links.js",
 		"/home/eric/text-generator/app/scripts/services.js",
 		"/home/eric/text-generator/app/styles/app.less",
-		"/home/eric/text-generator/package.json",
 		"/home/eric/text-generator/bower.json",
-		"/home/eric/text-generator/app/components/about/about.html",
 		"/home/eric/text-generator/api/text-get.js",
 		"/home/eric/text-generator/api/worker.js",
 		"/home/eric/text-generator/app/components/links/links.html",
@@ -112,7 +114,6 @@
 		"/home/eric/text-generator/api/mongo-repo.js",
 		"/home/eric/text-generator/api/repo.js",
 		"/home/eric/text-generator/api/stats.js",
-		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/app/components/home/home.html",
 		"/home/eric/text-generator/app/components/home/home.js",
 		"/home/eric/text-generator/api/log.js",
@@ -149,7 +150,6 @@
 		"/home/eric/yo-webapp/Gruntfile.js",
 		"/home/eric/text-generator/public/index.html",
 		"/home/eric/text-generator/src/scripts/hello.js",
-		"/home/eric/text-generator/README.md",
 		"/home/eric/text-generator/app.js",
 		"/home/eric/text-generator-two/css/app.css",
 		"/home/eric/text-generator-two/less/app.less",
@@ -304,19 +304,43 @@
 		"selected_items":
 		[
 			[
-				"stats.html",
-				"app/components/stats/stats.html"
+				"package",
+				"package.json"
+			],
+			[
+				"read",
+				"README.md"
+			],
+			[
+				"rea",
+				"README.md"
+			],
+			[
+				"about.htm",
+				"app/components/about/about.html"
+			],
+			[
+				"direct",
+				"app/scripts/directives.js"
 			],
 			[
 				"stats.js",
 				"app/components/stats/stats.js"
 			],
 			[
-				"dire",
-				"app/scripts/directives.js"
+				"stats.h",
+				"app/components/stats/stats.html"
 			],
 			[
-				"direct",
+				"gulpfi",
+				"gulpfile.js"
+			],
+			[
+				"stats.html",
+				"app/components/stats/stats.html"
+			],
+			[
+				"dire",
 				"app/scripts/directives.js"
 			],
 			[
