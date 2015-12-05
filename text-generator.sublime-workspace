@@ -7,6 +7,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 1950,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -15,7 +23,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 369.0,
+		"height": 327.0,
 		"last_filter": ":w",
 		"selected_items":
 		[
@@ -56,7 +64,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 467.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -91,13 +99,13 @@
 	],
 	"file_history":
 	[
-		"/home/eric/text-generator/app/components/about/about.html",
+		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/package.json",
+		"/home/eric/text-generator/app/components/about/about.html",
 		"/home/eric/text-generator/README.md",
 		"/home/eric/text-generator/app/components/stats/stats.html",
 		"/home/eric/text-generator/app/components/stats/stats.js",
 		"/home/eric/text-generator/app/scripts/directives.js",
-		"/home/eric/text-generator/gulpfile.js",
 		"/home/eric/text-generator/bower_components/bootstrap/dist/css/bootstrap.css",
 		"/home/eric/text-generator/app/scripts/app.js",
 		"/home/eric/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
@@ -246,8 +254,39 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1950,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -303,6 +342,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"index",
+				"app/index.html"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
 			[
 				"package",
 				"package.json"
@@ -372,10 +423,6 @@
 				"bower.json"
 			],
 			[
-				"pack",
-				"package.json"
-			],
-			[
 				"app",
 				"api/app.js"
 			],
@@ -440,10 +487,6 @@
 				"app/components/submit/submit.html"
 			],
 			[
-				"gulp",
-				"gulpfile.js"
-			],
-			[
 				"text",
 				"api/text-stats.js"
 			],
@@ -458,10 +501,6 @@
 			[
 				"gul",
 				"gulpfile.js"
-			],
-			[
-				"index",
-				"app/index.html"
 			],
 			[
 				"app.less",
@@ -521,9 +560,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "",
+		"last_filter": "gr",
 		"selected_items":
 		[
+			[
+				"gr",
+				"~/graphics/graphics.sublime-project"
+			],
 			[
 				"",
 				"~/node/node.sublime-project"

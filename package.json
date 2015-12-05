@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ericnelson1/text-generator-two.git"
+    "url": "https://github.com/ericnelson1/text-generator.git"
   },
-  "author": "",
+  "author": "Eric Nelson",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/ericnelson1/text-generator-two/issues"
+    "url": "https://github.com/ericnelson1/text-generator/issues"
   },
   "dependencies": {
     "bluebird": "^3.0.5",
