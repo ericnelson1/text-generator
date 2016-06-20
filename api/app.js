@@ -7,12 +7,18 @@ var worker = require('./worker');
 var repo = require('./repo');
 var linkrepo = require('./link-repo');
 
-var app = module.exports.app = exports.app = express();
-app.use(bodyParser.json()); // support json encoded bodies
+var port = process.env.PORT || 5000;
+app.set('port', port);
+
+var app = module.exports.app = exports.app = express(); //why?
+
+// support json encoded bodies
+app.use(bodyParser.json()); 
 //app.use(express.bodyParser());
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 app.use(express.static('app'));
-app.use(express.static('bower_components'));
+app.use('/lib', express.static('bower_components'));
 
 //you won't need 'connect-livereload' if you have livereload plugin for your browser 
 //app.use(require('connect-livereload')());
@@ -106,7 +112,8 @@ app.get('/api/stats/:id', function(req, res) {
   });
 });
 
-app.listen(3000);
+app.listen(port, function() {
+  console.log('listening on port ', port); 
+});
 
-console.log("listening on port 3000");
 
