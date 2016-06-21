@@ -6,13 +6,13 @@ exports.get = function(text, depth) {
     .toLowerCase()
     .replace(/[^a-z]+/g, '_');
 
-  if (txt.length <= depth) 
+  if (txt.length <= depth+1) 
     return [];
 
   var stats = {};
 
-  var s = txt.substring(0,depth-1);
-  for (var i = depth-1; i < txt.length; i++) {
+  var s = txt.substring(0,depth);
+  for (var i = depth; i < txt.length; i++) {
     if (!(s in stats)) {
       stats[s] = { };
     }
@@ -23,7 +23,7 @@ exports.get = function(text, depth) {
       stats[s][txt[i]]++;
     }
     s += txt[i];
-    s = s.substring(1,depth);
+    s = s.substring(1,depth+1);
   }
 
   return _.map(stats, function(val, key) {

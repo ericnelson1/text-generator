@@ -11,8 +11,7 @@ var linkrepo = require('./link-repo');
 var sequencerepo = require('./sequence-repo');
 
 var config = {
-  depths: [2], //, 5, 9],
-  catalog: 'maincat'
+  depths: [1]
 };
 
 queue.process('textstats', function(job, done) {

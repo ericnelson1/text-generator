@@ -15,36 +15,35 @@ var SequenceSchema = new mongoose.Schema({
 var Sequence = mongoose.model('Sequence', SequenceSchema);
 
 exports.update = function(link) {
-  var one = _.findWhere(link.stats, { depth: 2 });
+  var one = _.findWhere(link.stats, { depth: 1 });
 
-  var promises = _.map(one.stats, function(val, key){
+  var promises = _.map(one, function(item){
       // try to find the entry
-      return Sequence.findById(key).exec().then(function(sequence) {
+      return Sequence.findById(item.seq).exec().then(function(sequence) {
         if (!sequence) {
           logger.info('create new sequence');
-          var sum = val.sum;
-          delete val.sum;
           // create a new sequence, revision 1
           var seq = new Sequence({
-            _id: key, 
-            dist: val,  
+            _id: item.seq, 
+            dist: item.dist,  
             depth: 1,
             rev:1,
-            sum: sum
+            sum: item.sum
           });           
           return seq.save();
         }
-        // update the existing sequence, increment revision
-        _.each(val, function(eval, ekey) {
-          if (!(ekey in sequence.dist)) 
-            sequence.dist[ekey] = 0;
-          sequence.dist[ekey] += eval;
+        // update the existing distribution
+        _.each(item.dist, function(val, key) {
+          if (!(key in sequence.dist)) 
+            sequence.dist[key] = 0;
+          sequence.dist[key] += val;
         });
+        // update the sum
         sequence.sum = _.reduce(sequence.dist, function(sum, item) {
           return sum + item;
         }, 0);
         // optimistic locking, only update if revision is unchanged
-        return Sequence.findOneAndUpdate({_id: key, rev: sequence.rev++}, sequence);
+        return Sequence.findOneAndUpdate({_id: item.seq, rev: sequence.rev++}, sequence);
         // todo: handle retries
       }).catch(function(err) {
         logger.info('error updating catalog');

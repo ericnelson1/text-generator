@@ -71,7 +71,7 @@ exports.getById = function(id, select) {
 exports.getStats = function (id, depth) {
   return Link.findById(id).select('stats').exec().then(function(link) {
     logger.info('got stats');
-    var o = _.findWhere(link.stats, {depth: 2});
+    var o = _.findWhere(link.stats, {depth: depth});
     return o.stats;
   }).catch(function(err) {
     logger.error('link repo: error getting stats', err);
