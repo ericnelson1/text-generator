@@ -1,17 +1,15 @@
 <!DOCTYPE HTML">
 <html ng-app="app">
 <head>
-
   <title>Text Generator</title>
-
-  <link rel="shortcut icon" href="/favicon.ico">
-    <!-- bower:css -->
-    <link rel="stylesheet" href="/lib/angular-toastr/dist/angular-toastr.css"/>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"/>
-    <!-- endbower -->
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/lib/angular-toastr/dist/angular-toastr.css"/>
+  <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"/>
+  <!-- endbower -->
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body ng-controller="AppController as app">
+<body ng-controller="AppController as app" class="ng-cloak" ng-cloak>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -21,14 +19,14 @@
       <div style="width:100px">&nbsp;</div>
     </div>
     <ul class="nav nav-pills">
-      <li ng-class="{active: app.isActive(option.key)}" ng-repeat="option in app.options" ng-cloak>
-        <a ng-link="{{option.key}}()">{{option.display}}</a>
+      <li ng-class="{active: app.isActive(option.key)}" ng-repeat="option in app.options">
+        <a ui-sref="{{option.key}}()">{{option.display}}</a>
       </li>
     </ul>
   </div>
 
   <div class="main-container">
-    <div ng-viewport></div>
+    <div ui-view></div>
   </div>
 
     <!-- bower:js -->
@@ -39,6 +37,7 @@
     <script src="/lib/angular-smart-table/dist/smart-table.js"></script>
     <script src="/lib/angular-sanitize/angular-sanitize.js"></script>
     <script src="/lib/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="/lib/angular-route/angular-route.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/lib/underscore/underscore.js"></script>
     <script src="/lib/d3/d3.js"></script>

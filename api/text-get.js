@@ -9,7 +9,8 @@ exports.get = function(link) {
 
   return new Promise(function(resolve, reject) {
 
-    ineed.collect.texts.from({url: link.url}, function(err, response, result) {
+    ineed.collect.texts.from({url: link.url}, 
+      function(err, response, result) {
 
       if (err) {
         logger.error('ineed error', err); 

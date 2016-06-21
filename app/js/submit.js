@@ -4,25 +4,22 @@
 angular.module('app.controllers')
 .controller('SubmitController', ['validator', 'Link',
   function(validator, Link) {
+    var vm = this;
 
-  	this.submit = function() {
-  		if (validator.isURL(this.url)) {
-        var entry = new Link();
-        entry.data = {url: this.url};
-        var self = this;
-        Link.save(entry, function(){
-          self.url = '';
-          self.message = 'Thank you for your submission'; 
-        });
-  		}	
-  		else {
-  			this.message = "That ain't a valid url, man";
-  		}
+  	vm.submit = function() {
+
+  		if (!validator.isURL(this.url)) 
+        vm.message = "That ain't a valid url, man";
+
+      var entry = new Link();
+      entry.data = {url: vm.url};
+      Link.save(entry, function(){
+        vm.url = '';
+        vm.message = 'Thank you kindly for your submission'; 
+      });
   	};
 
-  	this.change = function () {
-  		this.message = '';
-  	};
+  	vm.change = function () { vm.message = ''; };
 
   }]);
 

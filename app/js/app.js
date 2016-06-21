@@ -4,6 +4,9 @@
 var underscore = angular.module('underscore', []);
 underscore.factory('_', function () { return window._; });
 
+var validator = angular.module('validator', []);
+underscore.factory('validator', function () { return window.validator; });
+
 angular.module('app', [
   'underscore',
   'ui.bootstrap',
@@ -56,7 +59,7 @@ angular.module('app', [
         controllerAs: 'catalog'
       })
       .state('stats', {
-        url: '/stats',
+        url: '/stats/:id',
         templateUrl: 'html/stats.html',
         controller: 'StatsController',
         controllerAs: 'stats'

@@ -1,53 +1,115 @@
+var mongoose = require('mongoose');
 var logger = require('winston');
-var _ = require('underscore');
+var validator = require('validator');
 
-var redis = require('redis'),
-    client = redis.createClient();
+// promisify
+mongoose.Promise = require('bluebird');
 
-// promisify redis
-var Promise = require('bluebird');
-Promise.promisifyAll(redis.RedisClient.prototype);
-Promise.promisifyAll(redis.Multi.prototype);
+// connect to mongo
+mongoose.connect('mongodb://localhost/textgen');
 
-// log events that the redis client emits
-client
-  .on('ready', function() { logger.info('connected to redis'); })
-  .on('reconnecting', function() { logger.info('reconnecting to redis'); })
-  .on('end', function() { logger.info('disconnected from redis'); })
-  .on('error', function (err) { logger.error('redis error', err); })
+// setup event handlers
+mongoose.connection
+  .on('error', function(err) { logger.error('mongo connection error', err); })
+  .once('open', function () { logger.info('connected to mongo'); });
 
-exports.getLinks = function() {
-    return client.zrangeAsync('links', 0, -1);
+var config = {
+  host: 'http://localhost:5000'
+}
+
+// define schema
+var LinkSchema = new mongoose.Schema({
+    url: String, 
+    submitted: { type: Date, default: Date.now }, 
+    processed: { type: Boolean, default: false },
+    textsize: { type: Number, default: 0 },
+    text: String, 
+    stats: {} 
+  }, {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
+});
+// define virtual properties for urls that do not get persisted
+LinkSchema.virtual('texturl').get(function() { 
+  return config.host + '/api/text/' + this.id; 
+});
+LinkSchema.virtual('statsurl').get(function() { 
+  return config.host + '/api/stats/' + this.id; 
+});
+// attach the schema to the model
+var Link = mongoose.model('Link', LinkSchema);
+
+// custom errors
+function ValidationError(message) {
+    this.message = message;
+    this.name = "ValidationError";
+    Error.captureStackTrace(this, ValidationError);
+}
+ValidationError.prototype = Object.create(Error.prototype);
+ValidationError.prototype.constructor = ValidationError;
+exports.ValidationError = ValidationError;
+
+// api
+exports.get = function(query, select) {
+  // Promise.promisify(Link.find)()
+  select = select||'url submitted processed textsize';
+  return Link.find(query).select(select).sort({submitted:-1}).exec().then(function(links) {
+    logger.info('got links');
+    return links;
+  }).catch(function(err) {
+    logger.error('error getting links', err);
+    throw err;
+  });
 };
 
-exports.addLink = function(url) {
-  return client.zaddAsync('links', 0, url);
+exports.getById = function(id, select) {
+  select = select||'url submitted processed textsize';
+  return Link.findById(id).select(select).exec().then(function(link) {
+    logger.info('got link by id', id);
+    return link;
+  }).catch(function(err) {
+    logger.error('error getting link by id', err);
+    throw err;
+  });
 };
 
-exports.processedLink = function(url) {
-  return client.zaddAsync('links', 1, url);
+exports.add = function(url) {
+  var link = new Link({url: url});
+  return link.save().then(function(link) {
+    logger.info('saved link', link.url);
+    return link;
+  }).catch(function(err) {
+    logger.error('error saving link', err);
+    throw err;
+  });
 };
 
-exports.getProcessedLinks = function() {
-    return client.zrangebyscoreAsync('links', 1, 1);
+exports.update = function(newlink) {
+  return Link.findById(newlink._id).exec().then(function(link) {
+    logger.info('found link', link.url);
+    link.processed = newlink.processed;
+    link.textsize = newlink.textsize;
+    link.text = newlink.text;
+    link.stats = newlink.stats;
+    return link.save();
+  }).then(function(link) {
+    logger.info('updated link', link.url);
+    return link;
+  }).catch(function(err) {
+    logger.error('error updating link', err);
+    throw err;
+  });
 };
 
-exports.getUnprocessedLinks = function() {
-    return client.zrangebyscoreAsync('links', 0, 0);
+exports.validate = function(url) {
+  if (!url.match(/^((?:f|ht)tps?:)?\/\//)) {
+    url = 'http://' + url;  
+  }
+  if (!validator.isURL(url)) {
+    logger.info('invalid url', url);
+    return Promise.reject(new ValidationError('invalid url'));
+  }
+  logger.info('validated url', url);
+  return Promise.resolve(url);
 };
 
-exports.updateCatalog = function(stats, catalog) {
-  return Promise.map(
-    _.map(stats, function(val, key) { return { sequence: key, distribution: val }; }), 
-    function(item) {
-    return client.saddAsync(catalog, item.sequence).then(function() {
-      return Promise.map(
-        _.map(item.distribution, function (val, key) { return { count: val, letter: key }; }), 
-        function (i) {
-        return client.hincrby(catalog + ':' + item.sequence, i.letter, i.count);
-      })
-    });
-  }); 
-};
-
-//client.quit();

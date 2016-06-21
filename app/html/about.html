@@ -4,14 +4,12 @@
       <h1 class="text-center">How Text Generator Works</h1>
       <hr />
       <p>
-        First, get a link from the repository and fetch the page from the web. 
-        Then extract the links from the page and add them to the repository for 
-        future processing. Finally, extract the text from the page, converting 
-        all alpha characters to lower case and all non-alpha characters to spaces.  
+        When a user submits a URL on the submit page, we add it to a queue.
+        A background worker will get the URL from the queue, 
+        fetch the page from the web and extract the text.
+        It converts alpha characters to lower case and non-alpha characters to spaces.  
         This creates a total of 27 characters. (26 alphabet + 1 space)
-      </p>
-      <p>
-        Next, process the extracted text. Build 3 catalogs: one for single-character 
+        It then processes the extracted text and builds 3 catalogs: one for single-character 
         sequences, one for four-character sequences and one for eight-character sequences.
       </p>
       <div style="margin: 0 auto; width:500px;">
@@ -31,7 +29,7 @@
       </p>
       <p>
         In order to generate text from an N-character catalog, a starting sequence is chosen 
-        from the catalog based on the weight (number of occurences) of the sequence. 
+        from the catalog based on the weight (i.e. number of occurrences) of the sequence. 
         Then each subsequent selection from the catalog is based on the trailing N-1 characters
         of the previously selected sequence.
       </p>

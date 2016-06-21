@@ -1,9 +1,9 @@
 ﻿<div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <table st-table="links.displayCollection" 
+      <table st-table="catalog.displayCollection" 
           class="table table-striped" 
-          st-safe-src="links.linkCollection">
+          st-safe-src="catalog.linkCollection">
         <thead>
         <tr>
           <th st-sort="submitted" st-sort-default="reverse">Submitted</th>
@@ -15,22 +15,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="row in links.displayCollection">
+        <tr ng-repeat="row in catalog.displayCollection">
           <td>{{row.submitted | date:'MMM dd, yyyy hh:mm:ss a'}}</td>
           <td>{{row.processed}}</td>
           <td><a target="_blank" ng-href="{{row.url}}">{{row.url}}</a></td>
           <td>{{row.textsize}}</td>
           <td>
             <a target="_blank" class="btn btn-sm btn-primary" ng-href="{{row.texturl}}" role="button">
-                <i class="glyphicon glyphicon-file">
-                </i>
+                <i class="glyphicon glyphicon-file"></i>
             </a>
           </td>
           <td>
-            <button type="button" ng-click="stats(row)" class="btn btn-sm btn-primary">
-              <i class="glyphicon glyphicon-stats">
-              </i>
-            </button>
+            <a class="btn btn-sm btn-primary" ng-href="#/stats/{{row.id}}" role="button">
+              <i class="glyphicon glyphicon-stats"></i>
+            </a>
           </td>
         </tr>
         </tbody>

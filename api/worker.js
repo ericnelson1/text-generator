@@ -8,7 +8,6 @@ var _ = require('underscore');
 var textget = require('./text-get');
 var stats = require('./stats');
 var repo = require('./repo');
-var linkrepo = require('./link-repo');
 
 var config = {
   depths: [2, 5, 9],
@@ -29,7 +28,7 @@ queue.process('textstats', function(job, done) {
     return link;
   }).then(function(link) {
     link.processed = true;
-    return linkrepo.update(link);
+    return repo.update(link);
   }).then(function(link) {
       done && done();
       return link;
@@ -46,7 +45,7 @@ queue.process('textstats', function(job, done) {
   // }); 
 });
 
-exports.process = function (link) {
+exports.queue = function (link) {
   var job = queue.create('textstats', link);
   job
     .on('enqueue', function () {

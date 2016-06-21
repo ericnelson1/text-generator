@@ -29,7 +29,7 @@
     "ui-router": "0.2.18",
     "validator-js": "4.3.0"
   },
-  "devDependencies": {},  
+  "devDependencies": {},
   "overrides": {
     "bootstrap": {
       "main": [
