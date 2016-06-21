@@ -1,4 +1,3 @@
-var expect    = require("chai").expect;
 var fs = require('fs');
 var _ = require('underscore');
 var textstats = require("../api/text-stats");

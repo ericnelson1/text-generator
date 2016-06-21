@@ -92,11 +92,9 @@ angular.module('app.directives', [])
           if (renderTimeout) clearTimeout(renderTimeout);
 
           renderTimeout = $timeout(function() {
-            var stats = scope.data.find(function(x) { return x.depth === scope.depth + 1; });
-            if (!stats) return;
-            
-            var data = d3.entries(stats.stats).sort(function(a,b) { 
-                return b.value.sum - a.value.sum; 
+
+            var data = scope.data.sort(function(x,y) {
+              return d3.descending(x.sum, y.sum);
             });
 
             var width = d3.select(element[0])[0][0].offsetWidth - (2*margin),
@@ -104,7 +102,7 @@ angular.module('app.directives', [])
               color = d3.scale.category20c(),
               xScale = d3.scale.linear()
                 .domain([0, d3.max(data, function(d) {
-                  return d.value.sum; 
+                  return d.sum; 
                 })])
                 .range([0, width-totalMargin-space]);
 
@@ -123,12 +121,12 @@ angular.module('app.directives', [])
                 return i * (barHeight + barPadding);
               })
               .attr('fill', function(d) {
-                return color(d.value.sum); 
+                return color(d.sum); 
               })
               .transition()
               .duration(1000)
               .attr('width', function(d) {
-                return xScale(d.value.sum); 
+                return xScale(d.sum); 
               });
 
             group.append('text')
@@ -139,7 +137,7 @@ angular.module('app.directives', [])
               })
               .attr('x', margin + numberMargin)
               .text(function(d) {
-                return d3.format(',')(d.value.sum);  
+                return d3.format(',')(d.sum);  
               });
 
             group.append('text')
@@ -150,7 +148,7 @@ angular.module('app.directives', [])
               })
               .attr('x', margin + totalMargin)
               .text(function(d) {
-                return d.key;  
+                return d.seq;  
               });
 
           }, 200);
@@ -160,18 +158,18 @@ angular.module('app.directives', [])
 }])
 
 .directive('mathjaxBind', function () {
-    return {
-        restrict: 'A',
-        controller: ['$scope', '$element', '$attrs',
-                function ($scope, $element, $attrs) {
-                    $scope.$watch($attrs.mathjaxBind, function (texExpression) {
-                        var texScript = angular.element("<script type='math/tex'>")
-                            .html(texExpression ? texExpression : '');
-                        $element.html('');
-                        $element.append(texScript);
-                        MathJax.Hub.Queue(['Reprocess', MathJax.Hub, $element[0]]);
-                    });
-                }]
+  return {
+    restrict: 'A',
+    controller: ['$scope', '$element', '$attrs',
+      function ($scope, $element, $attrs) {
+        $scope.$watch($attrs.mathjaxBind, function (texExpression) {
+            var texScript = angular.element("<script type='math/tex'>")
+                .html(texExpression ? texExpression : '');
+            $element.html('');
+            $element.append(texScript);
+            MathJax.Hub.Queue(['Reprocess', MathJax.Hub, $element[0]]);
+        });
+      }]
     };
 });
 

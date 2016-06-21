@@ -1,11 +1,12 @@
 var logger = require('./log'); 
 var worker = require('./worker');
 var linkrepo = require('./link-repo');
-var catalogrepo = require('./catalog-repo');
+var sequencerepo = require('./sequence-repo');
 
 
 exports.setupRoutes = function(app) {
 
+  // api root
   app.get('/api', function(req, res) {
     var host = 'http://' + req.headers.host;
     res.json({
@@ -19,6 +20,7 @@ exports.setupRoutes = function(app) {
     });
   });
 
+  // show list of links on catalog view
   app.get('/api/links', function(req, res) {
     linkrepo.get().then(function(links) {
       res.json(links);
@@ -30,6 +32,7 @@ exports.setupRoutes = function(app) {
     });
   });
 
+  // add link for processing
   app.post('/api/links', function(req, res) {
     var url = req.body.data.url;
     linkrepo.validate(url).then(function(url) {
@@ -75,6 +78,7 @@ exports.setupRoutes = function(app) {
     });
   });
 
+  // show text when they click on text button on catalog view
   app.get('/api/text/:id', function(req, res) {
     linkrepo.getById(req.params.id, 'text').then(function(link) {
       res.send(link.text);
@@ -86,6 +90,7 @@ exports.setupRoutes = function(app) {
     });
   });
 
+  // show stats for single file
   app.get('/api/stats/:id/depth/:depth', function(req, res) {
     linkrepo.getStats(req.params.id, req.params.depth).then(function(stats) {
       res.send(stats);
@@ -97,8 +102,9 @@ exports.setupRoutes = function(app) {
     });
   });
 
+  // show stats for entire catalog
   app.get('/api/stats/depth/:depth', function (req,res) {
-    catalogrepo.getStats(req.params.depth).then(function(stats) {
+    sequencerepo.getStats(req.params.depth).then(function(stats) {
       res.send(stats); 
     }).catch(function(err) { 
       res.status(500).json({

@@ -7,16 +7,9 @@ angular.module('app.controllers')
 
     var vm = this;
 
-    var o = {
+    vm.stats = Stats.query({
       id: $stateParams.id || null,
-      depth: 2
-    };
-
-    vm.stats = Stats.query(o, function(data) {
-      var x = data;
-    },
-    function (err) {
-      var y = err;
+      depth: 1 
     });
 
     vm.depths = [

@@ -2,31 +2,37 @@ var _ = require('underscore');
 
 exports.get = function(text, depth) {
 
-  var stats = {};
-
   var txt = text
     .toLowerCase()
     .replace(/[^a-z]+/g, '_');
 
-  if (txt.length > depth) {
-    var s = txt.substring(0,depth-1);
-    for (var i = depth-1; i < txt.length; i++) {
-      if (!(s in stats)) {
-        stats[s] = { 'sum':0 };
-      }
-      stats[s]['sum']++;
-      if (!(txt[i] in stats[s])) {
-        stats[s][txt[i]] = 1;
-      }
-      else {
-        stats[s][txt[i]]++;
-      }
-      s += txt[i];
-      s = s.substring(1,depth);
+  if (txt.length <= depth) 
+    return [];
+
+  var stats = {};
+
+  var s = txt.substring(0,depth-1);
+  for (var i = depth-1; i < txt.length; i++) {
+    if (!(s in stats)) {
+      stats[s] = { };
     }
+    if (!(txt[i] in stats[s])) {
+      stats[s][txt[i]] = 1;
+    }
+    else {
+      stats[s][txt[i]]++;
+    }
+    s += txt[i];
+    s = s.substring(1,depth);
   }
 
-  return stats;
+  return _.map(stats, function(val, key) {
+    return {
+      seq: key,
+      dist: val,
+      sum: _.reduce(val, function(sum, item) { return sum + item; }, 0)
+    };
+  });
 }
 
 exports.generate = function(stats, length) {
@@ -46,21 +52,5 @@ exports.generate = function(stats, length) {
 
   return { r: rand, c: counter, e: el };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

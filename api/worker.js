@@ -8,10 +8,10 @@ var _ = require('underscore');
 var textget = require('./text-get');
 var stats = require('./stats');
 var linkrepo = require('./link-repo');
-var catalogrepo = require('./catalog-repo');
+var sequencerepo = require('./sequence-repo');
 
 var config = {
-  depths: [2, 5, 9],
+  depths: [2], //, 5, 9],
   catalog: 'maincat'
 };
 
@@ -28,13 +28,16 @@ queue.process('textstats', function(job, done) {
     });
     return link;
   }).then(function(link) {
+    logger.info('finished link processing');
     link.processed = true;
     return linkrepo.update(link);
   }).then(function(link) {
-    return catalogrepo.update(link);
+    logger.info('finished link update');
+    return sequencerepo.update(link);
   }).then(function(link) {
-      done && done();
-      return link;
+    logger.info('finished sequence update');
+    done && done();
+    return link;
   }).catch(function(err) {
     done && done(err);
   });
