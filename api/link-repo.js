@@ -1,6 +1,7 @@
 var mongoose = require('./mongo');
 var logger = require('winston');
 var validator = require('validator');
+var _ = require('underscore');
 
 var config = {
   host: 'http://localhost:5000'
@@ -23,7 +24,12 @@ LinkSchema.virtual('texturl').get(function() {
   return config.host + '/api/text/' + this.id; 
 });
 LinkSchema.virtual('statsurl').get(function() { 
-  return config.host + '/api/stats/' + this.id; 
+  var base = config.host + '/api/stats/' + this.id + '/depth/';
+  return [
+    { depth: 1, url: base + '1' },
+    { depth: 4, url: base + '4' },
+    { depth: 8, url: base + '8' }
+  ];
 });
 // attach the schema to the model
 var Link = mongoose.model('Link', LinkSchema);
@@ -58,6 +64,16 @@ exports.getById = function(id, select) {
     return link;
   }).catch(function(err) {
     logger.error('error getting link by id', err);
+    throw err;
+  });
+};
+
+exports.getStats = function (id, depth) {
+  return Link.findById(id).select('stats').exec().then(function(link) {
+    logger.info('got stats');
+    return  _.findWhere(link.stats, {depth: 2});
+  }).catch(function(err) {
+    logger.error('link repo: error getting stats', err);
     throw err;
   });
 };

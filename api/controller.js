@@ -12,7 +12,10 @@ exports.setupRoutes = function(app) {
       links: host + '/api/links',
       processed: host + '/api/links/processed',
       unprocessed: host + '/api/links/unprocessed',
-      stats: host + '/api/stats'
+      stats: [
+        { depth: 1, url: host + '/api/stats/depth/1' }, 
+        { depth: 4, url: host + '/api/stats/depth/4' }, 
+        { depth: 8, url: host + '/api/stats/depth/8' }]
     });
   });
 
@@ -84,17 +87,24 @@ exports.setupRoutes = function(app) {
   });
 
   app.get('/api/stats/:id/depth/:depth', function(req, res) {
-    linkrepo.getById(req.params.id, 'stats').then(function(link) {
-      res.send(link.stats);
+    linkrepo.getStats(req.params.id, req.params.depth).then(function(stats) {
+      res.send(stats);
     }).catch(function(err) { 
       res.status(500).json({
-        message: 'error getting stats',
+        message: 'error getting stats for file',
         error: err  
       })
     });
   });
 
   app.get('/api/stats/depth/:depth', function (req,res) {
-    res.send([]);
+    catalogrepo.getStats(req.params.depth).then(function(stats) {
+      res.send(stats); 
+    }).catch(function(err) { 
+      res.status(500).json({
+        message: 'error getting stats for catalog',
+        error: err  
+      })
+    });
   });
 };
