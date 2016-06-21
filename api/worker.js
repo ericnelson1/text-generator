@@ -7,7 +7,8 @@ var _ = require('underscore');
 
 var textget = require('./text-get');
 var stats = require('./stats');
-var repo = require('./repo');
+var linkrepo = require('./link-repo');
+var catalogrepo = require('./catalog-repo');
 
 var config = {
   depths: [2, 5, 9],
@@ -28,21 +29,15 @@ queue.process('textstats', function(job, done) {
     return link;
   }).then(function(link) {
     link.processed = true;
-    return repo.update(link);
+    return linkrepo.update(link);
+  }).then(function(link) {
+    return catalogrepo.update(link);
   }).then(function(link) {
       done && done();
       return link;
   }).catch(function(err) {
     done && done(err);
   });
-
-  // redis code
-  // return Promise.reduce
-  // var catname = config.catalog + ':' + depth;
-  //   return repo.updateCatalog(textstats, catname)
-  // }).then(function() {
-  //   return repo.processedLink(url)
-  // }); 
 });
 
 exports.queue = function (link) {

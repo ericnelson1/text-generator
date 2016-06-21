@@ -22,15 +22,15 @@ angular.module('app.controllers')
         vm.selectedDepth = d;
     };
  
-    this.sorts = [
+    vm.sorts = [
         {display: 'Alphabetical' },
         {display: 'Count' }
     ];
 
-    this.selectedSort = this.sorts[1];
+    vm.selectedSort = vm.sorts[1];
 
-    this.selectSort = function(s) {
-        this.selectedSort = s;
+    vm.selectSort = function(s) {
+        vm.selectedSort = s;
     };
 }]);
 
