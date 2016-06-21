@@ -10,7 +10,7 @@ angular.module('app.services', [])
 
 .factory('Stats', ['$resource',
     function ($resource) {
-        return $resource('/api/stats/:id');
+        return $resource('/api/stats/:id/depth/:depth');
     }]);
 
 })();

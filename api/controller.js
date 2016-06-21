@@ -1,7 +1,8 @@
 var logger = require('./log'); 
 var worker = require('./worker');
 var linkrepo = require('./link-repo');
-var _ = require('underscore');
+var catalogrepo = require('./catalog-repo');
+
 
 exports.setupRoutes = function(app) {
 
@@ -82,7 +83,7 @@ exports.setupRoutes = function(app) {
     });
   });
 
-  app.get('/api/stats/:id', function(req, res) {
+  app.get('/api/stats/:id/depth/:depth', function(req, res) {
     linkrepo.getById(req.params.id, 'stats').then(function(link) {
       res.send(link.stats);
     }).catch(function(err) { 
@@ -93,4 +94,7 @@ exports.setupRoutes = function(app) {
     });
   });
 
+  app.get('/api/stats/depth/:depth', function (req,res) {
+    res.send([]);
+  });
 };
