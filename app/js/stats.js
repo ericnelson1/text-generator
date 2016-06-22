@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('StatsController', ['Stats', '$stateParams',
-  function(Stats, $stateParams) {
+.controller('StatsController', ['Stats', '$stateParams', '$scope',
+  function(Stats, $stateParams, $scope) {
 
     var vm = this;
 
@@ -32,10 +32,10 @@ angular.module('app.controllers')
     };
 
     var refresh = function() {
-      vm.stats = Stats.query({
+      Stats.query({
         id: $stateParams.id || null,
         depth: vm.selectedDepth.depth 
-      });
+      }, function(data) { vm.stats = data; });
     }
 
     refresh();

@@ -74,7 +74,7 @@ exports.getStats = function (id, depth) {
     logger.info('link repo: got stats ', id);
     var o = _.findWhere(link.stats, {depth: depth});
     logger.info('link repo: find where succeeded');
-    var x = o.stats.sort(function(x,y) { return y.sum - x.sum; }).slice(0, 10);
+    var x = o.stats.sort(function(x,y) { return y.sum - x.sum; }).slice(0, 100);
     logger.info('sort succeeded');
     return x;
   }).catch(function(err) {

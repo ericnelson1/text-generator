@@ -81,9 +81,9 @@ angular.module('app.directives', [])
           scope.render();
         });
 
-        scope.$watch('[data, depth]', function() {
+        scope.$watchCollection('[data]', function() {
           scope.render();
-        }, true);
+        });
 
         scope.render = function() {
           svg.selectAll('*').remove();   
