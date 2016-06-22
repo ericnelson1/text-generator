@@ -69,9 +69,14 @@ exports.getById = function(id, select) {
 };
 
 exports.getStats = function (id, depth) {
+  logger.info('link repo: getting stats ', id, depth);
   return Link.findById(id).select('stats').exec().then(function(link) {
+    logger.info('link repo: got stats ', id);
     var o = _.findWhere(link.stats, {depth: depth});
-    return o.stats;
+    logger.info('link repo: find where succeeded');
+    var x = o.stats.sort(function(x,y) { return y.sum - x.sum; }).slice(0, 10);
+    logger.info('sort succeeded');
+    return x;
   }).catch(function(err) {
     logger.error('link repo: error getting stats', err);
     throw err;
