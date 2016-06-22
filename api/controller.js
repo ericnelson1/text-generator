@@ -92,7 +92,8 @@ exports.setupRoutes = function(app) {
 
   // show stats for single file
   app.get('/api/stats/:id/depth/:depth', function(req, res) {
-    linkrepo.getStats(req.params.id, req.params.depth).then(function(stats) {
+    linkrepo.getStats(req.params.id, parseInt(req.params.depth))
+    .then(function(stats) {
       res.send(stats);
     }).catch(function(err) { 
       res.status(500).json({
@@ -104,7 +105,8 @@ exports.setupRoutes = function(app) {
 
   // show stats for entire catalog
   app.get('/api/stats/depth/:depth', function (req,res) {
-    sequencerepo.getStats(req.params.depth).then(function(stats) {
+    sequencerepo.getStats(parseInt(req.params.depth))
+    .then(function(stats) {
       res.send(stats); 
     }).catch(function(err) { 
       res.status(500).json({
