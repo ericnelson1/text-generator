@@ -20,17 +20,6 @@ angular.module('app.controllers')
       refresh();
     };
  
-    vm.sorts = [
-      {display: 'Alphabetical' },
-      {display: 'Count' }
-    ];
-
-    vm.selectedSort = vm.sorts[1];
-
-    vm.selectSort = function(s) {
-      vm.selectedSort = s;
-    };
-
     var refresh = function() {
       Stats.query({
         id: $stateParams.id || null,

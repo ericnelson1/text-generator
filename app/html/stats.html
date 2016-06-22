@@ -13,19 +13,6 @@
         </ul>
       </div>
     </div>  
-    <div class="col-sm-3">
-      <h4>Sort by:&nbsp;</h4>
-      <div class="btn-group" uib-dropdown uib-keyboard-nav>
-        <button id="selected-sort-btn" type="button" class="btn btn-primary" uib-dropdown-toggle>
-            {{stats.selectedSort.display}}&nbsp;<span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="selected-sort-btn">
-            <li role="menuitem" ng-repeat="s in stats.sorts" ng-click="stats.selectSort(s)">
-            <a href>{{s.display}}</a>
-          </li>
-        </ul>
-      </div>
-    </div>  
   </div>
   <div class="space-10"></div>
   <div class="row">
