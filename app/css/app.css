@@ -28,8 +28,20 @@
 	margin: 30px 0;	
 }
 
+.space-60 {
+	margin: 60px 0;	
+}
+
 #app-stats .btn {
 	width:150px;
 }
 
 .ng-cloak { display: none !important; } 
+
+.unstyled-link a:active, 
+.unstyled-link a:hover, 
+.unstyled-link a:focus, 
+.unstyled-link a:visited {
+  text-decoration: none; 
+  color: #337ab7; 
+}

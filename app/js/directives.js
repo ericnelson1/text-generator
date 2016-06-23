@@ -54,7 +54,7 @@ angular.module('app.directives', [])
       restrict: 'A',
       scope: {
         data: '=',
-        depth: '='
+        hover: '='
       },
       link: function(scope, element, attrs) {
 
@@ -91,7 +91,9 @@ angular.module('app.directives', [])
           if (!scope.data || !scope.data.length) return;
           if (renderTimeout) clearTimeout(renderTimeout);
 
-          renderTimeout = $timeout(function() {
+          renderTimeout = $timeout(renderit, 200);
+          
+          function renderit() {
 
             var data = scope.data.sort(function(x,y) {
               return d3.descending(x.sum, y.sum);
@@ -151,7 +153,8 @@ angular.module('app.directives', [])
                 return d.seq;  
               });
 
-          }, 200);
+          };
+
         };
       }
     };

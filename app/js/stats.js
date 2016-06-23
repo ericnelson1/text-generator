@@ -24,10 +24,22 @@ angular.module('app.controllers')
       Stats.query({
         id: $stateParams.id || null,
         depth: vm.selectedDepth.depth 
-      }, function(data) { vm.stats = data; });
+      }, function(data) { 
+        vm.stats = data; 
+      });
     }
 
     refresh();
+
+    var letters = 'abcdefghijklmnopqrstuvwxyz_'.split('');
+    var dist = { x: 10, y: 20, z:30};
+    vm.dist = _.map(letters, function(letter) {
+      return { key: letter, value: dist[letter] || 0 };
+    });
+
+    vm.hover = function(seq) {
+      vm.dist = _.findWhere(vm.stats, {seq: seq}).dist;
+    }
 
 }]);
 
