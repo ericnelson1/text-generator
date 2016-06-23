@@ -2,7 +2,8 @@
 'use strict';
 
 angular.module('app.directives')
-.directive('verticalBarChart', ['$window', '$timeout', 
+
+.directive('verticalChart', ['$window', '$timeout', 
   function($window, $timeout) {
     return {
       restrict: 'A',
@@ -94,7 +95,6 @@ angular.module('app.directives')
       }
     };
 }]);
-
 
 })();
 
