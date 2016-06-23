@@ -73,17 +73,7 @@ angular.module('app.directives')
               .attr('width', barWidth)
               .attr('x', function(d,i) {return i * (barWidth + barPadding); })
               .attr('y', function(d) { return yScale(d.value); })
-              .attr('fill', function(d) {return color(d.value); })
-              .transition()
-              .duration(1000)
-              .attr('y', function(d) {return yScale(d.value); });
-
-//            group.append('text')
-//              .attr('fill', 'black')
-//              .attr('text-anchor', 'end')
-//              .attr('x', function(d,i) {return (i+1) * (barWidth + barPadding) - 5; })
-//              .attr('y', 75)
-//              .text(function(d) {return d3.format(',')(d.value); });
+              .attr('fill', function(d) {return color(d.value); });
 
             group.append('text')
               .attr('transform', 'translate(100, 0)')

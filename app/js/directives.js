@@ -54,7 +54,7 @@ angular.module('app.directives', [])
       restrict: 'A',
       scope: {
         data: '=',
-        hover: '='
+        mouseover: '='
       },
       link: function(scope, element, attrs) {
 
@@ -116,6 +116,7 @@ angular.module('app.directives', [])
               .append('g');
 
             group.append('rect')
+              .on('mouseover', scope.mouseover)
               .attr('height', barHeight)
               .attr('width', 140)
               .attr('x', margin + totalMargin + space)
@@ -154,7 +155,6 @@ angular.module('app.directives', [])
               });
 
           };
-
         };
       }
     };

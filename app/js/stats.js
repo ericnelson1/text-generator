@@ -32,13 +32,12 @@ angular.module('app.controllers')
     refresh();
 
     var letters = 'abcdefghijklmnopqrstuvwxyz_'.split('');
-    var dist = { _: 50, a: 20, b: 10, c: 30, d: 10, e: 40, x: 10, y: 20, z:30};
-    vm.dist = _.map(letters, function(letter) {
-      return { key: letter, value: dist[letter] || 0 };
-    });
 
-    vm.hover = function(seq) {
-      vm.dist = _.findWhere(vm.stats, {seq: seq}).dist;
+    vm.mouseover = function(d, i) {
+      vm.dist = _.map(letters, function(letter) {
+        return { key: letter, value: d.dist[letter] || 0 };
+      });
+      $scope.$apply();
     }
 
 }]);
