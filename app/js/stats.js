@@ -9,8 +9,8 @@ angular.module('app.controllers')
 
     vm.depths = [
       {display: 'One Character', depth: 1},
+      {display: 'Two Characters', depth: 2},
       {display: 'Four Characters', depth: 4},
-      {display: 'Eight Characters', depth: 8}
     ];
 
     vm.selectedDepth = vm.depths[0];

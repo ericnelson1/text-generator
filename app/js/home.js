@@ -6,8 +6,8 @@ angular.module('app.controllers')
 
 		this.chardepths = [
 			{display: 'One Character', depth: 1},
+			{display: 'Two Characters', depth: 2},
 			{display: 'Four Characters', depth: 4},
-			{display: 'Eight Characters', depth: 8},
 		];
 
 		this.selected = this.chardepths[1];

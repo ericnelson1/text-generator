@@ -15,8 +15,9 @@ exports.setupRoutes = function(app) {
       unprocessed: host + '/api/links/unprocessed',
       stats: [
         { depth: 1, url: host + '/api/stats/depth/1' }, 
-        { depth: 4, url: host + '/api/stats/depth/4' }, 
-        { depth: 8, url: host + '/api/stats/depth/8' }]
+        { depth: 2, url: host + '/api/stats/depth/2' }, 
+        { depth: 4, url: host + '/api/stats/depth/4' } 
+      ]
     });
   });
 

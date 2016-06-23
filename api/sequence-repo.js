@@ -20,7 +20,6 @@ var updateDepth = function(stats, depth) {
     // try to find the entry
     return Sequence.findById(item.seq).exec().then(function(sequence) {
       if (!sequence) {
-        logger.info('create new sequence', item.seq);
         // create a new sequence, revision 1
         var seq = new Sequence({
           _id: item.seq, 

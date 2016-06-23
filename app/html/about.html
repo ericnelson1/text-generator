@@ -10,7 +10,7 @@
         It converts alpha characters to lower case and non-alpha characters to spaces.  
         This creates a total of 27 characters. (26 alphabet + 1 space)
         It then processes the extracted text and builds 3 catalogs: one for single-character 
-        sequences, one for four-character sequences and one for eight-character sequences.
+        sequences, one for two-character sequences and one for four-character sequences.
       </p>
       <div style="margin: 0 auto; width:500px;">
         <span ng-include="'images/process.svg'"></span>
@@ -18,11 +18,11 @@
       <p>
         The potential size of the catalogs grows exponentially, so the single-character 
         catalog has only 27 entries, whereas the
-        eight-character catalog has the potential to grow to over 282 billion entries.
+        four-character catalog has the potential to grow to over a half-million entries.
       </p>
       <div mathjax-bind="about.expression1"></div>
+      <div mathjax-bind="about.expression2"></div>
       <div mathjax-bind="about.expression4"></div>
-      <div mathjax-bind="about.expression8"></div>
       <p>
         The number of occurrences of a particular sequence is recorded in the catalog.  
         So the first few entries in a catalog look like this:

@@ -27,8 +27,8 @@ LinkSchema.virtual('statsurl').get(function() {
   var base = config.host + '/api/stats/' + this.id + '/depth/';
   return [
     { depth: 1, url: base + '1' },
-    { depth: 4, url: base + '4' },
-    { depth: 8, url: base + '8' }
+    { depth: 2, url: base + '2' },
+    { depth: 4, url: base + '4' }
   ];
 });
 // attach the schema to the model
