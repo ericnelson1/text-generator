@@ -2,23 +2,30 @@
 'use strict';
 
 angular.module('app.controllers')
-	.controller('HomeController', function() {
+  .controller('HomeController', ['Text', '$http',
+    function(Text, $http) {
 
-		this.chardepths = [
-			{display: 'One Character', depth: 1},
-			{display: 'Two Characters', depth: 2},
-			{display: 'Four Characters', depth: 4},
-		];
+      var vm = this;
 
-		this.selected = this.chardepths[1];
+      vm.chardepths = [
+        {display: 'One Character', depth: 1},
+        {display: 'Two Characters', depth: 2},
+        {display: 'Four Characters', depth: 4},
+      ];
 
-		this.select = function(s) {
-			this.selected = s;
-		};
+      vm.selected = this.chardepths[1];
 
-		this.go = function() {
-			this.text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id es';
-		};
-	});
+      vm.select = function(s) {
+        vm.selected = s;
+      };
+
+      vm.go = function() {
+        $http.get('/api/text/depth/:depth', {params: {depth: vm.selected.depth }})
+        .then(function(response) {
+          vm.text = response.data;
+        })
+      };
+      
+    }]);
 
 })();

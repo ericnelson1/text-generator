@@ -17,6 +17,11 @@ exports.setupRoutes = function(app) {
         { depth: 1, url: host + '/api/stats/depth/1' }, 
         { depth: 2, url: host + '/api/stats/depth/2' }, 
         { depth: 4, url: host + '/api/stats/depth/4' } 
+      ],
+      text: [
+        { depth: 1, url: host + '/api/text/depth/1' }, 
+        { depth: 2, url: host + '/api/text/depth/2' }, 
+        { depth: 4, url: host + '/api/text/depth/4' } 
       ]
     });
   });
@@ -85,7 +90,7 @@ exports.setupRoutes = function(app) {
       res.send(link.text);
     }).catch(function(err) { 
       res.status(500).json({
-        message: 'error getting text',
+        message: 'controller: error getting text',
         error: err  
       })
     });
@@ -98,7 +103,7 @@ exports.setupRoutes = function(app) {
       res.send(stats);
     }).catch(function(err) { 
       res.status(500).json({
-        message: 'error getting stats for file',
+        message: 'controller: error getting stats for file',
         error: err  
       })
     });
@@ -111,9 +116,23 @@ exports.setupRoutes = function(app) {
       res.send(stats); 
     }).catch(function(err) { 
       res.status(500).json({
-        message: 'error getting stats for catalog',
+        message: 'controller: error getting stats for catalog',
         error: err  
       })
     });
   });
+
+  // generate text
+  app.get('/api/text/depth/:depth', function (req,res) {
+    sequencerepo.getText(parseInt(req.params.depth))
+    .then(function(text) {
+      res.send(text); 
+    }).catch(function(err) { 
+      res.status(500).json({
+        message: 'controller: error getting text',
+        error: err  
+      })
+    });
+  });
+
 };

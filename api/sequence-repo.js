@@ -71,3 +71,7 @@ exports.getStats = function (depth) {
 
 }
 
+exports.getText = function(depth) {
+  return Promise.resolve('hello world'); 
+};
+
