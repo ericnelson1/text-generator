@@ -32,7 +32,7 @@ angular.module('app.controllers')
     refresh();
 
     var letters = 'abcdefghijklmnopqrstuvwxyz_'.split('');
-    var dist = { x: 10, y: 20, z:30};
+    var dist = { _: 50, a: 20, b: 10, c: 30, d: 10, e: 40, x: 10, y: 20, z:30};
     vm.dist = _.map(letters, function(letter) {
       return { key: letter, value: dist[letter] || 0 };
     });

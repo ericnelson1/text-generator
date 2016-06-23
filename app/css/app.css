@@ -45,3 +45,11 @@
   text-decoration: none; 
   color: #337ab7; 
 }
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+

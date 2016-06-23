@@ -12,12 +12,8 @@ angular.module('app.directives')
       link: function(scope, element, attrs) {
 
         var renderTimeout;
-        var margin = parseInt(attrs.margin) || 15,
-            barWidth = parseInt(attrs.barHeight) || 15,
-            barPadding = parseInt(attrs.barPadding) || 1,
-            textMargin = parseInt(attrs.textMargin) || 70,
-            numberMargin = parseInt(attrs.numberMargin) || 70,
-            totalMargin = numberMargin + textMargin,
+        var barWidth = 30,
+            barPadding = 1,
             space = 5;
 
         var svg = d3.select(element[0])
@@ -51,19 +47,20 @@ angular.module('app.directives')
           function renderit() {
 
             var data = scope.data.sort(function(x,y) {
-              return d3.descending(x.key, y.key);
+              return d3.ascending(x.key, y.key);
             });
 
-            var height = 30,
+            var height = 100,
               width = data.length * (barWidth + barPadding),
               color = d3.scale.category20c(),
               yScale = d3.scale.linear()
-                .domain([0, d3.max(data, function(d) {
-                  return d.value; 
-                })])
-                .range([0, height-totalMargin-space]);
+                .domain([0, d3.max(data, function(d) { return d.value; })])
+                .range([height-30, 0]);
 
-            svg.attr('height', height);
+            var yaxis = d3.svg.axis()
+              .scale(yScale)
+              .orient('left')
+              .ticks(3);
 
             var group = svg.selectAll('g')
               .data(data)
@@ -71,42 +68,36 @@ angular.module('app.directives')
               .append('g');
 
             group.append('rect')
-              .attr('height', 30)
+              .attr('transform', 'translate(108, 10)')
+              .attr('height', function(d) { return height - 30 - yScale(d.value); })
               .attr('width', barWidth)
-              .attr('x', function(d,i) {
-                return i * (barWidth + barPadding);
-              })
-              .attr('y', space)
-              .attr('fill', function(d) {
-                return color(d.sum); 
-              })
+              .attr('x', function(d,i) {return i * (barWidth + barPadding); })
+              .attr('y', function(d) { return yScale(d.value); })
+              .attr('fill', function(d) {return color(d.value); })
               .transition()
               .duration(1000)
-              .attr('height', function(d) {
-                return xScale(d.value); 
-              });
+              .attr('y', function(d) {return yScale(d.value); });
+
+//            group.append('text')
+//              .attr('fill', 'black')
+//              .attr('text-anchor', 'end')
+//              .attr('x', function(d,i) {return (i+1) * (barWidth + barPadding) - 5; })
+//              .attr('y', 75)
+//              .text(function(d) {return d3.format(',')(d.value); });
 
             group.append('text')
+              .attr('transform', 'translate(100, 0)')
               .attr('fill', 'black')
               .attr('text-anchor', 'end')
-              .attr('y', function(d,i) {
-                return (i+1) * (barHeight + barPadding) - 5;
-              })
-              .attr('x', margin + numberMargin)
-              .text(function(d) {
-                return d3.format(',')(d.value);  
-              });
+              .attr('x', function(d,i) {return (i+1) * (barWidth + barPadding) - 5; })
+              .attr('y', 95)
+              .text(function(d) {return d.key; });
 
-            group.append('text')
-              .attr('fill', 'black')
-              .attr('text-anchor', 'end')
-              .attr('y', function(d,i) {
-                return (i+1) * (barHeight + barPadding) - 5;
-              })
-              .attr('x', margin + totalMargin)
-              .text(function(d) {
-                return d.key;  
-              });
+            svg.attr('height', height)
+              .append('g')
+              .attr('class', 'axis')
+              .attr('transform', 'translate(100, 10)')
+              .call(yaxis);
 
           };
         };
