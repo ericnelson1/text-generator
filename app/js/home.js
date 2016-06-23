@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('app.controllers')
-  .controller('HomeController', ['Text', '$http',
-    function(Text, $http) {
+  .controller('HomeController', ['$http',
+    function($http) {
 
       var vm = this;
 
@@ -20,7 +20,8 @@ angular.module('app.controllers')
       };
 
       vm.go = function() {
-        $http.get('/api/text/depth/:depth', {params: {depth: vm.selected.depth }})
+        $http.get('/api/text/depth/:depth', 
+          { params: { depth: vm.selected.depth }})
         .then(function(response) {
           vm.text = response.data;
         })

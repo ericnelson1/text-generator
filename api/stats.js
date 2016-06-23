@@ -35,8 +35,10 @@ exports.get = function(text, depth) {
   });
 }
 
-exports.generate = function(stats, length) {
 
+var initialSequence = function (stats) {
+
+  // pick random starting sequence based on sums for distribution
   var total = _.reduce(stats, function(memo, elem) {
     return elem['sum'] + memo;  
   }, 0);
@@ -45,12 +47,29 @@ exports.generate = function(stats, length) {
 
   var counter = 0;
 
-  var el = _.findKey(stats, function(elem) {
+  var key = _.findKey(stats, function(elem) {
     counter += elem['sum'];
     return rand < counter;
   });
+  
+  return stats[key];
 
-  return { r: rand, c: counter, e: el };
+};
+
+var nextLetter = function (seq) {
+
+};
+
+exports.generate = function(stats) {
+
+  var seq = initialSequence(stats, depth);
+
+  var text = seq._id;
+
+  var rand = _.random(0,27);
+
+  
+  return seq;
 }
 
 

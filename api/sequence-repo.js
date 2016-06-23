@@ -1,4 +1,5 @@
 var mongoose = require('./mongo');
+var stats = require('./stats');
 var logger = require('winston');
 var Promise = require('bluebird');
 var _ = require('underscore');
@@ -44,7 +45,7 @@ var updateDepth = function(stats, depth) {
       return Sequence.findOneAndUpdate({_id: item.seq, rev: sequence.rev++}, sequence);
       // todo: handle retries
     }).catch(function(err) {
-      logger.info('error updating catalog', err);
+      logger.info('sequence repo: error updating catalog', err);
       throw err;
     });
   });
@@ -65,13 +66,18 @@ exports.getStats = function (depth) {
       return { seq: val._id, dist: val.dist, sum: val.sum };
     });
   }).catch(function(err) {
-    logger.info('error getting sequences', err);
+    logger.info('sequence repo: error getting sequences for stats', err);
     throw err;
   });
-
 }
 
 exports.getText = function(depth) {
-  return Promise.resolve('hello world'); 
+  return Sequence.find({depth: depth}).select('_id dist sum').exec().then(function (results) {
+    logger.info('got sequence result ', depth, ' ', results.length);
+    return stats.generate(results, depth);
+  }).catch(function(err) {
+    logger.info('sequence repo: error getting sequences for text generation', err);
+    throw err;
+  });
 };
 
