@@ -24,7 +24,7 @@ angular.module('app.controllers')
           { params: { depth: vm.selected.depth }})
         .then(function(response) {
           vm.text = response.data;
-        })
+        });
       };
       
     }]);

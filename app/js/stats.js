@@ -27,7 +27,7 @@ angular.module('app.controllers')
       }, function(data) { 
         vm.stats = data; 
       });
-    }
+    };
 
     refresh();
 
@@ -38,7 +38,7 @@ angular.module('app.controllers')
         return { key: letter, value: d.dist[letter] || 0 };
       });
       $scope.$apply();
-    }
+    };
 
 }]);
 

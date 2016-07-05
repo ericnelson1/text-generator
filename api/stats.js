@@ -33,14 +33,14 @@ exports.get = function(text, depth) {
       sum: _.reduce(val, function(sum, item) { return sum + item; }, 0)
     };
   });
-}
+};
 
 
 var initialSequence = function (stats) {
 
   // pick random starting sequence based on sums for distribution
   var total = _.reduce(stats, function(memo, elem) {
-    return elem['sum'] + memo;  
+    return elem.sum + memo;  
   }, 0);
 
   var rand = _.random(0,total-1);
@@ -48,7 +48,7 @@ var initialSequence = function (stats) {
   var counter = 0;
 
   var key = _.findKey(stats, function(elem) {
-    counter += elem['sum'];
+    counter += elem.sum;
     return rand < counter;
   });
   
@@ -70,6 +70,6 @@ exports.generate = function(stats) {
 
   
   return seq;
-}
+};
 
 

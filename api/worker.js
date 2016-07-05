@@ -35,10 +35,10 @@ queue.process('textstats', function(job, done) {
     return sequencerepo.update(link);
   }).then(function(link) {
     logger.info('finished sequence update');
-    done && done();
+    if (done) done();
     return link;
   }).catch(function(err) {
-    done && done(err);
+    if (done) done(err);
   });
 });
 

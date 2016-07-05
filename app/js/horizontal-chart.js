@@ -108,8 +108,7 @@ angular.module('app.directives')
               .text(function(d) {
                 return d.seq;  
               });
-
-          };
+          }
         };
       }
     };

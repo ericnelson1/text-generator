@@ -69,7 +69,7 @@ exports.getStats = function (depth) {
     logger.info('sequence repo: error getting sequences for stats', err);
     throw err;
   });
-}
+};
 
 exports.getText = function(depth) {
   return Sequence.find({depth: depth}).select('_id dist sum').exec().then(function (results) {

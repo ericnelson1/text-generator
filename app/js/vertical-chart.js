@@ -90,7 +90,7 @@ angular.module('app.directives')
               .attr('transform', 'translate(100, 10)')
               .call(yaxis);
 
-          };
+          }
         };
       }
     };

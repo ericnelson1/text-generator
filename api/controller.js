@@ -34,7 +34,7 @@ exports.setupRoutes = function(app) {
       res.status(500).json({
         message: 'error getting links',
         error: err  
-      })
+      });
     });
   });
 
@@ -92,7 +92,7 @@ exports.setupRoutes = function(app) {
       res.status(500).json({
         message: 'controller: error getting text',
         error: err  
-      })
+      });
     });
   });
 
@@ -105,7 +105,7 @@ exports.setupRoutes = function(app) {
       res.status(500).json({
         message: 'controller: error getting stats for file',
         error: err  
-      })
+      });
     });
   });
 
@@ -118,7 +118,7 @@ exports.setupRoutes = function(app) {
       res.status(500).json({
         message: 'controller: error getting stats for catalog',
         error: err  
-      })
+      });
     });
   });
 
@@ -131,7 +131,7 @@ exports.setupRoutes = function(app) {
       res.status(500).json({
         message: 'controller: error getting text',
         error: err  
-      })
+      });
     });
   });
 

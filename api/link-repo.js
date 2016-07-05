@@ -5,7 +5,7 @@ var _ = require('underscore');
 
 var config = {
   host: 'http://localhost:5000'
-}
+};
 
 // define schema
 var LinkSchema = new mongoose.Schema({
