@@ -7,8 +7,8 @@
     "lint": "jshint api app test",
     "test-server": "jasmine-node test/unit --autotest",
     "test-client": "karma start",
-    "test-e2e": "protractor",
-    "test": "npm run lint",
+    "test-e2e": "protractor test/e2e/conf.js",
+    "test": "mocha test/unit/**/*.spec.js --reporter spec",
     "start": "node api/app.js"
   },
   "repository": {
@@ -39,8 +39,11 @@
     "underscore": "1.8.3"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "gulp": "3.9.0",
+    "gulp-jasmine-node": "^1.0.6",
     "gulp-jshint": "^2.0.1",
+    "gulp-mocha": "^2.2.0",
     "gulp-nodemon": "2.0.4",
     "gulp-util": "^3.0.7",
     "jasmine": "^2.4.1",
@@ -50,6 +53,7 @@
     "karma": "^1.1.0",
     "karma-jasmine": "^1.0.2",
     "karma-jshint-preprocessor": "0.0.6",
+    "mocha": "^2.5.3",
     "wiredep": "2.2.2"
   }
 }

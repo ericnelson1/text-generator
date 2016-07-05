@@ -1,11 +1,16 @@
 var gulp = require('gulp'),
-  gutil = require('gulp-util'),
+  util = require('gulp-util'),
+  mocha = require('gulp-mocha'),
   jshint = require('gulp-jshint'),
+  jasmineNode = require('gulp-jasmine-node'),
   nodemon = require('gulp-nodemon'),
   wiredep = require('wiredep');
 
 var config = {
-  js: ['./**/*.js', '!node_modules/**', '!bower_components/**']
+  js: ['api/**/*.js', 'app/**/*.js', 'test/**/*.js'],
+  test: {
+    unit: 'test/unit/**/*.spec.js'
+  }
 };
 
 gulp.task('bower', function () {
@@ -37,8 +42,20 @@ gulp.task('jshint', function() {
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
+
+gulp.task('unittest', function() {
+  return gulp.src(config.test.unit)
+    //.pipe(jasmineNode({timeout: 10000}));
+    .pipe(mocha({reporter: 'spec'}))
+    .on('error', util.log);
+});
+
+gulp.task('mytask', function() {
+  util.log('mytask');
+});
+
 gulp.task('watch', function() {
-  gulp.watch(config.js, ['jshint']);
+  gulp.watch(config.js, ['jshint', 'mytask', 'unittest']);
 });
 
 gulp.task('default', ['watch']);

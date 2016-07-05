@@ -2,7 +2,7 @@ exports.config = {
   baseUrl: 'http://localhost:5000',
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
-  framework: 'jasmine',
+  framework: 'mocha',
 
   specs: ['./specs/**/*.spec.js'],
 

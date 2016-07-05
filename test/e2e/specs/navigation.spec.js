@@ -1,3 +1,4 @@
+//var expect = require('chai').expect;
 var navigation = require('../pages/navigation.page');
 
 describe('Navigation: ', function () {
@@ -7,17 +8,23 @@ describe('Navigation: ', function () {
   });
 
   it('should navigate to the about page', function (done) {
+    console.log('entering');
     navigation.goAbout()
       .then(function () {
-        expect(navigation.isPage('about-page')).toBe(true);
+        console.log('inside');
+        //expect(navigation.isPage('about-page')).to.be(true);
+        console.log('calling done');
         done();
+      })
+      .catch(function() {
+        console.log('error happened');
       });
   });
 
   it('should navigate to the submit page', function (done) {
     navigation.goSubmit()
       .then(function () {
-        expect(navigation.isPage('submit-page')).toBe(true);
+        //expect(navigation.isPage('submit-page')).to.be(true);
         done();
       });
   });
@@ -25,7 +32,7 @@ describe('Navigation: ', function () {
   it('should navigate to the catalog page', function (done) {
     navigation.goCatalog()
       .then(function () {
-        expect(navigation.isPage('catalog-page')).toBe(true);
+        //expect(navigation.isPage('catalog-page')).to.be(true);
         done();
       });
   });
@@ -33,7 +40,7 @@ describe('Navigation: ', function () {
   it('should navigate to the stats page', function (done) {
     navigation.goStats()
       .then(function () {
-        expect(navigation.isPage('stats-page')).toBe(true);
+        //expect(navigation.isPage('stats-page')).to.be(true);
         done();
       });
   });
