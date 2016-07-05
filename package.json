@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "lint": "jshint api app test",
-    "test": "karma start",
+    "test-server": "jasmine-node test/unit --autotest",
+    "test-client": "karma start",
+    "test-e2e": "protractor",
+    "test": "npm run lint",
     "start": "node api/app.js"
   },
   "repository": {
@@ -37,9 +40,13 @@
   },
   "devDependencies": {
     "gulp": "3.9.0",
+    "gulp-jshint": "^2.0.1",
     "gulp-nodemon": "2.0.4",
+    "gulp-util": "^3.0.7",
     "jasmine": "^2.4.1",
+    "jasmine-node": "^1.14.5",
     "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
     "karma": "^1.1.0",
     "karma-jasmine": "^1.0.2",
     "karma-jshint-preprocessor": "0.0.6",
