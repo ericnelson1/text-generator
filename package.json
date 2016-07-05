@@ -4,7 +4,8 @@
   "description": "Text generator app",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec",
+    "lint": "jshint api app test",
+    "test": "karma start",
     "start": "node api/app.js"
   },
   "repository": {
@@ -39,6 +40,9 @@
     "gulp-nodemon": "2.0.4",
     "jasmine": "^2.4.1",
     "jshint": "^2.9.2",
+    "karma": "^1.1.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-jshint-preprocessor": "0.0.6",
     "wiredep": "2.2.2"
   }
 }
