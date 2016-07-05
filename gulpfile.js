@@ -6,11 +6,7 @@ var gulp = require('gulp'),
   nodemon = require('gulp-nodemon'),
   wiredep = require('wiredep');
 
-
-//var protractor = require('gulp-protractor').protractor;
-//var webdriver_standalone = require("gulp-protractor").webdriver_standalone;
 var angularProtractor = require('gulp-angular-protractor');
-
 
 var config = {
   js: ['api/**/*.js', 'app/**/*.js', 'test/**/*.js'],
@@ -47,26 +43,19 @@ gulp.task('start', function () {
   });
 });
 
-gulp.task('jshint', function() {
+gulp.task('lint', function() {
   return gulp.src(config.js)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('unittest', function() {
-  return gulp.src(config.test.unit)
-    //.pipe(jasmineNode({timeout: 10000}));
-    .pipe(mocha({reporter: 'spec'}))
-    .on('error', util.log);
+gulp.task('unittest', function(callback) {
+  gulp.src(config.test.unit)
+    .pipe(jasmineNode({timeout:10000}))
+    //.pipe(mocha({reporter: 'spec'}))
+    .on('error', util.log)
+    .on('end', callback);
 });
-
-//gulp.task('webdriver_standalone', webdriver_standalone);
-
-//gulp.task('e2e', ['webdriver_standalone'], function() {
-//  return gulp.src(config.test.e2e.specs)
-//    .pipe(protractor({configFile: config.test.e2e.config}))
-//    .on('error', function(e) { throw e; });
-//});
 
 gulp.task('e2e', function(callback) {
   gulp.src(config.test.e2e.specs) 
@@ -79,12 +68,8 @@ gulp.task('e2e', function(callback) {
     .on('end', callback);
 });
 
-gulp.task('mytask', function() {
-  util.log('mytask');
-});
-
 gulp.task('watch', function() {
-  gulp.watch(config.js, ['jshint', 'mytask', 'unittest']);
+  gulp.watch(config.js, ['lint', 'unittest']);
 });
 
 gulp.task('default', ['watch']);

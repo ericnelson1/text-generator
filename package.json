@@ -5,11 +5,14 @@
   "main": "app.js",
   "scripts": {
     "lint": "jshint api app test",
+    "pretest": "npm run lint",
+    "test": "mocha test/unit/**/*.spec.js -u bdd --reporter spec",
+    "test:watch": "npm test -- --watch --reporter min",
+    "start": "node api/app.js",
+
     "test-server": "jasmine-node test/unit --autotest",
     "test-client": "karma start",
-    "test-e2e": "protractor test/e2e/conf.js",
-    "test": "mocha test/unit/**/*.spec.js --reporter spec",
-    "start": "node api/app.js"
+    "test-e2e": "protractor test/e2e/conf.js"
   },
   "repository": {
     "type": "git",
