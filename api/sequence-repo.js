@@ -15,8 +15,7 @@ var SequenceSchema = new mongoose.Schema({
 
 var Sequence = mongoose.model('Sequence', SequenceSchema);
 
-
-var updateDepth = function(stats, depth) {
+function updateDepth(stats, depth) {
   return _.map(stats, function(item){
     // try to find the entry
     return Sequence.findById(item.seq).exec().then(function(sequence) {
@@ -49,17 +48,16 @@ var updateDepth = function(stats, depth) {
       throw err;
     });
   });
-};
+}
 
-
-exports.update = function(link) {
+function update(link) {
   var promises = _.map(link.stats, function(stats) {
     return updateDepth(stats.stats, stats.depth);
   });
   return Promise.all(_.flatten(promises));
-};
+}
 
-exports.getStats = function (depth) {
+function getStats(depth) {
   return Sequence.find({depth: depth}).select('_id dist sum').exec().then(function (results) {
     logger.info('got sequence result ', depth, ' ', results.length);
     return _.map(results, function(val, key) {
@@ -69,9 +67,9 @@ exports.getStats = function (depth) {
     logger.info('sequence repo: error getting sequences for stats', err);
     throw err;
   });
-};
+}
 
-exports.getText = function(depth) {
+function getText(depth) {
   return Sequence.find({depth: depth}).select('_id dist sum').exec().then(function (results) {
     logger.info('got sequence result ', depth, ' ', results.length);
     return stats.generate(results, depth);
@@ -79,5 +77,11 @@ exports.getText = function(depth) {
     logger.info('sequence repo: error getting sequences for text generation', err);
     throw err;
   });
-};
+}
 
+module.exports = {
+  updateDepth: updateDepth,
+  update: update,
+  getStats: getStats,
+  getText: getText
+};
