@@ -3,7 +3,7 @@ var _ = require('underscore');
 function get(text, depth) {
 
   // make text lowercase and turn all non-alpha chars into a single space
-  var text = text
+  text = text
     .toLowerCase()
     .replace(/[^a-z]+/g, '_');
 

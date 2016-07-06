@@ -15,11 +15,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static('app'));
-app.use('/lib', express.static('bower_components'));
+app.use('/lib', express.static('node_modules'));
 
 //you won't need 'connect-livereload' if you have livereload plugin for your browser 
 //app.use(require('connect-livereload')());
-//app.use(express.static('public'));
 
 controller.setupRoutes(app);
 
