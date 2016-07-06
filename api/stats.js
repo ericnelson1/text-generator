@@ -1,28 +1,29 @@
 var _ = require('underscore');
 
-exports.get = function(text, depth) {
+function get(text, depth) {
 
-  var txt = text
+  // make text lowercase and turn all non-alpha chars into a single space
+  var text = text
     .toLowerCase()
     .replace(/[^a-z]+/g, '_');
 
-  if (txt.length <= depth+1) 
+  if (text.length <= depth+1) 
     return [];
 
   var stats = {};
 
-  var s = txt.substring(0,depth);
-  for (var i = depth; i < txt.length; i++) {
+  var s = text.substring(0,depth);
+  for (var i = depth; i < text.length; i++) {
     if (!(s in stats)) {
       stats[s] = { };
     }
-    if (!(txt[i] in stats[s])) {
-      stats[s][txt[i]] = 1;
+    if (!(text[i] in stats[s])) {
+      stats[s][text[i]] = 1;
     }
     else {
-      stats[s][txt[i]]++;
+      stats[s][text[i]]++;
     }
-    s += txt[i];
+    s += text[i];
     s = s.substring(1,depth+1);
   }
 
@@ -33,10 +34,9 @@ exports.get = function(text, depth) {
       sum: _.reduce(val, function(sum, item) { return sum + item; }, 0)
     };
   });
-};
+}
 
-
-var initialSequence = function (stats) {
+function initialSequence(stats) {
 
   // pick random starting sequence based on sums for distribution
   var total = _.reduce(stats, function(memo, elem) {
@@ -54,13 +54,9 @@ var initialSequence = function (stats) {
   
   return stats[key];
 
-};
+}
 
-var nextLetter = function (seq) {
-
-};
-
-exports.generate = function(stats) {
+function generate (stats) {
 
   var seq = initialSequence(stats, depth);
 
@@ -70,6 +66,11 @@ exports.generate = function(stats) {
 
   
   return seq;
+}
+
+module.exports = {
+  get: get,
+  generate: generate
 };
 
 

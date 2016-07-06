@@ -4,22 +4,27 @@
   "description": "Text generator app",
   "main": "app.js",
   "scripts": {
+    "bower": "bower install",
+    "wiredep": "wiredep --ignorePath ../bower_components --src app/index.html",
     "lint": "jshint api app test",
     "pretest": "npm run lint",
     "test": "mocha test/unit/**/*.spec.js -u bdd --reporter spec",
-    "test:watch": "npm test -- --watch --reporter min",
+    "watch:lint": "watch 'npm run lint' api app test",
+    "watch:test": "npm test -- --watch --reporter min",
+    "watch:server": "nodemon --ignore test --ignore app api/app.js",
+    "watch": "npm run watch:lint & npm run watch:test",
     "start": "node api/app.js",
-
-    "test-server": "jasmine-node test/unit --autotest",
     "test-client": "karma start",
-    "test-e2e": "protractor test/e2e/conf.js"
+    "test-e2e": "protractor test/e2e/conf.js",
+    "build:bundle": "browserify app/js/ -o app/bundle.js"
+
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ericnelson1/text-generator.git"
   },
   "author": "Eric Nelson",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ericnelson1/text-generator/issues"
   },
@@ -42,24 +47,14 @@
     "underscore": "1.8.3"
   },
   "devDependencies": {
+    "bower": "^1.7.9",
+    "browserify": "^13.0.1",
     "chai": "^3.5.0",
-    "gulp": "3.9.0",
-    "gulp-angular-protractor": "^0.1.1",
-    "gulp-jasmine-node": "^1.0.6",
-    "gulp-jshint": "^2.0.1",
-    "gulp-mocha": "^2.2.0",
-    "gulp-nodemon": "2.0.4",
-    "gulp-protractor": "^2.4.0",
-    "gulp-util": "^3.0.7",
-    "jasmine": "^2.4.1",
-    "jasmine-node": "^1.14.5",
-    "jasmine-spec-reporter": "^2.5.0",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0",
     "karma": "^1.1.0",
-    "karma-jasmine": "^1.0.2",
-    "karma-jshint-preprocessor": "0.0.6",
     "mocha": "^2.5.3",
+    "nodemon": "^1.9.2",
     "wiredep": "2.2.2"
   }
 }

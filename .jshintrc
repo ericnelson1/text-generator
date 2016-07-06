@@ -1,13 +1,2 @@
 {
-    "browser": true,
-    "devel": true,
-    "predef": ["angular"],
-    "globals": {
-      "jasmine": false,
-      "describe": false,
-      "it": false,
-      "expect": true,
-      "beforeEach": false,
-      "afterEach": false
-    }
 }
