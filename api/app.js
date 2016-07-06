@@ -2,12 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');  // use express body parser instead?
 var controller = require('./controller');
 
-
 var app = module.exports.app = exports.app = express(); //why?
 
 var port = process.env.PORT || 5000;
 app.set('port', port);
-
 
 // support json encoded bodies
 app.use(bodyParser.json()); 
@@ -25,6 +23,5 @@ controller.setupRoutes(app);
 app.listen(port, function() {
   console.log('listening on port ', port); 
 });
-
 
 

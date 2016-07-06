@@ -20,14 +20,14 @@ angular.module('app.controllers')
       refresh();
     };
  
-    var refresh = function() {
+    function refresh() {
       Stats.query({
         id: $stateParams.id || null,
         depth: vm.selectedDepth.depth 
       }, function(data) { 
         vm.stats = data; 
       });
-    };
+    }
 
     refresh();
 

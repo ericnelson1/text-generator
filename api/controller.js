@@ -3,8 +3,7 @@ var worker = require('./worker');
 var linkrepo = require('./link-repo');
 var sequencerepo = require('./sequence-repo');
 
-
-exports.setupRoutes = function(app) {
+function setupRoutes(app) {
 
   // api root
   app.get('/api', function(req, res) {
@@ -135,4 +134,9 @@ exports.setupRoutes = function(app) {
     });
   });
 
+}
+
+module.exports = {
+  setupRoutes: setupRoutes
 };
+
