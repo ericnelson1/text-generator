@@ -36,6 +36,10 @@
 	width:150px;
 }
 
+#home-page .tg-buttons {
+  width:200px;
+}
+
 .ng-cloak { display: none !important; } 
 
 .unstyled-link a:active, 
