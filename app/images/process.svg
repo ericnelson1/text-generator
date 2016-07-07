@@ -5,38 +5,38 @@
 		<animateMotion path="M 0 0 L -1800 0" dur="60s" fill="freeze" repeatCount="indefinite" />
 	</text>
 
-	<rect x="10" y="10" width="70" height="20" fill="#337ab7" stroke="black" />
-	<rect x="150" y="10" width="45" height="20" fill="#337ab7" stroke="black" />
-	<rect x="295" y="10" width="20" height="20" fill="#337ab7" stroke="black" />
+	<rect x="110" y="10" width="80" height="20" fill="#337ab7" stroke="black" />
+	<rect x="230" y="10" width="40" height="20" fill="#337ab7" stroke="black" />
+	<rect x="340" y="10" width="20" height="20" fill="#337ab7" stroke="black" />
 
-	<rect x="10" y="150" width="70" height="80" fill="#337ab7" stroke="black" />
-	<rect x="140" y="150" width="70" height="80" fill="#337ab7" stroke="black" />
-	<rect x="270" y="150" width="70" height="80" fill="#337ab7" stroke="black" />
+	<rect x="110" y="150" width="80" height="80" fill="#337ab7" stroke="black" />
+	<rect x="210" y="150" width="80" height="80" fill="#337ab7" stroke="black" />
+	<rect x="310" y="150" width="80" height="80" fill="#337ab7" stroke="black" />
 
-	<text x="20" y="180" stroke="white">8 char</text>
-	<text x="150" y="180" stroke="white">4 char</text>
-	<text x="280" y="180" stroke="white">1 char</text>
+	<text x="125" y="180" stroke="white" fill="white">4 char</text>
+	<text x="225" y="180" stroke="white" fill="white">2 char</text>
+	<text x="325" y="180" stroke="white" fill="white">1 char</text>
 
-	<text x="20" y="210" stroke="white">catalog</text>
-	<text x="150" y="210" stroke="white">catalog</text>
-	<text x="280" y="210" stroke="white">catalog</text>
+	<text x="125" y="210" stroke="white" fill="white">catalog</text>
+	<text x="225" y="210" stroke="white" fill="white">catalog</text>
+	<text x="325" y="210" stroke="white" fill="white">catalog</text>
 
-	<text x="15" y="25" fill="black" ng-repeat="seq in about.sequence8" visibility="hidden">
+	<text x="135" y="25" fill="black" ng-repeat="seq in about.sequence4" visibility="hidden">
 		{{seq.str}}
-		<animateMotion path="M 0 0 L 0 130" dur="1s" begin="{{seq.begin/4.5+15}}s" fill="freeze" />
-		<set attributeName="visibility" attributeType="CSS" to="visible" begin="{{seq.begin/4.5+15}}" fill="freeze" />
-		<set attributeName="visibility" attributeType="CSS" to="hidden" begin="{{seq.begin/4.5+16}}" fill="freeze" />
+		<animateMotion path="M 0 0 L 0 120" dur="1s" begin="{{seq.begin/4.5+11}}s" fill="freeze" repeatCount="indefinite" />
+		<set attributeName="visibility" attributeType="CSS" to="visible" begin="{{seq.begin/4.5+11}}" fill="freeze" />
+		<set attributeName="visibility" attributeType="CSS" to="hidden" begin="{{seq.begin/4.5+12}}" fill="freeze" />
 	</text>
-	<text x="155" y="25" fill="black" ng-repeat="seq in about.sequence4" visibility="hidden">
+	<text x="245" y="25" fill="black" ng-repeat="seq in about.sequence2" visibility="hidden">
 		{{seq.str}}
-		<animateMotion path="M 0 0 L 0 130" dur="1s" begin="{{seq.begin/4.5+10}}s" fill="freeze" />
-		<set attributeName="visibility" attributeType="CSS" to="visible" begin="{{seq.begin/4.5+10}}" fill="freeze" />
-		<set attributeName="visibility" attributeType="CSS" to="hidden" begin="{{seq.begin/4.5+11}}" fill="freeze" />
+		<animateMotion path="M 0 0 L 0 120" dur="1s" begin="{{seq.begin/4.5+7}}s" fill="freeze"/>
+		<set attributeName="visibility" attributeType="CSS" to="visible" begin="{{seq.begin/4.5+7}}" fill="freeze" />
+		<set attributeName="visibility" attributeType="CSS" to="hidden" begin="{{seq.begin/4.5+8}}" fill="freeze" />
 	</text>
-	<text x="300" y="25" fill="black" ng-repeat="seq in about.sequence1" visibility="hidden">
+	<text x="347" y="25" fill="black" ng-repeat="seq in about.sequence1" visibility="hidden">
 		{{seq.str}}
-		<animateMotion path="M 0 0 L 0 130" dur="1s" begin="{{seq.begin/4.5+5}}s" fill="freeze" />
-		<set attributeName="visibility" attributeType="CSS" to="visible" begin="{{seq.begin/4.5+5}}" fill="freeze" />
-		<set attributeName="visibility" attributeType="CSS" to="hidden" begin="{{seq.begin/4.5+6}}" fill="freeze" />
+		<animateMotion path="M 0 0 L 0 120" dur="1s" begin="{{seq.begin/4.5+3}}s" fill="freeze"/>
+		<set attributeName="visibility" attributeType="CSS" to="visible" begin="{{seq.begin/4.5+3}}" fill="freeze" />
+		<set attributeName="visibility" attributeType="CSS" to="hidden" begin="{{seq.begin/4.5+4}}" fill="freeze" />
 	</text>
 </svg>

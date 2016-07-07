@@ -21,8 +21,8 @@ angular.module('app.controllers')
 		vm.quote = 'to_be_or_not_to_be_that_is_the_question_whether_tis_nobler_in_the_mind_to_suffer_the_slings_and_arrows_of_outrageous_fortune_or_to_take_arms_against_a_sea_of_troubles';
 		
 		vm.sequence1 = chunk(vm.quote, 1);
-		vm.sequence4 = chunk(vm.quote, 2);
-		vm.sequence8 = chunk(vm.quote, 4);
+		vm.sequence2 = chunk(vm.quote, 2);
+		vm.sequence4 = chunk(vm.quote, 4);
 
 	}]);
 
