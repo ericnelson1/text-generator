@@ -13,7 +13,7 @@ angular.module('app.controllers')
         {display: 'Four Characters', depth: 4},
       ];
 
-      vm.selected = this.chardepths[1];
+      vm.selected = vm.chardepths[1];
 
       vm.select = function(s) {
         vm.selected = s;

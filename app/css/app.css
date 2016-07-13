@@ -34,3 +34,128 @@
     shape-rendering: crispEdges;
 }
 
+@keyframes tg-text-keyframe {
+  from { left: 1000px; }
+  to { left: -1500px;}
+}
+
+.tg-overflow {
+  position: relative;
+  top: 40px;
+  overflow: hidden;
+}
+
+.tg-text-scroll {
+  position:relative;
+  width:100px;
+  font-family:monospace;
+  animation-name: tg-text-keyframe;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.tg-outer-catalog {
+  height: 100px;
+  width: 310px; 
+  margin:auto;
+  margin-bottom: 30px;
+}
+
+.tg-inner-catalog {
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  margin: 10px;
+  padding: 17px;
+  border: solid black 1px;
+  border-radius: 5px;
+  background-color: #337ab7; 
+  color: white;
+}
+
+.tg-outer-filter {
+  height: 100px;
+  width: 310px; 
+  margin:auto;
+}
+
+.tg-inner-filter {
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  margin: 10px;
+  border: solid black 1px;
+  border-radius: 5px;
+  background-color: #337ab7; 
+  color: white;
+}
+
+.tg-one { 
+  width: 20px; 
+  left: 115px;
+}
+
+.tg-two{ 
+  width: 30px; 
+  left: 60px;
+}
+
+.tg-four { 
+  width: 40px; 
+  left: 20px;
+}
+
+@keyframes tg-drop-text {
+  from { top: 10px; visibility: visible;}
+  2%, to { top: 90px; visibility: hidden;}
+}
+
+.tg-seq {
+  position: relative;
+  height: 0px;
+  top:10px;
+  animation-name: tg-drop-text;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.tg-seq-one { 
+  left: 247px;
+}
+
+.tg-seq-two{ 
+  left: 143px;
+}
+
+.tg-seq-four { 
+  left: 33px;
+}
+
+#tg-about-page table {
+  margin: auto;
+}
+
+#tg-about-page table, 
+#tg-about-page th, 
+#tg-about-page td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+#tg-about-page table tr:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+
+#tg-about-page table tr:nth-child(even) {
+  background-color: #ffffff;
+}      <div > - </div>
+
+
+
+
+
+
+

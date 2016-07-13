@@ -2,6 +2,7 @@ var logger = require('./log');
 var worker = require('./worker');
 var linkrepo = require('./link-repo');
 var sequencerepo = require('./sequence-repo');
+var stats = require('./stats');
 
 function setupRoutes(app) {
 
@@ -109,7 +110,7 @@ function setupRoutes(app) {
   });
 
   // show stats for entire catalog
-  app.get('/api/stats/depth/:depth', function (req,res) {
+  app.get('/api/stats/depth/:depth', function(req,res) {
     sequencerepo.getStats(parseInt(req.params.depth))
     .then(function(stats) {
       res.send(stats); 
@@ -122,7 +123,7 @@ function setupRoutes(app) {
   });
 
   // generate text
-  app.get('/api/text/depth/:depth', function (req,res) {
+  app.get('/api/text/depth/:depth', function(req,res) {
     sequencerepo.getText(parseInt(req.params.depth))
     .then(function(text) {
       res.send(text); 
@@ -132,6 +133,14 @@ function setupRoutes(app) {
         error: err  
       });
     });
+  });
+
+  // get stats for text
+  app.post('/api/stats', function(req,res) {
+    var text = req.body.text;
+    var depth = parseInt(req.body.depth);
+    var result = stats.get(text, depth);
+    res.send(result);
   });
 
 }

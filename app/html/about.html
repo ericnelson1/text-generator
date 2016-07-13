@@ -4,35 +4,83 @@
       <h1 class="text-center">How Text Generator Works</h1>
       <hr />
       <p>
-        When a user submits a URL on the submit page, we add it to a queue.
-        A background worker will get the URL from the queue, 
+        When a user submits a URL on the submit page, it is added to a queue.
+        A background worker will pick up the URL from the queue, 
         fetch the page from the web and extract the text.
         It converts alpha characters to lower case and non-alpha characters to spaces.  
         This creates a total of 27 characters. (26 alphabet + 1 space)
-        It then processes the extracted text and builds 3 catalogs: one for single-character 
-        sequences, one for two-character sequences and one for four-character sequences.
+        The background worker then processes the extracted text and builds 3 catalogs: 
+        one for single-character sequences, one for two-character sequences 
+        and one for four-character sequences.
       </p>
-      <div style="margin: 0 auto; width:500px;">
-        <span ng-include="'images/process.svg'"></span>
+
+      <div class="tg-overflow">
+        <p class="tg-text-scroll">{{about.quote}}</p>
       </div>
+
+      <div class="tg-outer-filter">
+
+        <div class="tg-seq tg-seq-four" ng-repeat="seq in about.sequence4" 
+            style="animation-delay:{{seq.begin/10+7.2}}s">
+          {{seq.str}}
+        </div>
+        <div class="tg-seq tg-seq-two" ng-repeat="seq in about.sequence2" 
+            style="animation-delay:{{seq.begin/10+6}}s">
+          {{seq.str}}
+        </div>
+        <div class="tg-seq tg-seq-one" ng-repeat="seq in about.sequence1" 
+            style="animation-delay:{{seq.begin/10+4.7}}s">
+          {{seq.str}}
+        </div>
+
+        <div class="tg-inner-filter tg-four"></div>
+        <div class="tg-inner-filter tg-two"></div>
+        <div class="tg-inner-filter tg-one"></div>
+      </div>
+
+      <div class="tg-outer-catalog">
+        <div class="tg-inner-catalog">4 char catalog</div>
+        <div class="tg-inner-catalog">2 char catalog</div>
+        <div class="tg-inner-catalog">1 char catalog</div>
+      </div>
+
       <p>
         The potential size of the catalogs grows exponentially, so the single-character 
         catalog has only 27 entries, whereas the
         four-character catalog has the potential to grow to over a half-million entries.
       </p>
-      <div mathjax-bind="about.expression1"></div>
-      <div mathjax-bind="about.expression2"></div>
-      <div mathjax-bind="about.expression4"></div>
+
       <p>
-        The number of occurrences of a particular sequence is recorded in the catalog.  
+        The number of occurrences of a particular sequence is recorded in the catalog,
+        along with the frequency of the subsequent character.   
         So the first few entries in a catalog look like this:
       </p>
+
+      <table>
+        <tr> 
+          <th>Sequence</th>
+          <th>Sum</th>
+          <th>Distribution</th>
+        </tr>
+        <tr ng-repeat="seq in about.displaySequences | orderBy: '-sum' | limitTo: 5 ">
+          <td>{{seq.seq}}</td> 
+          <td>{{seq.sum}}</td> 
+          <td>{{seq.dist}}</td> 
+        </tr>
+      </table>
+
+      <div class="space-30"></div>
+      <p>
+        For a deeper view of the letter sequences in each catalog, click on the statistics tab.
+      </p>
+
       <p>
         In order to generate text from an N-character catalog, a starting sequence is chosen 
         from the catalog based on the weight (i.e. number of occurrences) of the sequence. 
         Then each subsequent selection from the catalog is based on the trailing N-1 characters
         of the previously selected sequence.
       </p>
+      <div class="space-60"></div>
     </div>
   </div>
 </div>

@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('app.controllers')
-.controller('AboutController', [
-	function () {
+.controller('AboutController', ['$http',
+	function ($http) {
 		var vm = this;
 
 		vm.expression1 = '27^1 = ' + (Math.pow(27, 1)).toLocaleString();
@@ -23,6 +23,15 @@ angular.module('app.controllers')
 		vm.sequence1 = chunk(vm.quote, 1);
 		vm.sequence2 = chunk(vm.quote, 2);
 		vm.sequence4 = chunk(vm.quote, 4);
+
+    $http.post('/api/stats', 
+      { text: vm.quote, depth: 2 })
+    .then(function(response) {
+      vm.displaySequences = response.data;
+    })
+    .catch(function(err) {
+    	var y = err;
+    });
 
 	}]);
 
