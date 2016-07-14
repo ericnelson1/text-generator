@@ -1,39 +1,39 @@
 ﻿<div id="tg-submit-page" class="container-fluid">
-	<div class="row">
-		<div class="col-sm-offset-2 col-sm-8">
-			<h1 class="text-center">Submit Text</h1>
-			<h4 class="text-center">Add your favorite web page to the catalog</h4>
-		</div>
-	</div>
-	<div class="space-30"></div>
-	<div class="row">
-		<div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
-			<form role="form" name="myform">
-				<div class="form-group">
-					<div class="input-group">
-						<input type="text" 
-							name="inputurl"
-							class="form-control" 
-							placeholder="Paste link here"
-							autocomplete="off"
-							ng-model="submit.url"
-							ng-keyup="$event.keyCode == 13 && submit.submit()"
-							ng-change="submit.change()"
-							ng-trim="true">
-						<div class="input-group-btn">
-							<button type="button" class="btn btn-primary" ng-click="submit.submit()">Submit</button>
-						</div>
-					</div>
-				</div>
-			</form>
-			<div class="space-30"></div>
-			<h4 class="text-center">{{submit.message}}</h4>
-			<div class="space-60"></div>
-			<div class="text-center unstyled-link">
-			  <h4>Suggested Sites</h4>
-				<div><a target="_blank" href="https://www.gutenberg.org/">Project Gutenberg</a></div>
-				<div><a target="_blank" href="http://textfiles.com/etext/AUTHORS/">Authors</a></div>
-				<div><a target="_blank" href="http://textfiles.com/directory.html">Subversive Text Files</a></div>
-			</div>
-	</div>
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+      <h1 class="text-center">Submit Text</h1>
+      <h4 class="text-center">Add your favorite web page to the catalog</h4>
+    </div>
+  </div>
+  <div class="space-30"></div>
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+      <form role="form" name="myform">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" 
+              name="inputurl"
+              class="form-control" 
+              placeholder="Paste link here"
+              autocomplete="off"
+              ng-model="submit.url"
+              ng-keyup="$event.keyCode == 13 && submit.submit()"
+              ng-change="submit.change()"
+              ng-trim="true">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-primary" ng-click="submit.submit()">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="space-30"></div>
+      <h4 class="text-center">{{submit.message}}</h4>
+      <div class="space-60"></div>
+      <div class="text-center unstyled-link">
+        <h4>Suggested Sites</h4>
+        <div><a target="_blank" href="https://www.gutenberg.org/">Project Gutenberg</a></div>
+        <div><a target="_blank" href="http://textfiles.com/etext/AUTHORS/">Authors</a></div>
+        <div><a target="_blank" href="http://textfiles.com/directory.html">Subversive Text Files</a></div>
+      </div>
+  </div>
 </div> 
