@@ -1,11 +1,11 @@
-#### Text Generator
+### Text Generator
 
 * Generates text based on character patterns.
 
-#### Technologies
+### Technologies
 * Written on the MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS) 
 
-#### Npm and Bower packages
+### Npm Packages
 * bootstrap
 * angular-bootstrap
 * [smart-table][5]
@@ -16,7 +16,6 @@
 * [kue][2] for background job processing
 * [mongoose][6] mongo client
 * mocha/chai test framework
-* gulp task runner
         
 [1]: https://www.npmjs.com/package/ineed
 [2]: https://www.npmjs.com/package/kue
